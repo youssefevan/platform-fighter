@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scenes/CharacterBase.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Sprites/Characters/red.png" type="Texture" id=2]
+
+[node name="Red" instance=ExtResource( 1 )]
+gravity = 850.0
+fall_speed = 350.0
+fastfall_speed = 570.0
+fullhop_height = 250.0
+shorthop_height = 215.0
+ground_acceleration = 2200.0
+air_speed = 100.0
+jumpsquat_frames = 3
+
+[node name="Sprite" parent="." index="1"]
+texture = ExtResource( 2 )

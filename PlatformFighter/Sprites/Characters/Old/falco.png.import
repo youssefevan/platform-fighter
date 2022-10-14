@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/kirby.png-47856a1478c7f75a9b20d5ac16f6bdd2.stex"
+path="res://.import/falco.png-f18fd02528ae1223832503559525491f.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Characters/kirby.png"
-dest_files=[ "res://.import/kirby.png-47856a1478c7f75a9b20d5ac16f6bdd2.stex" ]
+source_file="res://Sprites/Characters/Old/falco.png"
+dest_files=[ "res://.import/falco.png-f18fd02528ae1223832503559525491f.stex" ]
 
 [params]
 

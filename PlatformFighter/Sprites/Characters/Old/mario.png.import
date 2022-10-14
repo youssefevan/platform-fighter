@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/fox.png-f41bd6c94a7d3d75d234e66c1d41b997.stex"
+path="res://.import/mario.png-69314b56ec31a9f081d6426a3d1e15c6.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Characters/fox.png"
-dest_files=[ "res://.import/fox.png-f41bd6c94a7d3d75d234e66c1d41b997.stex" ]
+source_file="res://Sprites/Characters/Old/mario.png"
+dest_files=[ "res://.import/mario.png-69314b56ec31a9f081d6426a3d1e15c6.stex" ]
 
 [params]
 
