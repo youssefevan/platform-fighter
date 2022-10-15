@@ -16,6 +16,8 @@ export var y_frames: int
 export var x_starting_frame: int
 export var y_starting_frame: int
 
+export var freefall: bool
+
 var attacking: bool
 var frame: int = 0
 
@@ -50,7 +52,10 @@ func physics_process(delta):
 			aerial_attack(delta)
 		
 		if attacking == false:
-			return char_base.fall
+			if freefall == false:
+				return char_base.fall
+			else:
+				return char_base.freefall
 		
 		if attack_type == 0: # if attack type is grounded
 			return char_base.fall
@@ -84,17 +89,16 @@ func grounded_attack(delta):
 			char_base.velocity.y = 1 # keep grounded
 		1: # additive
 			if frame >= y_starting_frame and frame <= y_frames + y_starting_frame:
-				char_base.velocity.y += velocity_y * char_base.sprite_facing()
+				char_base.velocity.y += velocity_y
 			else:
 				char_base.velocity.y = 1 # keep grounded
 		2: # set
 			if frame >= y_starting_frame and frame <= y_frames + y_starting_frame:
-				char_base.velocity.y = velocity_y * char_base.sprite_facing()
+				char_base.velocity.y = velocity_y
 			else:
 				char_base.velocity.y = 1 # keep grounded
 
 func aerial_attack(delta):
-	
 	match(modify_velocity_x):
 		0: # none
 			air_movement_x(delta)
@@ -114,12 +118,12 @@ func aerial_attack(delta):
 			air_movement_y(delta)
 		1: # additive
 			if frame >= y_starting_frame and frame <= y_frames + y_starting_frame:
-				char_base.velocity.y += velocity_y * char_base.sprite_facing()
+				char_base.velocity.y += velocity_y
 			else:
 				air_movement_y(delta)
 		2: # set
 			if frame >= y_starting_frame and frame <= y_frames + y_starting_frame:
-				char_base.velocity.y = velocity_y * char_base.sprite_facing()
+				char_base.velocity.y = velocity_y
 			else:
 				air_movement_y(delta)
 

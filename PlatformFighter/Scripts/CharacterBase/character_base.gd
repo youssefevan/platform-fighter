@@ -114,19 +114,19 @@ func get_attack():
 			attack = aerial_neutral
 	else:
 
-		if dir == Vector2(0,1):
+		if dir.y < -.5:
 			if is_on_floor() == true:
 				attack = ground_up
 			else:
 				attack = aerial_up
 
-		if dir == Vector2(0,-1):
+		if dir.y > .5:
 			if is_on_floor() == true:
 				attack = ground_down
 			else:
 				attack = aerial_down
 
-		if dir.x != 0:
+		if abs(dir.x) >= 0.5:
 			if is_on_floor() == true:
 				attack = ground_side
 			else:
