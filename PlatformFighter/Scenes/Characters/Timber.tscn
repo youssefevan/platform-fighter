@@ -131,15 +131,12 @@ tracks/0/keys = {
 }
 
 [node name="Timber" instance=ExtResource( 1 )]
-fall_speed = 300.0
-fastfall_speed = 400.0
 fullhop_height = 250.0
 shorthop_height = 175.0
-air_jump_height = 200.0
+air_jump_height = 225.0
 run_speed = 100.0
 ground_acceleration = 1750.0
 ground_friction = 14.0
-air_acceleration = 500.0
 air_speed = 80.0
 
 [node name="ECB" parent="." index="0"]
@@ -153,30 +150,6 @@ texture = ExtResource( 2 )
 [node name="Bounds" parent="Hurtbox" index="0"]
 position = Vector2( 0, -7 )
 shape = SubResource( 2 )
-
-[node name="Idle" parent="StateManager" index="0"]
-animation_name = "Idle"
-
-[node name="Run" parent="StateManager" index="1"]
-animation_name = "Run"
-
-[node name="Jump" parent="StateManager" index="2"]
-animation_name = "Jump"
-
-[node name="AirJump" parent="StateManager" index="3"]
-animation_name = "AirJump"
-
-[node name="Jumpsquat" parent="StateManager" index="4"]
-animation_name = "Jumpsquat"
-
-[node name="Fall" parent="StateManager" index="5"]
-animation_name = "Fall"
-
-[node name="Freefall" parent="StateManager" index="6"]
-animation_name = "Freefall"
-
-[node name="Land" parent="StateManager" index="7"]
-animation_name = "Land"
 
 [node name="Animator" type="AnimationPlayer" parent="." index="4"]
 anims/AirJump = SubResource( 3 )

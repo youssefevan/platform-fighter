@@ -125,10 +125,10 @@ tracks/0/keys = {
 
 [node name="Red" instance=ExtResource( 1 )]
 gravity = 850.0
-fall_speed = 350.0
-fastfall_speed = 570.0
+fastfall_speed = 400.0
 fullhop_height = 250.0
 air_jump_height = 250.0
+run_speed = 130.0
 ground_acceleration = 2200.0
 air_speed = 100.0
 jumpsquat_frames = 3
