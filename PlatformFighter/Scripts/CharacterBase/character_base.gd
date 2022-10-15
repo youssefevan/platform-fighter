@@ -110,13 +110,13 @@ func is_grounded():
 	else:
 		return false
 
-func get_attack_angle():
-	var direction = Vector2(Input.get_joy_axis(0, JOY_AXIS_0), Input.get_joy_axis(0, JOY_AXIS_1))
-	var angle = direction.angle()
-	
-	angle = rad2deg(angle)
-	
-	return angle
+#func get_attack_angle():
+#	var direction = Vector2(Input.get_joy_axis(0, JOY_AXIS_0), Input.get_joy_axis(0, JOY_AXIS_1))
+#	var angle = direction.angle()
+#
+#	angle = rad2deg(angle)
+#
+#	return angle
 
 #func get_attack():
 #	var attack

@@ -1,9 +1,21 @@
 extends BaseState
 
+var frame_perfect_air_jump = false
+
+func enter():
+	.enter()
+	
+	if Input.is_action_just_pressed("jump") == true:
+		if char_base.air_jumps_remaining != 0:
+			frame_perfect_air_jump = true
+
 func physics_process(delta):
 	move(delta)
 	#char_base.can_attack = true
 	fastfalling_check()
+	
+	if frame_perfect_air_jump == true:
+		return char_base.air_jump
 	
 	if char_base.fastfalling == true:
 		char_base.velocity.y += char_base.gravity * char_base.fastfall_gravity * delta
@@ -42,3 +54,7 @@ func move(delta):
 		char_base.velocity.x = clamp(char_base.velocity.x, -char_base.current_speed, char_base.current_speed)
 	else:
 		char_base.velocity.x = lerp(char_base.velocity.x, 0, char_base.air_friction * delta)
+
+func exit():
+	.exit()
+	frame_perfect_air_jump = false

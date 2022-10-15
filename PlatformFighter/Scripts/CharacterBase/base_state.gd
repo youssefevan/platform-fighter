@@ -12,9 +12,8 @@ func connect_anims():
 		char_base.animations.connect("animation_started", self, "anim_started")
 
 func enter():
+	char_base.animations.play(animation_name)
 	print(animation_name)
-	#char_base.animations.play(animation_name)
-	#print(char_base.just_landed)
 
 func input(event: InputEvent):
 	return null
