@@ -1,10 +1,13 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Scenes/CharacterBase.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Sprites/Characters/red.png" type="Texture" id=2]
+[ext_resource path="res://Scripts/CharacterBase/base_attack.gd" type="Script" id=3]
 
-[sub_resource type="Animation" id=1]
-resource_name = "AirJump"
+[sub_resource type="Animation" id=10]
+resource_name = "AerialNeutral"
+length = 0.533333
+step = 0.0166667
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -15,7 +18,40 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ 0 ]
+"values": [ 11 ]
+}
+
+[sub_resource type="Animation" id=11]
+resource_name = "AerialSide"
+length = 0.25
+step = 0.0166667
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 16 ]
+}
+
+[sub_resource type="Animation" id=1]
+resource_name = "AirJump"
+step = 0.0166667
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 6 ]
 }
 
 [sub_resource type="Animation" id=2]
@@ -30,7 +66,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ 0 ]
+"values": [ 7 ]
 }
 
 [sub_resource type="Animation" id=3]
@@ -45,7 +81,41 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ 7 ]
+"values": [ 3 ]
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "GroundNeutral"
+length = 0.666667
+step = 0.0166667
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 10 ]
+}
+
+[sub_resource type="Animation" id=12]
+resource_name = "GroundSide"
+length = 0.3
+step = 0.0166667
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 15 ]
 }
 
 [sub_resource type="Animation" id=4]
@@ -75,7 +145,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ 0 ]
+"values": [ 5 ]
 }
 
 [sub_resource type="Animation" id=6]
@@ -105,7 +175,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ 8 ]
+"values": [ 4 ]
 }
 
 [sub_resource type="Animation" id=8]
@@ -124,6 +194,10 @@ tracks/0/keys = {
 }
 
 [node name="Red" instance=ExtResource( 1 )]
+ground_neutral_node = NodePath("StateManager/GroundNeutral")
+ground_side_node = NodePath("StateManager/GroundSide")
+aerial_neutral_node = NodePath("StateManager/AerialNeutral")
+aerial_side_node = NodePath("StateManager/AerialSide")
 gravity = 850.0
 fastfall_speed = 400.0
 fullhop_height = 250.0
@@ -135,12 +209,43 @@ jumpsquat_frames = 3
 
 [node name="Sprite" parent="." index="1"]
 texture = ExtResource( 2 )
-frame = 7
+hframes = 5
+vframes = 4
+frame = 16
+
+[node name="GroundNeutral" type="Node" parent="StateManager" index="8"]
+script = ExtResource( 3 )
+animation_name = "GroundNeutral"
+jump_cancellable = true
+
+[node name="AerialNeutral" type="Node" parent="StateManager" index="9"]
+script = ExtResource( 3 )
+animation_name = "AerialNeutral"
+attack_type = 1
+landing_lag = 6
+
+[node name="GroundSide" type="Node" parent="StateManager" index="10"]
+script = ExtResource( 3 )
+animation_name = "GroundSide"
+modify_velocity_x = 2
+velocity_x = 250.0
+x_frames = 1
+x_starting_frame = 1
+
+[node name="AerialSide" type="Node" parent="StateManager" index="11"]
+script = ExtResource( 3 )
+animation_name = "AerialSide"
+attack_type = 1
+landing_lag = 6
 
 [node name="Animator" type="AnimationPlayer" parent="." index="4"]
+anims/AerialNeutral = SubResource( 10 )
+anims/AerialSide = SubResource( 11 )
 anims/AirJump = SubResource( 1 )
 anims/Fall = SubResource( 2 )
 anims/Freefall = SubResource( 3 )
+anims/GroundNeutral = SubResource( 9 )
+anims/GroundSide = SubResource( 12 )
 anims/Idle = SubResource( 4 )
 anims/Jump = SubResource( 5 )
 anims/Jumpsquat = SubResource( 6 )

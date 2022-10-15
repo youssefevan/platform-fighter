@@ -62,38 +62,38 @@ collision_mask = 8
 [node name="Bounds" type="CollisionShape2D" parent="Hurtbox"]
 shape = SubResource( 2 )
 
-[node name="StateManager" type="Node2D" parent="."]
+[node name="StateManager" type="Node" parent="."]
 script = ExtResource( 3 )
 starting_state = NodePath("Idle")
 
-[node name="Idle" type="Node2D" parent="StateManager"]
+[node name="Idle" type="Node" parent="StateManager"]
 script = ExtResource( 5 )
 animation_name = "Idle"
 
-[node name="Run" type="Node2D" parent="StateManager"]
+[node name="Run" type="Node" parent="StateManager"]
 script = ExtResource( 7 )
 animation_name = "Run"
 
-[node name="Jump" type="Node2D" parent="StateManager"]
+[node name="Jump" type="Node" parent="StateManager"]
 script = ExtResource( 11 )
 animation_name = "Jump"
 
-[node name="AirJump" type="Node2D" parent="StateManager"]
+[node name="AirJump" type="Node" parent="StateManager"]
 script = ExtResource( 6 )
 animation_name = "AirJump"
 
-[node name="Jumpsquat" type="Node2D" parent="StateManager"]
+[node name="Jumpsquat" type="Node" parent="StateManager"]
 script = ExtResource( 8 )
 animation_name = "Jumpsquat"
 
-[node name="Fall" type="Node2D" parent="StateManager"]
+[node name="Fall" type="Node" parent="StateManager"]
 script = ExtResource( 9 )
 animation_name = "Fall"
 
-[node name="Freefall" type="Node2D" parent="StateManager"]
+[node name="Freefall" type="Node" parent="StateManager"]
 script = ExtResource( 10 )
 animation_name = "Freefall"
 
-[node name="Land" type="Node2D" parent="StateManager"]
+[node name="Land" type="Node" parent="StateManager"]
 script = ExtResource( 4 )
 animation_name = "Land"

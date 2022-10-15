@@ -1,6 +1,7 @@
 extends BaseState
 
 var enter_air_jump = false
+var enter_attack = false
 
 func enter():
 	.enter()
@@ -8,6 +9,8 @@ func enter():
 	if Input.is_action_just_pressed("jump") == true:
 		if char_base.air_jumps_remaining != 0:
 			enter_air_jump = true
+	if Input.is_action_just_pressed("attack") == true:
+		enter_attack = true
 
 func physics_process(delta):
 	move(delta)
@@ -16,6 +19,9 @@ func physics_process(delta):
 	
 	if enter_air_jump == true:
 		return char_base.air_jump
+	
+	if enter_attack == true:
+		return char_base.get_attack()
 	
 	if char_base.fastfalling == true:
 		char_base.velocity.y += char_base.gravity * char_base.fastfall_gravity * delta
@@ -30,7 +36,7 @@ func physics_process(delta):
 	
 	char_base.velocity = char_base.move_and_slide(char_base.velocity, Vector2.UP)
 	
-	if char_base.is_grounded() == true:
+	if char_base.is_on_floor() == true:
 		char_base.fastfalling = false
 		return char_base.idle
 	
@@ -38,7 +44,6 @@ func physics_process(delta):
 		return char_base.air_jump
 	
 	if Input.is_action_just_pressed("attack"):
-		char_base.get_attack_angle()
 		return char_base.get_attack()
 
 func fastfalling_check():
@@ -58,3 +63,4 @@ func move(delta):
 func exit():
 	.exit()
 	enter_air_jump = false
+	enter_attack = false

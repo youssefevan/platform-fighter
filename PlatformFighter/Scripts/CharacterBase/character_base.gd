@@ -82,17 +82,14 @@ func _ready():
 
 func _physics_process(delta):
 	states.physics_process(delta)
-	is_grounded()
-	#get_attack_angle()
-	#get_attack()
 	
-	if is_grounded() == true:
+	if is_on_floor() == true:
 		current_speed = lerp(current_speed, run_speed, speed_lerp * delta)
 		fastfalling = false
 	else:
 		current_speed = lerp(current_speed, air_speed, speed_lerp * delta)
 	
-	if is_grounded():
+	if is_on_floor():
 		air_jumps_remaining = air_jumps
 	
 	if velocity.y < 0:
@@ -104,73 +101,36 @@ func sprite_facing():
 	else:
 		return 1
 
-func is_grounded():
-	if is_on_floor() == true:
-		return true
+func get_attack():
+	var attack
+	var dir = Vector2()
+	dir.x = Input.get_action_strength("right") - Input.get_action_strength("left")
+	dir.y = Input.get_action_strength("down") - Input.get_action_strength("up")
+
+	if dir == Vector2.ZERO:
+		if is_on_floor() == true:
+			attack = ground_neutral
+		else:
+			attack = aerial_neutral
 	else:
-		return false
 
-#func get_attack_angle():
-#	var direction = Vector2(Input.get_joy_axis(0, JOY_AXIS_0), Input.get_joy_axis(0, JOY_AXIS_1))
-#	var angle = direction.angle()
-#
-#	angle = rad2deg(angle)
-#
-#	return angle
+		if dir == Vector2(0,1):
+			if is_on_floor() == true:
+				attack = ground_up
+			else:
+				attack = aerial_up
 
-#func get_attack():
-#	var attack
-#	var input: Vector2
-#
-#	input.x = Input.get_action_strength("right") - Input.get_action_strength("left")
-#	input.y = Input.get_action_strength("down") - Input.get_action_strength("up")
-#
-#	if input == Vector2.ZERO:
-#		if is_grounded() == true:
-#			attack = ground_attack_neutral
-#		else:
-#			attack = aerial_attack_neutral
-#	else:
-#
-#		if get_attack_angle() > -135 and get_attack_angle() < -45:
-#			if is_grounded() == true:
-#				attack = ground_attack_up
-#			else:
-#				attack = aerial_attack_up
-#
-#		if get_attack_angle() > 45 and get_attack_angle() < 135:
-#			if is_grounded() == true:
-#				attack = ground_attack_down
-#			else:
-#				attack = aerial_attack_down
-#
-#		if get_attack_angle() >= -180 and get_attack_angle() <= -135:
-#			if is_grounded() == true:
-#				attack = ground_attack_side
-#			else:
-#				if sprite_facing() == -1:
-#					attack = aerial_attack_forward
-#				else:
-#					attack = aerial_attack_back
-#
-#		if get_attack_angle() <= 180 and get_attack_angle() >= 135:
-#			if is_grounded() == true:
-#				attack = ground_attack_side
-#			else:
-#				if sprite_facing() == -1:
-#					attack = aerial_attack_forward
-#				else:
-#					attack = aerial_attack_back
-#
-#		if get_attack_angle() >= -45 and get_attack_angle() <= 45:
-#			if is_grounded() == true:
-#				attack = ground_attack_side
-#			else:
-#				if sprite_facing() == -1:
-#					attack = aerial_attack_back
-#				else:
-#					attack = aerial_attack_forward
-#
-#	#print(attack)
-#
-#	return attack
+		if dir == Vector2(0,-1):
+			if is_on_floor() == true:
+				attack = ground_down
+			else:
+				attack = aerial_down
+
+		if dir.x != 0:
+			if is_on_floor() == true:
+				attack = ground_side
+			else:
+				attack = aerial_side
+		
+	#print(attack)
+	return attack

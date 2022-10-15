@@ -24,11 +24,10 @@ func physics_process(delta):
 	if Input.is_action_just_pressed("jump"):
 		return char_base.jumpsquat
 		
-	if char_base.is_grounded() == false:
+	if char_base.is_on_floor() == false:
 		return char_base.fall
 	
 	if Input.is_action_just_pressed("attack"):
-		char_base.get_attack_angle()
 		return char_base.get_attack()
 
 func move(delta):

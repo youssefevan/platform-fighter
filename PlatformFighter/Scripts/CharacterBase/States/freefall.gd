@@ -23,7 +23,7 @@ func physics_process(delta):
 	
 	char_base.velocity = char_base.move_and_slide(char_base.velocity, Vector2.UP)
 	
-	if char_base.is_grounded() == true:
+	if char_base.is_on_floor() == true:
 		fastfalling = false
 		return char_base.land
 	

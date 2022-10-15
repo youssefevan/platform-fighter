@@ -32,11 +32,10 @@ func physics_process(delta):
 	if Input.is_action_just_pressed("jump") and char_base.air_jumps_remaining != 0:
 		return char_base.air_jump
 	
-	if char_base.is_grounded() == true:
+	if char_base.is_on_floor() == true:
 		return char_base.land
 	
 	if Input.is_action_just_pressed("attack"):
-		char_base.get_attack_angle()
 		return char_base.get_attack()
 
 func move(delta):

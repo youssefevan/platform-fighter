@@ -2,20 +2,22 @@ extends BaseState
 
 export var attack_type: int # 0: grounded; 1: aerial; 2: hybrid (transistion between either)
 export var landing_lag: int # how many frames of landing lag does this attack have
-export var l_cancellable: bool
+export var jump_cancellable: bool
 
-export var modify_velocity_x: bool
-export var modify_velocity_y: bool
+export var modify_velocity_x: int # 0 = no change; 1 = additive; 2 = set
+export var modify_velocity_y: int # 0 = no change; 1 = additive; 2 = set
 
 export var velocity_x: float
 export var velocity_y: float
 
-export var velocity_x_frame: int
-export var velocity_y_frame: int
+export var x_frames: int
+export var y_frames: int
+
+export var x_starting_frame: int
+export var y_starting_frame: int
 
 var attacking: bool
 var frame: int = 0
-var l_cancel_input: int
 
 func anim_finished(anim_name):
 	attacking = false
@@ -28,63 +30,98 @@ func enter():
 	connect_anims()
 	frame = 0
 	char_base.landing_lag = landing_lag
-	l_cancel_input = 8
-	char_base.l_cancelled = false
 	attacking = true
 
 func physics_process(delta):
 	frame += 1
 	
-	if char_base.is_grounded() == true:
+	if char_base.is_on_floor() == true:
+		if attack_type == 0:
+			grounded_attack(delta)
+		
 		if attacking == false:
 			return char_base.idle
 			
 		if attack_type == 1: # if attack type is aerial
 			return char_base.land
-			
-		grounded_attack(delta)
 	
-	if char_base.is_grounded() == false:
+	if char_base.is_on_floor() == false:
+		if attack_type == 1:
+			aerial_attack(delta)
 		
 		if attacking == false:
 			return char_base.fall
 		
 		if attack_type == 0: # if attack type is grounded
 			return char_base.fall
-		
-		aerial_attack(delta)
+	
+	if jump_cancellable == true:
+		if Input.is_action_just_pressed("jump"):
+			if char_base.is_on_floor() == true:
+				return char_base.jumpsquat
+			elif char_base.is_on_floor() == false and char_base.air_jumps_remaining != 0:
+				return char_base.air_jump
 	
 	char_base.velocity = char_base.move_and_slide(char_base.velocity, Vector2.UP)
 
 func grounded_attack(delta):
+	match(modify_velocity_x):
+		0: # none
+			char_base.velocity.x = lerp(char_base.velocity.x, 0, char_base.ground_friction * delta) # slow to stop
+		1: # additive
+			if frame >= x_starting_frame and frame <= x_frames + x_starting_frame:
+				char_base.velocity.x += velocity_x * char_base.sprite_facing()
+			else:
+				char_base.velocity.x = lerp(char_base.velocity.x, 0, char_base.ground_friction * delta) # slow to stop
+		2: # set
+			if frame >= x_starting_frame and frame <= x_frames + x_starting_frame:
+				char_base.velocity.x = velocity_x * char_base.sprite_facing()
+			else:
+				char_base.velocity.x = lerp(char_base.velocity.x, 0, char_base.ground_friction * delta) # slow to stop
 	
-	if modify_velocity_x == true and frame == velocity_x_frame:
-		char_base.velocity.x += velocity_x * char_base.sprite_facing()
-	else:
-		char_base.velocity.x = lerp(char_base.velocity.x, 0, char_base.ground_friction * delta) # slow to stop
-	
-	if modify_velocity_y == true and frame == velocity_y_frame:
-		char_base.velocity.y += velocity_y
-	else:
-		char_base.velocity.y = 1 # keep in contact with ground
+	match(modify_velocity_y):
+		0: # none
+			char_base.velocity.y = 1 # keep grounded
+		1: # additive
+			if frame >= y_starting_frame and frame <= y_frames + y_starting_frame:
+				char_base.velocity.y += velocity_y * char_base.sprite_facing()
+			else:
+				char_base.velocity.y = 1 # keep grounded
+		2: # set
+			if frame >= y_starting_frame and frame <= y_frames + y_starting_frame:
+				char_base.velocity.y = velocity_y * char_base.sprite_facing()
+			else:
+				char_base.velocity.y = 1 # keep grounded
 
 func aerial_attack(delta):
 	
-	l_cancel(delta)
+	match(modify_velocity_x):
+		0: # none
+			air_movement_x(delta)
+		1: # additive
+			if frame >= x_starting_frame and frame <= x_frames + x_starting_frame:
+				char_base.velocity.x += velocity_x * char_base.sprite_facing()
+			else:
+				air_movement_x(delta)
+		2: # set
+			if frame >= x_starting_frame and frame <= x_frames + x_starting_frame:
+				char_base.velocity.x = velocity_x * char_base.sprite_facing()
+			else:
+				air_movement_x(delta)
 	
-	if modify_velocity_x == true and frame == velocity_x_frame:
-		char_base.velocity.x = velocity_x * char_base.sprite_facing()
-	else:
-		air_movement_x(delta)
-	
-	if modify_velocity_y == true and frame == velocity_y_frame:
-		char_base.velocity.y = velocity_y
-	else:
-		air_movement_y(delta) # keep in contact with ground
-
-func l_cancel(delta):
-	if Input.is_action_just_pressed("airdodge"):
-		l_cancel_input = frame
+	match(modify_velocity_y):
+		0: # none
+			air_movement_y(delta)
+		1: # additive
+			if frame >= y_starting_frame and frame <= y_frames + y_starting_frame:
+				char_base.velocity.y += velocity_y * char_base.sprite_facing()
+			else:
+				air_movement_y(delta)
+		2: # set
+			if frame >= y_starting_frame and frame <= y_frames + y_starting_frame:
+				char_base.velocity.y = velocity_y * char_base.sprite_facing()
+			else:
+				air_movement_y(delta)
 
 func air_movement_x(delta):
 	var x_input = 0
@@ -113,13 +150,3 @@ func air_movement_y(delta):
 func fastfalling_check():
 	if Input.is_action_just_pressed("down"):
 		char_base.fastfalling = true
-
-func exit():
-	.exit()
-	var check_l_cancel = frame - l_cancel_input
-	#print(check_l_cancel)
-	
-	if check_l_cancel <= 7:
-		if l_cancellable == true:
-			char_base.l_cancelled = true
-			#print("l cancel")

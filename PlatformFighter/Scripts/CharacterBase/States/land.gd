@@ -32,7 +32,7 @@ func physics_process(delta):
 	if Input.is_action_just_pressed("jump"):
 		jump_was_pressed = true
 	
-	if char_base.is_grounded() == false:
+	if char_base.is_on_floor() == false:
 		return char_base.fall
 	
 	if landing == false:
