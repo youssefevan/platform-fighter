@@ -280,9 +280,7 @@ jumpsquat_frames = 3
 
 [node name="Sprite" parent="." index="1"]
 texture = ExtResource( 2 )
-hframes = 5
-vframes = 4
-frame = 15
+frame = 11
 
 [node name="GroundNeutral" type="Node" parent="StateManager" index="8"]
 script = ExtResource( 3 )
@@ -317,7 +315,7 @@ animation_name = "GroundUp"
 script = ExtResource( 3 )
 animation_name = "AerialUp"
 attack_type = 1
-landing_lag = 15
+landing_lag = 18
 modify_velocity_x = 2
 modify_velocity_y = 2
 velocity_y = -150.0

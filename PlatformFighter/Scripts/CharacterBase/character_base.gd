@@ -103,34 +103,33 @@ func sprite_facing():
 
 func get_attack():
 	var attack
+	
 	var dir = Vector2()
 	dir.x = Input.get_action_strength("right") - Input.get_action_strength("left")
 	dir.y = Input.get_action_strength("down") - Input.get_action_strength("up")
-
+	
 	if dir == Vector2.ZERO:
 		if is_on_floor() == true:
 			attack = ground_neutral
 		else:
 			attack = aerial_neutral
 	else:
-
 		if dir.y < -.5:
 			if is_on_floor() == true:
 				attack = ground_up
 			else:
 				attack = aerial_up
-
+		
 		if dir.y > .5:
 			if is_on_floor() == true:
 				attack = ground_down
 			else:
 				attack = aerial_down
-
+		
 		if abs(dir.x) >= 0.5:
 			if is_on_floor() == true:
 				attack = ground_side
 			else:
 				attack = aerial_side
 		
-	#print(attack)
 	return attack

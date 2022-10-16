@@ -52,8 +52,8 @@ shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
-hframes = 6
-vframes = 2
+hframes = 5
+vframes = 4
 
 [node name="Hurtbox" type="Area2D" parent="."]
 collision_layer = 4
