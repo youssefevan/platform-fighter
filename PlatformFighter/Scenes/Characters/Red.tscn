@@ -280,7 +280,6 @@ jumpsquat_frames = 3
 
 [node name="Sprite" parent="." index="1"]
 texture = ExtResource( 2 )
-frame = 1
 
 [node name="Bounds" parent="Hitbox" index="0"]
 shape = null
@@ -303,18 +302,18 @@ anims/Jumpsquat = SubResource( 6 )
 anims/Land = SubResource( 7 )
 anims/Run = SubResource( 8 )
 
-[node name="GroundNeutral" type="Node" parent="StateManager" index="8"]
+[node name="GroundNeutral" type="Node" parent="StateManager" index="9"]
 script = ExtResource( 3 )
 animation_name = "GroundNeutral"
 jump_cancellable = true
 
-[node name="AerialNeutral" type="Node" parent="StateManager" index="9"]
+[node name="AerialNeutral" type="Node" parent="StateManager" index="10"]
 script = ExtResource( 3 )
 animation_name = "AerialNeutral"
 attack_type = 1
 landing_lag = 8
 
-[node name="GroundSide" type="Node" parent="StateManager" index="10"]
+[node name="GroundSide" type="Node" parent="StateManager" index="11"]
 script = ExtResource( 3 )
 animation_name = "GroundSide"
 modify_velocity_x = 2
@@ -322,17 +321,17 @@ velocity_x = 250.0
 x_frames = 1
 x_starting_frame = 1
 
-[node name="AerialSide" type="Node" parent="StateManager" index="11"]
+[node name="AerialSide" type="Node" parent="StateManager" index="12"]
 script = ExtResource( 3 )
 animation_name = "AerialSide"
 attack_type = 1
 landing_lag = 6
 
-[node name="GroundUp" type="Node" parent="StateManager" index="12"]
+[node name="GroundUp" type="Node" parent="StateManager" index="13"]
 script = ExtResource( 3 )
 animation_name = "GroundUp"
 
-[node name="AerialUp" type="Node" parent="StateManager" index="13"]
+[node name="AerialUp" type="Node" parent="StateManager" index="14"]
 script = ExtResource( 3 )
 animation_name = "AerialUp"
 attack_type = 1
@@ -346,11 +345,11 @@ x_starting_frame = 1
 y_starting_frame = 1
 freefall = true
 
-[node name="GroundDown" type="Node" parent="StateManager" index="14"]
+[node name="GroundDown" type="Node" parent="StateManager" index="15"]
 script = ExtResource( 3 )
 animation_name = "GroundDown"
 
-[node name="AerialDown" type="Node" parent="StateManager" index="15"]
+[node name="AerialDown" type="Node" parent="StateManager" index="16"]
 script = ExtResource( 3 )
 animation_name = "AerialDown"
 attack_type = 1

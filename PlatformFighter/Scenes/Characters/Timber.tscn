@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://Scenes/CharacterBase.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Sprites/Characters/timber.png" type="Texture" id=2]
@@ -45,6 +45,8 @@ tracks/0/keys = {
 "values": [ Rect2( 128, 32, 32, 32 ), Rect2( 160, 32, 32, 32 ), Rect2( 192, 32, 32, 32 ), Rect2( 224, 32, 32, 32 ) ]
 }
 
+[sub_resource type="CircleShape2D" id=34]
+
 [sub_resource type="Animation" id=25]
 resource_name = "AerialSide"
 length = 0.400001
@@ -60,6 +62,78 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
 "values": [ Rect2( 0, 96, 32, 32 ), Rect2( 32, 96, 64, 32 ), Rect2( 96, 96, 32, 32 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Hitbox/Bounds:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.166667 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Hitbox/Bounds:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1, 0.166667 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ Vector2( 0, 0 ), Vector2( 12, -5 ), Vector2( 0, 0 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Hitbox/Bounds:shape")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.1, 0.166667 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ null, SubResource( 34 ), null ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Hitbox:damage")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.1, 0.166667 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 0.0, 6.0, 0.0 ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Hitbox:kb_power")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.1, 0.166667 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 0.0, 150.0, 0.0 ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Hitbox:kb_angle")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 0.1, 0.166667 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 0.0, -60.0, 0.0 ]
 }
 
 [sub_resource type="Animation" id=30]
@@ -382,7 +456,12 @@ texture = ExtResource( 2 )
 hframes = 1
 vframes = 1
 region_enabled = true
-region_rect = Rect2( 64, 128, 32, 32 )
+region_rect = Rect2( 32, 96, 64, 32 )
+
+[node name="Hitbox" parent="." index="2"]
+damage = 6.0
+kb_power = 150.0
+kb_angle = 60.0
 
 [node name="Bounds" parent="Hitbox" index="0"]
 shape = null
@@ -411,17 +490,17 @@ anims/Land = SubResource( 9 )
 anims/RESET = SubResource( 33 )
 anims/Run = SubResource( 10 )
 
-[node name="GroundNeutral" type="Node" parent="StateManager" index="8"]
+[node name="GroundNeutral" type="Node" parent="StateManager" index="9"]
 script = ExtResource( 3 )
 animation_name = "GroundNeutral"
 
-[node name="AerialNeutral" type="Node" parent="StateManager" index="9"]
+[node name="AerialNeutral" type="Node" parent="StateManager" index="10"]
 script = ExtResource( 3 )
 animation_name = "AerialNeutral"
 attack_type = 1
 landing_lag = 7
 
-[node name="GroundSide" type="Node" parent="StateManager" index="10"]
+[node name="GroundSide" type="Node" parent="StateManager" index="11"]
 script = ExtResource( 3 )
 animation_name = "GroundSide"
 modify_velocity_x = 2
@@ -429,17 +508,17 @@ velocity_x = 250.0
 x_frames = 1
 x_starting_frame = 4
 
-[node name="AerialSide" type="Node" parent="StateManager" index="11"]
+[node name="AerialSide" type="Node" parent="StateManager" index="12"]
 script = ExtResource( 3 )
 animation_name = "AerialSide"
 attack_type = 1
 landing_lag = 6
 
-[node name="GroundUp" type="Node" parent="StateManager" index="12"]
+[node name="GroundUp" type="Node" parent="StateManager" index="13"]
 script = ExtResource( 3 )
 animation_name = "GroundUp"
 
-[node name="AerialUp" type="Node" parent="StateManager" index="13"]
+[node name="AerialUp" type="Node" parent="StateManager" index="14"]
 script = ExtResource( 3 )
 animation_name = "AerialUp"
 attack_type = 1
@@ -450,17 +529,18 @@ y_frames = 1
 y_starting_frame = 1
 freefall = true
 
-[node name="GroundDown" type="Node" parent="StateManager" index="14"]
+[node name="GroundDown" type="Node" parent="StateManager" index="15"]
 script = ExtResource( 3 )
 animation_name = "GroundDown"
 
-[node name="AerialDown" type="Node" parent="StateManager" index="15"]
+[node name="AerialDown" type="Node" parent="StateManager" index="16"]
 script = ExtResource( 3 )
 animation_name = "AerialDown"
 attack_type = 1
 landing_lag = 10
 
 [connection signal="disable_hitbox" from="StateManager/GroundNeutral" to="." method="_on_GroundNeutral_disable_hitbox"]
+[connection signal="disable_hitbox" from="StateManager/AerialSide" to="." method="_on_AerialSide_disable_hitbox"]
 
 [editable path="Hitbox"]
 [editable path="Hurtbox"]

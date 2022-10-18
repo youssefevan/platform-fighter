@@ -76,6 +76,8 @@ var landing_lag: int = 4
 
 var velocity = Vector2()
 
+var got_hit
+
 func _ready():
 	states.init(self)
 	jump_height = fullhop_height
@@ -137,4 +139,7 @@ func get_attack():
 	return attack
 
 func _on_GroundNeutral_disable_hitbox():
+	$Hitbox/Bounds.disabled = true
+
+func _on_AerialSide_disable_hitbox():
 	$Hitbox/Bounds.disabled = true
