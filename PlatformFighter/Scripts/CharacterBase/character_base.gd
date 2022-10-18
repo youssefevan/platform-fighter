@@ -148,3 +148,6 @@ func _on_GroundNeutral_disable_hitbox():
 
 func _on_AerialSide_disable_hitbox():
 	$Hitbox/Bounds.disabled = true
+
+func _on_AerialNeutral_disable_hitbox():
+	$Hitbox/Bounds.disabled = true
