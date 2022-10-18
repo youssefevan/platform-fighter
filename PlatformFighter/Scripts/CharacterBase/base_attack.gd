@@ -1,5 +1,7 @@
 extends BaseState
 
+signal disable_hitbox
+
 export var attack_type: int # 0: grounded; 1: aerial; 2: hybrid (transistion between either)
 export var landing_lag: int # how many frames of landing lag does this attack have
 export var jump_cancellable: bool
@@ -154,3 +156,7 @@ func air_movement_y(delta):
 func fastfalling_check():
 	if Input.is_action_just_pressed("down"):
 		char_base.fastfalling = true
+
+func exit():
+	.exit()
+	emit_signal("disable_hitbox")

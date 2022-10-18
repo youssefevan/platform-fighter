@@ -280,7 +280,28 @@ jumpsquat_frames = 3
 
 [node name="Sprite" parent="." index="1"]
 texture = ExtResource( 2 )
-frame = 11
+frame = 1
+
+[node name="Bounds" parent="Hitbox" index="0"]
+shape = null
+
+[node name="Animator" type="AnimationPlayer" parent="." index="4"]
+anims/AerialDown = SubResource( 13 )
+anims/AerialNeutral = SubResource( 10 )
+anims/AerialSide = SubResource( 11 )
+anims/AerialUp = SubResource( 14 )
+anims/AirJump = SubResource( 1 )
+anims/Fall = SubResource( 2 )
+anims/Freefall = SubResource( 3 )
+anims/GroundDown = SubResource( 16 )
+anims/GroundNeutral = SubResource( 9 )
+anims/GroundSide = SubResource( 12 )
+anims/GroundUp = SubResource( 15 )
+anims/Idle = SubResource( 4 )
+anims/Jump = SubResource( 5 )
+anims/Jumpsquat = SubResource( 6 )
+anims/Land = SubResource( 7 )
+anims/Run = SubResource( 8 )
 
 [node name="GroundNeutral" type="Node" parent="StateManager" index="8"]
 script = ExtResource( 3 )
@@ -335,20 +356,5 @@ animation_name = "AerialDown"
 attack_type = 1
 landing_lag = 7
 
-[node name="Animator" type="AnimationPlayer" parent="." index="4"]
-anims/AerialDown = SubResource( 13 )
-anims/AerialNeutral = SubResource( 10 )
-anims/AerialSide = SubResource( 11 )
-anims/AerialUp = SubResource( 14 )
-anims/AirJump = SubResource( 1 )
-anims/Fall = SubResource( 2 )
-anims/Freefall = SubResource( 3 )
-anims/GroundDown = SubResource( 16 )
-anims/GroundNeutral = SubResource( 9 )
-anims/GroundSide = SubResource( 12 )
-anims/GroundUp = SubResource( 15 )
-anims/Idle = SubResource( 4 )
-anims/Jump = SubResource( 5 )
-anims/Jumpsquat = SubResource( 6 )
-anims/Land = SubResource( 7 )
-anims/Run = SubResource( 8 )
+[editable path="Hitbox"]
+[editable path="Hurtbox"]

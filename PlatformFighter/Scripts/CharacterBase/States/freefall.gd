@@ -11,13 +11,16 @@ func physics_process(delta):
 	fastfalling_check()
 	
 	if fastfalling == true:
-		char_base.velocity.y += char_base.gravity * char_base.fastfall_gravity * delta
-		
-		if char_base.velocity.y > char_base.fastfall_speed:
-			char_base.velocity.y = char_base.fastfall_speed
+		if char_base.velocity.y > 0:
+			char_base.velocity.y += char_base.gravity * char_base.fastfall_gravity * delta
+			if char_base.velocity.y > char_base.fastfall_speed:
+				char_base.velocity.y = char_base.fastfall_speed
+		else:
+			char_base.velocity.y += char_base.gravity * delta
+			if char_base.velocity.y > char_base.fall_speed:
+				char_base.velocity.y = char_base.fall_speed
 	else:
 		char_base.velocity.y += char_base.gravity * delta
-		
 		if char_base.velocity.y > char_base.fall_speed:
 			char_base.velocity.y = char_base.fall_speed
 	

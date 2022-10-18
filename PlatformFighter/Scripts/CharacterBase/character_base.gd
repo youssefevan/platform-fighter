@@ -94,6 +94,8 @@ func _physics_process(delta):
 	
 	if velocity.y < 0:
 		fastfalling = false
+	
+	$Hitbox.scale.x = sprite_facing()
 
 func sprite_facing():
 	if sprite.flip_h == true:
@@ -133,3 +135,6 @@ func get_attack():
 				attack = aerial_side
 		
 	return attack
+
+func _on_GroundNeutral_disable_hitbox():
+	$Hitbox/Bounds.disabled = true
