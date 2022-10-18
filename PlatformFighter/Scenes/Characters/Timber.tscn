@@ -106,10 +106,10 @@ tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 0, 0.1, 0.166667 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PoolRealArray( 0.1 ),
+"transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ 0.0, 6.0, 0.0 ]
+"values": [ 8.0 ]
 }
 tracks/5/type = "value"
 tracks/5/path = NodePath("Hitbox:kb_power")
@@ -118,10 +118,10 @@ tracks/5/loop_wrap = true
 tracks/5/imported = false
 tracks/5/enabled = true
 tracks/5/keys = {
-"times": PoolRealArray( 0, 0.1, 0.166667 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PoolRealArray( 0.1 ),
+"transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ 0.0, 150.0, 0.0 ]
+"values": [ 150.0 ]
 }
 tracks/6/type = "value"
 tracks/6/path = NodePath("Hitbox:kb_angle")
@@ -130,10 +130,10 @@ tracks/6/loop_wrap = true
 tracks/6/imported = false
 tracks/6/enabled = true
 tracks/6/keys = {
-"times": PoolRealArray( 0, 0.1, 0.166667 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PoolRealArray( 0.1 ),
+"transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ 0.0, -60.0, 0.0 ]
+"values": [ -60.0 ]
 }
 
 [sub_resource type="Animation" id=30]
@@ -272,6 +272,42 @@ tracks/3/keys = {
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
 "values": [ Vector2( 0, 0 ), Vector2( 10, -7 ), Vector2( 0, 0 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Hitbox:damage")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0.05 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 3.0 ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Hitbox:kb_power")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0.05 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 50.0 ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Hitbox:kb_angle")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0.05 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ -80.0 ]
 }
 
 [sub_resource type="Animation" id=13]
@@ -456,12 +492,7 @@ texture = ExtResource( 2 )
 hframes = 1
 vframes = 1
 region_enabled = true
-region_rect = Rect2( 32, 96, 64, 32 )
-
-[node name="Hitbox" parent="." index="2"]
-damage = 6.0
-kb_power = 150.0
-kb_angle = 60.0
+region_rect = Rect2( 32, 192, 32, 64 )
 
 [node name="Bounds" parent="Hitbox" index="0"]
 shape = null

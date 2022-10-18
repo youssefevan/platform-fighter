@@ -128,6 +128,7 @@ func get_attack():
 			if is_on_floor() == true:
 				attack = ground_down
 			else:
+				
 				attack = aerial_down
 		
 		if abs(dir.x) >= 0.5:
@@ -135,6 +136,10 @@ func get_attack():
 				attack = ground_side
 			else:
 				attack = aerial_side
+				if dir.x < 0:
+					sprite.flip_h = true
+				elif dir.x > 0:
+					sprite.flip_h = false
 		
 	return attack
 

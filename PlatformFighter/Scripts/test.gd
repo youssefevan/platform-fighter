@@ -3,14 +3,14 @@ extends KinematicBody2D
 var got_hit = false
 var kb
 
-var grav = 200
+var grav = 600
 
 var velocity = Vector2.ZERO
 
 func _physics_process(delta):
 	#print(velocity)
 	if got_hit == true:
-		print("hit")
+		velocity = Vector2.ZERO
 		velocity += kb
 		got_hit = false
 	
@@ -19,7 +19,10 @@ func _physics_process(delta):
 	else:
 		pass
 	
-	velocity.x = lerp(velocity.x, 0, 3 * delta)
+	if is_on_floor():
+		velocity.x = lerp(velocity.x, 0, 8 * delta)
+	else:
+		velocity.x = lerp(velocity.x, 0, 3 * delta)
 	
 	velocity = move_and_slide(velocity, Vector2.UP)
 
