@@ -62,7 +62,7 @@ export var air_speed: float
 export var air_jumps: int # some character may have more than one double jump
 export var jumpsquat_frames: int
 
-export var knockback_modifier: float # between 0 and 1; multiplied to knockback; higher make lighter characters
+export var knockback_modifier: float # higher make lighter characters; 100 default
 
 export var port: int
 
@@ -153,4 +153,7 @@ func _on_AerialNeutral_disable_hitbox():
 	$Hitbox/Bounds.disabled = true
 
 func _on_GroundSide_disable_hitbox():
+	$Hitbox/Bounds.disabled = true
+
+func _on_AerialUp_disable_hitbox():
 	$Hitbox/Bounds.disabled = true

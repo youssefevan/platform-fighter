@@ -3,9 +3,9 @@ extends Area2D
 var got_hit
 var kb_direction
 var kb_power
-var kb
+var damage_percent
 
-signal hit_info(hit, knockback) # got_hit, kb_direction, kb_power, kb
+signal hit_info(hit, kb_dir, kb_pow, d_percent) # got_hit, kb_direction, kb_power, kb
 
 func _on_Hurtbox_area_entered(area):
 	if area.is_in_group("Hitbox"):
@@ -19,9 +19,7 @@ func _on_Hurtbox_area_entered(area):
 			kb_direction.x = kb_direction.x
 		
 		kb_power = area.kb_power
-		kb = kb_direction * kb_power #* 50
+		damage_percent = area.damage
 		got_hit = true
 		
-		print("hit")
-		
-		emit_signal("hit_info", got_hit, kb)
+		emit_signal("hit_info", got_hit, kb_direction, kb_power, damage_percent)
