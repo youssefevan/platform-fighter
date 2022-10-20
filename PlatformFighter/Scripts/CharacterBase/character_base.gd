@@ -160,3 +160,9 @@ func _on_AerialUp_disable_hitbox():
 
 func _on_GroundDown_disable_hitbox():
 	$Hitbox/Bounds.disabled = true
+
+func _on_AerialDown_disable_hitbox():
+	$Hitbox/Bounds.disabled = true
+
+func _on_GroundUp_disable_hitbox():
+	$Hitbox/Bounds.disabled = true
