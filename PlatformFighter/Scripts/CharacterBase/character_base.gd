@@ -146,6 +146,7 @@ func get_attack():
 		
 	return attack
 
+# bad
 func _on_GroundNeutral_disable_hitbox():
 	$Hitbox/Bounds.disabled = true
 
@@ -171,4 +172,5 @@ func _on_GroundUp_disable_hitbox():
 	$Hitbox/Bounds.disabled = true
 
 func _on_Hurtbox_hit_info(hit, kb_dir, kb_pow, d_percent):
+	print("hurt")
 	return hitstun

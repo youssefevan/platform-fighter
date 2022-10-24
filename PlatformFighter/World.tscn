@@ -76,12 +76,11 @@ shape = SubResource( 3 )
 [node name="Bounds" parent="Test/Hurtbox" index="0"]
 shape = SubResource( 4 )
 
-[node name="Red" parent="." instance=ExtResource( 4 )]
-position = Vector2( 184, 128 )
-hitstun_node = NodePath("")
-
 [node name="Timber" parent="." instance=ExtResource( 5 )]
-position = Vector2( 168, 136 )
+position = Vector2( 184, 152 )
+
+[node name="Red" parent="." instance=ExtResource( 4 )]
+position = Vector2( 200, 144 )
 
 [connection signal="area_entered" from="Test/Hurtbox" to="Test/Hurtbox" method="_on_Hurtbox_area_entered"]
 [connection signal="hit_info" from="Test/Hurtbox" to="Test" method="_on_Hurtbox_hit_info"]

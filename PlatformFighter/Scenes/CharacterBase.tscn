@@ -108,8 +108,11 @@ animation_name = "Land"
 
 [node name="Hitstun" type="Node" parent="StateManager"]
 script = ExtResource( 14 )
+animation_name = "Hitstun"
 
+[connection signal="area_entered" from="Hurtbox" to="Hurtbox" method="_on_Hurtbox_area_entered"]
 [connection signal="hit_info" from="Hurtbox" to="." method="_on_Hurtbox_hit_info"]
+[connection signal="hit_info" from="Hurtbox" to="StateManager/Hitstun" method="_on_Hurtbox_hit_info"]
 
 [editable path="Hitbox"]
 [editable path="Hurtbox"]

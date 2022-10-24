@@ -1,4 +1,4 @@
-extends "res://Scripts/CharacterBase/base_state.gd"
+extends BaseState
 
 var kb_direction
 var kb_power
