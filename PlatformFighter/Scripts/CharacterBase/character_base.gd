@@ -17,6 +17,8 @@ export var land_node: NodePath
 onready var land: BaseState = get_node(land_node)
 export var freefall_node: NodePath
 onready var freefall: BaseState = get_node(freefall_node)
+export var hitstun_node: NodePath
+onready var hitstun: BaseState = get_node(hitstun_node)
 
 # ground attacks
 export var ground_neutral_node: NodePath
@@ -76,7 +78,8 @@ var landing_lag: int = 4
 
 var velocity = Vector2()
 
-var got_hit
+var got_hit = false
+var percentage = 0
 
 func _ready():
 	states.init(self)
@@ -166,3 +169,6 @@ func _on_AerialDown_disable_hitbox():
 
 func _on_GroundUp_disable_hitbox():
 	$Hitbox/Bounds.disabled = true
+
+func _on_Hurtbox_hit_info(hit, kb_dir, kb_pow, d_percent):
+	return hitstun

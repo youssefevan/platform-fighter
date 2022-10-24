@@ -34,6 +34,7 @@ fall_node = NodePath("StateManager/Fall")
 run_node = NodePath("StateManager/Run")
 land_node = NodePath("StateManager/Land")
 freefall_node = NodePath("StateManager/Freefall")
+hitstun_node = NodePath("StateManager/Hitstun")
 gravity = 750.0
 fall_speed = 250.0
 fastfall_speed = 350.0
@@ -107,6 +108,8 @@ animation_name = "Land"
 
 [node name="Hitstun" type="Node" parent="StateManager"]
 script = ExtResource( 14 )
+
+[connection signal="hit_info" from="Hurtbox" to="." method="_on_Hurtbox_hit_info"]
 
 [editable path="Hitbox"]
 [editable path="Hurtbox"]
