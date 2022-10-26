@@ -42,9 +42,9 @@ func _physics_process(delta):
 		pass
 
 	if char_base.is_on_floor():
-		velocity.x = lerp(velocity.x, 0, 3 * delta)
+		char_base.velocity.x = lerp(char_base.velocity.x, 0, char_base.ground_friction * delta) # slow to stop
 	else:
-		velocity.x = lerp(velocity.x, 0, 1 * delta)
+		char_base.velocity.x = lerp(char_base.velocity.x, 0, char_base.air_friction * delta)
 
 	velocity = char_base.move_and_slide(velocity, Vector2.UP)
 
