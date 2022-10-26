@@ -20,7 +20,7 @@ func enter():
 		(char_base.percentage/10 + (char_base.percentage * damage_percent)/20)
 		* 200/(char_base.knockback_modifier+100) * 1.4)
 		+ 18) * 1.33) + kb_power)
-	char_base.velocity = kb_direction * knockback
+	velocity = kb_direction * knockback
 
 func _physics_process(delta):
 	#print(hitstun_length)
@@ -36,11 +36,11 @@ func _physics_process(delta):
 	
 	#print(velocity)
 	
-#	if !char_base.is_on_floor():
-#		velocity.y += grav * delta
-#	else:
-#		pass
-#
+	if !char_base.is_on_floor():
+		velocity.y += grav * delta
+	else:
+		pass
+
 	if char_base.is_on_floor():
 		velocity.x = lerp(velocity.x, 0, 3 * delta)
 	else:
