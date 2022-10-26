@@ -88,9 +88,6 @@ func _ready():
 func _physics_process(delta):
 	states.physics_process(delta)
 	
-	if got_hit == true:
-		return hitstun
-	
 	if is_on_floor() == true:
 		current_speed = lerp(current_speed, run_speed, speed_lerp * delta)
 		fastfalling = false
@@ -104,6 +101,8 @@ func _physics_process(delta):
 		fastfalling = false
 	
 	$Hitbox.scale.x = sprite_facing()
+	
+	print(got_hit)
 
 func sprite_facing():
 	if sprite.flip_h == true:
@@ -176,4 +175,4 @@ func _on_GroundUp_disable_hitbox():
 
 func _on_Hurtbox_hit_info(hit, kb_dir, kb_pow, d_percent):
 	print("hurt")
-	got_hit = hit
+	got_hit = true
