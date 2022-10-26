@@ -78,7 +78,7 @@ var landing_lag: int = 4
 
 var velocity = Vector2()
 
-var got_hit = false
+var got_hit: bool = false
 var percentage = 0
 
 func _ready():
