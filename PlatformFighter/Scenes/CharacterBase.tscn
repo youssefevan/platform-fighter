@@ -66,6 +66,7 @@ vframes = 4
 disabled = true
 
 [node name="Hurtbox" parent="." instance=ExtResource( 12 )]
+hitbox_node = NodePath("../Hitbox")
 
 [node name="Bounds" parent="Hurtbox" index="0"]
 shape = SubResource( 2 )
