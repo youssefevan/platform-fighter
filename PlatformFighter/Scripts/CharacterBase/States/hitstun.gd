@@ -7,7 +7,6 @@ var knockback_modifier = 100
 
 var grav = 600
 
-var velocity = Vector2.ZERO
 var frame = 0
 
 var hitstun_length
@@ -20,7 +19,7 @@ func enter():
 		(char_base.percentage/10 + (char_base.percentage * damage_percent)/20)
 		* 200/(char_base.knockback_modifier+100) * 1.4)
 		+ 18) * 1.33) + kb_power)
-	velocity = kb_direction * knockback
+	char_base.velocity = kb_direction * knockback
 
 func physics_process(delta):
 	print("HL ", hitstun_length)
@@ -40,7 +39,7 @@ func physics_process(delta):
 		return char_base.hitstun
 	
 	if !char_base.is_on_floor():
-		velocity.y += grav * delta
+		char_base.velocity.y += grav * delta
 	else:
 		#return char_base.idle
 		pass
@@ -50,7 +49,7 @@ func physics_process(delta):
 	else:
 		char_base.velocity.x = lerp(char_base.velocity.x, 0, char_base.air_friction * delta)
 
-	velocity = char_base.move_and_slide(velocity, Vector2.UP)
+	char_base.velocity = char_base.move_and_slide(char_base.velocity, Vector2.UP)
 
 
 func _on_Hurtbox_hit_info(hit, kb_dir, kb_pow, d_percent):
