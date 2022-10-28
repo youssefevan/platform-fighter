@@ -56,7 +56,7 @@ func _on_Hurtbox_hit_info(hit, kb_dir, kb_pow, d_percent):
 	#char_base.got_hit = hit
 	kb_direction = kb_dir
 	kb_power = kb_pow
-	hitstun_length = int(round(kb_power * 0.1))
+	hitstun_length = int(round(kb_power * 0.25))
 	damage_percent = d_percent
 	char_base.percentage += damage_percent
 	print(char_base.percentage)
