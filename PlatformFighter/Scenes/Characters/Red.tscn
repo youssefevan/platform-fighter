@@ -9,16 +9,16 @@ resource_name = "AerialDown"
 length = 0.550001
 step = 0.0166667
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:frame")
+tracks/0/path = NodePath("Sprite:region_rect")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 0.05 ),
+"transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [ 13 ]
+"values": [ Rect2( 128, 64, 32, 32 ), Rect2( 160, 64, 32, 32 ) ]
 }
 
 [sub_resource type="Animation" id=10]
@@ -26,16 +26,16 @@ resource_name = "AerialNeutral"
 length = 0.533333
 step = 0.0166667
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:frame")
+tracks/0/path = NodePath("Sprite:region_rect")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 0.0666667, 0.433333 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
-"values": [ 11 ]
+"values": [ Rect2( 64, 32, 32, 32 ), Rect2( 96, 32, 32, 32 ), Rect2( 128, 32, 32, 32 ) ]
 }
 
 [sub_resource type="Animation" id=11]
@@ -43,16 +43,16 @@ resource_name = "AerialSide"
 length = 0.400001
 step = 0.0166667
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:frame")
+tracks/0/path = NodePath("Sprite:region_rect")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 0.0666667, 0.166667 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
-"values": [ 16 ]
+"values": [ Rect2( 96, 96, 32, 32 ), Rect2( 128, 96, 32, 32 ), Rect2( 160, 96, 32, 32 ) ]
 }
 
 [sub_resource type="Animation" id=14]
@@ -60,7 +60,7 @@ resource_name = "AerialUp"
 length = 0.666667
 step = 0.0166667
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:frame")
+tracks/0/path = NodePath("Sprite:region_rect")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -68,8 +68,8 @@ tracks/0/enabled = true
 tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ 18 ]
+"update": 0,
+"values": [ Rect2( 128, 128, 32, 32 ) ]
 }
 
 [sub_resource type="Animation" id=1]
@@ -174,20 +174,21 @@ resource_name = "GroundUp"
 length = 0.25
 step = 0.0166667
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:frame")
+tracks/0/path = NodePath("Sprite:region_rect")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 0.0666667, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
-"values": [ 17 ]
+"values": [ Rect2( 0, 128, 32, 32 ), Rect2( 32, 128, 32, 32 ), Rect2( 64, 128, 32, 32 ) ]
 }
 
 [sub_resource type="Animation" id=4]
 resource_name = "Idle"
+step = 0.0166667
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:region_rect")
 tracks/0/interp = 1
@@ -283,7 +284,7 @@ texture = ExtResource( 2 )
 hframes = 1
 vframes = 1
 region_enabled = true
-region_rect = Rect2( 64, 64, 32, 32 )
+region_rect = Rect2( 64, 128, 32, 32 )
 
 [node name="Animator" type="AnimationPlayer" parent="." index="4"]
 anims/AerialDown = SubResource( 13 )
