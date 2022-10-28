@@ -100,7 +100,7 @@ func _physics_process(delta):
 	if velocity.y < 0:
 		fastfalling = false
 	
-	$Hitbox.scale.x = sprite_facing()
+	#$Hitbox/Bounds.position.x *= sprite_facing()
 	
 	#print(got_hit)
 

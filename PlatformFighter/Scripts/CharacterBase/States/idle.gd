@@ -23,8 +23,7 @@ func physics_process(delta):
 	char_base.velocity.y = 1 # keep in contact with ground
 	char_base.velocity = char_base.move_and_slide(char_base.velocity, Vector2.UP)
 	
-	if char_base.got_hit == true:
-		return char_base.hitstun
+	
 	
 	if enter_jump == true:
 		return char_base.jumpsquat

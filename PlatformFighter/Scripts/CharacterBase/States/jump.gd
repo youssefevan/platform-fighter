@@ -8,6 +8,9 @@ func enter():
 func physics_process(delta):
 	move(delta)
 	
+	if char_base.got_hit == true:
+		return char_base.hitstun
+	
 	char_base.velocity.y += char_base.gravity * delta
 	
 	char_base.velocity = char_base.move_and_slide(char_base.velocity, Vector2.UP)

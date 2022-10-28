@@ -39,6 +39,9 @@ func enter():
 func physics_process(delta):
 	frame += 1
 	
+	if char_base.got_hit == true:
+		return char_base.hitstun
+	
 	if char_base.is_on_floor() == true:
 		if attack_type == 0:
 			grounded_attack(delta)

@@ -29,6 +29,9 @@ func physics_process(delta):
 	if frame == land_frames:
 		landing = false
 	
+	if char_base.got_hit == true:
+		return char_base.hitstun
+	
 	if Input.is_action_just_pressed("jump"):
 		jump_was_pressed = true
 	

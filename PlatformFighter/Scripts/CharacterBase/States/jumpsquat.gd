@@ -27,6 +27,9 @@ func physics_process(delta):
 	
 	if frame == char_base.jumpsquat_frames:
 		return char_base.jump
+		
+	if char_base.got_hit == true:
+		return char_base.hitstun
 	
 #	if jumpsquatting == false:
 #		return char_base.jump

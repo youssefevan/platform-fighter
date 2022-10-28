@@ -15,7 +15,7 @@ var hitstun_length
 func enter():
 	.enter()
 	char_base.got_hit = false
-	var frame = 0
+	frame = 0
 	var knockback = ((((
 		(char_base.percentage/10 + (char_base.percentage * damage_percent)/20)
 		* 200/(char_base.knockback_modifier+100) * 1.4)
@@ -36,9 +36,13 @@ func physics_process(delta):
 	
 	#print(velocity)
 	
+	if char_base.got_hit == true:
+		return char_base.hitstun
+	
 	if !char_base.is_on_floor():
 		velocity.y += grav * delta
 	else:
+		#return char_base.idle
 		pass
 
 	if char_base.is_on_floor():
@@ -53,7 +57,7 @@ func _on_Hurtbox_hit_info(hit, kb_dir, kb_pow, d_percent):
 	#char_base.got_hit = hit
 	kb_direction = kb_dir
 	kb_power = kb_pow
-	hitstun_length = int(round(kb_power * 0.4))
+	hitstun_length = int(round(kb_power * 0.1))
 	damage_percent = d_percent
 	char_base.percentage += damage_percent
 	print(char_base.percentage)

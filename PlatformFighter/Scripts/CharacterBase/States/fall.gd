@@ -40,6 +40,9 @@ func physics_process(delta):
 		char_base.fastfalling = false
 		return char_base.idle
 	
+	if char_base.got_hit == true:
+		return char_base.hitstun
+	
 	if Input.is_action_just_pressed("jump") and char_base.air_jumps_remaining != 0:
 		return char_base.air_jump
 	

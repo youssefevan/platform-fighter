@@ -30,6 +30,9 @@ func physics_process(delta):
 		fastfalling = false
 		return char_base.land
 	
+	if char_base.got_hit == true:
+		return char_base.hitstun
+	
 
 func fastfalling_check():
 	if Input.is_action_just_pressed("down"):
