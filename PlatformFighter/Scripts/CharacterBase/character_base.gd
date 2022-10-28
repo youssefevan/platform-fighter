@@ -102,7 +102,7 @@ func _physics_process(delta):
 	
 	$Hitbox.scale.x = sprite_facing()
 	
-	print(got_hit)
+	#print(got_hit)
 
 func sprite_facing():
 	if sprite.flip_h == true:

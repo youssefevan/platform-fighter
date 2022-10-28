@@ -285,9 +285,6 @@ vframes = 1
 region_enabled = true
 region_rect = Rect2( 64, 64, 32, 32 )
 
-[node name="Hurtbox" parent="." index="3"]
-hitbox_node = NodePath("../Hitbox")
-
 [node name="Animator" type="AnimationPlayer" parent="." index="4"]
 anims/AerialDown = SubResource( 13 )
 anims/AerialNeutral = SubResource( 10 )

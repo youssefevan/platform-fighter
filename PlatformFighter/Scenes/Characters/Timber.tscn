@@ -1063,9 +1063,6 @@ kb_angle = -70.0
 rotation = 1.5708
 disabled = false
 
-[node name="Hurtbox" parent="." index="3"]
-hitbox_node = NodePath("../Hitbox")
-
 [node name="Bounds" parent="Hurtbox" index="0"]
 position = Vector2( 0, -7 )
 shape = SubResource( 2 )

@@ -22,10 +22,10 @@ func enter():
 		+ 18) * 1.33) + kb_power)
 	velocity = kb_direction * knockback
 
-func _physics_process(delta):
-	#print(hitstun_length)
+func physics_process(delta):
+	print("HL ", hitstun_length)
 	frame += 1
-	#print(frame)
+	print(frame)
 	
 	if frame == hitstun_length:
 		print("exit")
