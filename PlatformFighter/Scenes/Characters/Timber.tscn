@@ -1068,12 +1068,12 @@ texture = ExtResource( 2 )
 hframes = 1
 vframes = 1
 region_enabled = true
-region_rect = Rect2( 224, 64, 32, 32 )
+region_rect = Rect2( 32, 64, 64, 32 )
 
 [node name="Hitbox" parent="." index="2"]
-damage = 8.0
+damage = 9.0
 kb_power = 200.0
-kb_angle = 70.0
+kb_angle = -75.0
 
 [node name="Bounds" parent="Hitbox" index="0"]
 rotation = 1.5708

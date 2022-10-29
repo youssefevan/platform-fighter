@@ -100,8 +100,6 @@ func _physics_process(delta):
 	if velocity.y < 0:
 		fastfalling = false
 	
-	#$Hitbox/Bounds.position.x *= sprite_facing()
-	
 	#print(got_hit)
 
 func sprite_facing():
@@ -145,7 +143,11 @@ func get_attack():
 					sprite.flip_h = true
 				elif dir.x > 0:
 					sprite.flip_h = false
-		
+					
+	if sprite_facing() == -1:
+		$Hitbox.scale.x = -1
+	else:
+		$Hitbox.scale.x = 1
 	return attack
 
 # bad
