@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Scenes/CharacterBase.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Sprites/Characters/red.png" type="Texture" id=2]
@@ -186,6 +186,22 @@ tracks/0/keys = {
 "values": [ Rect2( 0, 128, 32, 32 ), Rect2( 32, 128, 32, 32 ), Rect2( 64, 128, 32, 32 ) ]
 }
 
+[sub_resource type="Animation" id=17]
+resource_name = "Hitstun"
+step = 0.0166667
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Rect2( 224, 32, 32, 32 ) ]
+}
+
 [sub_resource type="Animation" id=4]
 resource_name = "Idle"
 step = 0.0166667
@@ -284,7 +300,7 @@ texture = ExtResource( 2 )
 hframes = 1
 vframes = 1
 region_enabled = true
-region_rect = Rect2( 64, 128, 32, 32 )
+region_rect = Rect2( 224, 32, 32, 32 )
 
 [node name="Animator" type="AnimationPlayer" parent="." index="4"]
 anims/AerialDown = SubResource( 13 )
@@ -298,6 +314,7 @@ anims/GroundDown = SubResource( 16 )
 anims/GroundNeutral = SubResource( 9 )
 anims/GroundSide = SubResource( 12 )
 anims/GroundUp = SubResource( 15 )
+anims/Hitstun = SubResource( 17 )
 anims/Idle = SubResource( 4 )
 anims/Jump = SubResource( 5 )
 anims/Jumpsquat = SubResource( 6 )
