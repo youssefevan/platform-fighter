@@ -7,6 +7,8 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 4, 6.5 )
 
+[sub_resource type="CircleShape2D" id=40]
+
 [sub_resource type="CapsuleShape2D" id=2]
 radius = 4.0
 height = 6.0
@@ -789,8 +791,6 @@ tracks/7/keys = {
 "values": [ -75.0 ]
 }
 
-[sub_resource type="CircleShape2D" id=40]
-
 [sub_resource type="Animation" id=28]
 resource_name = "GroundUp"
 length = 0.383334
@@ -1068,15 +1068,16 @@ texture = ExtResource( 2 )
 hframes = 1
 vframes = 1
 region_enabled = true
-region_rect = Rect2( 32, 64, 64, 32 )
+region_rect = Rect2( 32, 128, 32, 32 )
 
 [node name="Hitbox" parent="." index="2"]
-damage = 9.0
-kb_power = 200.0
-kb_angle = -75.0
+damage = 7.0
+kb_power = 160.0
+kb_angle = -80.0
 
 [node name="Bounds" parent="Hitbox" index="0"]
 rotation = 1.5708
+shape = SubResource( 40 )
 disabled = false
 
 [node name="Bounds" parent="Hurtbox" index="0"]
