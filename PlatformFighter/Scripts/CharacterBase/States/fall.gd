@@ -23,9 +23,8 @@ func physics_process(delta):
 	if enter_attack == true:
 		return char_base.get_attack()
 	
-	if char_base.velocity.y > 0:
+	if char_base.velocity.y < 0:
 		char_base.velocity.y += char_base.gravity * delta
-		
 	else:
 		if char_base.fastfalling == true:
 			char_base.velocity.y += char_base.gravity * char_base.fastfall_gravity * delta
