@@ -349,10 +349,10 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.0333334 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0.0333334 ),
+"transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ null, SubResource( 38 ) ]
+"values": [ SubResource( 38 ) ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("Hitbox/Bounds:disabled")
@@ -1068,12 +1068,12 @@ texture = ExtResource( 2 )
 hframes = 1
 vframes = 1
 region_enabled = true
-region_rect = Rect2( 32, 128, 32, 32 )
+region_rect = Rect2( 128, 32, 32, 32 )
 
 [node name="Hitbox" parent="." index="2"]
-damage = 7.0
-kb_power = 160.0
-kb_angle = -80.0
+damage = 12.0
+kb_power = 180.0
+kb_angle = -50.0
 
 [node name="Bounds" parent="Hitbox" index="0"]
 rotation = 1.5708

@@ -1,10 +1,9 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Sprites/tile.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/Platform.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scripts/test.gd" type="Script" id=3]
 [ext_resource path="res://Scenes/Characters/Red.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Scenes/Characters/Timber.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/Hurtbox.tscn" type="PackedScene" id=6]
 
 [sub_resource type="ConvexPolygonShape2D" id=2]
@@ -77,10 +76,7 @@ shape = SubResource( 3 )
 shape = SubResource( 4 )
 
 [node name="Red" parent="." instance=ExtResource( 4 )]
-position = Vector2( 192, 144 )
-
-[node name="Timber" parent="." instance=ExtResource( 5 )]
-position = Vector2( 164, 140 )
+position = Vector2( 192, 128 )
 
 [connection signal="area_entered" from="Test/Hurtbox" to="Test/Hurtbox" method="_on_Hurtbox_area_entered"]
 [connection signal="hit_info" from="Test/Hurtbox" to="Test" method="_on_Hurtbox_hit_info"]
