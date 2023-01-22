@@ -165,7 +165,7 @@ func get_attack(type : int): # type = 0 -> normal attack, type = 1 -> special
 			if dir.y > .5: # if down input
 				attack = special_down
 			
-			if abs(dir.x) >= 0.5: # if side input
+			if abs(dir.x) >= 0.5: # if side inputz
 				attack = special_side
 					
 				if dir.x < 0: # correct sprite orientation

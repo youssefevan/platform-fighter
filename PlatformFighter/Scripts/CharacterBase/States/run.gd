@@ -61,3 +61,9 @@ func move(delta):
 	if x_input != 0:
 		char_base.velocity.x += char_base.ground_acceleration * x_input * delta
 		char_base.velocity.x = clamp(char_base.velocity.x, -char_base.run_speed, char_base.run_speed)
+
+func exit():
+	.exit()
+	enter_jump = false
+	enter_attack = false
+	enter_special = false

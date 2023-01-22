@@ -66,4 +66,4 @@ func physics_process(delta):
 func exit():
 	.exit()
 	enter_jump = false
-	enter_attack = false
+	enter_special = false

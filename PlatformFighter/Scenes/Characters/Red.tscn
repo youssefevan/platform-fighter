@@ -770,10 +770,8 @@ script = ExtResource( 3 )
 animation_name = "SpecialDown"
 attack_type = 2
 jump_cancellable = true
-modify_velocity_x = 1
-modify_velocity_y = 1
-x_frames = 12
-y_frames = 12
+modify_velocity_y = 2
+y_frames = 4
 
 [connection signal="disable_hitbox" from="StateManager/AerialNeutral" to="." method="_on_AerialNeutral_disable_hitbox"]
 [connection signal="disable_hitbox" from="StateManager/AerialSide" to="." method="_on_AerialSide_disable_hitbox"]

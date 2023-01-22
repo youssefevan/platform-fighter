@@ -68,3 +68,8 @@ func move(delta):
 		char_base.velocity.x = clamp(char_base.velocity.x, -char_base.current_speed, char_base.current_speed)
 	else:
 		char_base.velocity.x = lerp(char_base.velocity.x, 0, char_base.air_friction * delta)
+
+func exit():
+	.exit()
+	enter_attack = false
+	enter_special = false

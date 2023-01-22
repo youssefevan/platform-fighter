@@ -57,4 +57,8 @@ func move(delta):
 		char_base.velocity.x = lerp(char_base.velocity.x, 0, char_base.air_friction * delta)
 
 func exit():
+	.exit()
 	char_base.jump_height = char_base.fullhop_height
+	
+	enter_attack = false
+	enter_special = false
