@@ -2,21 +2,25 @@ extends BaseState
 
 signal disable_hitbox
 
-export var attack_type: int # 0: grounded; 1: aerial; 2: hybrid (transistion between either)
+export var attack_type: int # 0: grounded; 1: aerial; 2: special
 export var landing_lag: int # how many frames of landing lag does this attack have
-export var jump_cancellable: bool
+export var jump_cancellable: bool # attack can be exited with a jump
 
-export var modify_velocity_x: int # 0 = no change; 1 = additive; 2 = set
-export var modify_velocity_y: int # 0 = no change; 1 = additive; 2 = set
+export var modify_velocity_x: int # 0 = no change; 1 = additive; 2 = set (linear)
+export var modify_velocity_y: int # 0 = no change; 1 = additive; 2 = set (linear)
 
-export var velocity_x: float
-export var velocity_y: float
+export var velocity_x: float # amount of change to x vel per frame
+export var velocity_y: float # amount of change to y vel per frame
 
-export var x_frames: int
-export var y_frames: int
+export var x_frames: int # number of frames x vel is modified
+export var y_frames: int # number of frames y vel is modified
+
+export var x_starting_velocity := -1.0 # -1 for no change
+export var y_starting_velocity := -1.0 # -1 for no change
 
 export var x_starting_frame: int
 export var y_starting_frame: int
+
 
 export var freefall: bool
 
@@ -35,6 +39,16 @@ func enter():
 	frame = 0
 	char_base.landing_lag = landing_lag
 	attacking = true
+	
+	if x_starting_velocity == -1.0:
+		char_base.velocity.x = char_base.velocity.x
+	else:
+		char_base.velocity.x = x_starting_velocity
+	
+	if y_starting_velocity == -1.0:
+		char_base.velocity.y = char_base.velocity.y
+	else:
+		char_base.velocity.y = y_starting_velocity
 
 func physics_process(delta):
 	frame += 1
@@ -43,7 +57,7 @@ func physics_process(delta):
 		return char_base.hitstun
 	
 	if char_base.is_on_floor() == true:
-		if attack_type == 0:
+		if attack_type == 0 || attack_type == 2:
 			grounded_attack(delta)
 		
 		if attacking == false:
@@ -53,7 +67,7 @@ func physics_process(delta):
 			return char_base.land
 	
 	if char_base.is_on_floor() == false:
-		if attack_type == 1:
+		if attack_type == 1 || attack_type == 2:
 			aerial_attack(delta)
 		
 		if attacking == false:

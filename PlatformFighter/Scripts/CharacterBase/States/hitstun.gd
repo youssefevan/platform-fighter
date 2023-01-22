@@ -21,11 +21,12 @@ func enter():
 		* 200/(char_base.knockback_modifier+100) * 1.4)
 		+ 18) * 1.33) + kb_power)
 	char_base.velocity = kb_direction * knockback
+	
+	print("Hitstun Length: ", hitstun_length)
 
 func physics_process(delta):
-	print("HL ", hitstun_length)
 	frame += 1
-	print(frame)
+	print("Hitstun Frame: ", frame)
 	
 	if frame == hitstun_length:
 		print("exit")
@@ -59,7 +60,7 @@ func _on_Hurtbox_hit_info(hit, kb_dir, kb_pow, d_percent):
 	#char_base.got_hit = hit
 	kb_direction = kb_dir
 	kb_power = kb_pow
-	hitstun_length = int(round(kb_power * 0.20))
+	hitstun_length = int(round(kb_power * 0.123))
 	damage_percent = d_percent
 	char_base.percentage += damage_percent
 	print(char_base.percentage)

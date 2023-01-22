@@ -40,6 +40,16 @@ onready var aerial_side: BaseState = get_node(aerial_side_node)
 export var aerial_down_node: NodePath
 onready var aerial_down: BaseState = get_node(aerial_down_node)
 
+# special attacks
+export var special_neutral_node: NodePath
+onready var special_neutral: BaseState = get_node(special_neutral_node)
+export var special_up_node: NodePath
+onready var special_up: BaseState = get_node(special_up_node)
+export var special_side_node: NodePath
+onready var special_side: BaseState = get_node(special_side_node)
+export var special_down_node: NodePath
+onready var special_down: BaseState = get_node(special_down_node)
+
 onready var states = $StateManager
 onready var animations = $Animator
 onready var sprite = $Sprite
@@ -108,46 +118,66 @@ func sprite_facing():
 	else:
 		return 1
 
-func get_attack():
+func get_attack(type : int): # type = 0 -> normal attack, type = 1 -> special
 	var attack
 	
 	var dir = Vector2()
 	dir.x = Input.get_action_strength("right") - Input.get_action_strength("left")
 	dir.y = Input.get_action_strength("down") - Input.get_action_strength("up")
 	
-	if dir == Vector2.ZERO:
-		if is_on_floor() == true:
-			attack = ground_neutral
+	if type == 0: # normal attack
+		if dir == Vector2.ZERO: # if neutral input
+			if is_on_floor() == true: # if grounded
+				attack = ground_neutral
+			else:
+				attack = aerial_neutral
 		else:
-			attack = aerial_neutral
-	else:
-		if dir.y < -.5:
-			if is_on_floor() == true:
-				attack = ground_up
-			else:
-				attack = aerial_up
+			if dir.y < -.5: # if up input
+				if is_on_floor() == true: # if grounded
+					attack = ground_up
+				else:
+					attack = aerial_up
+			
+			if dir.y > .5: # if down input
+				if is_on_floor() == true: # if grounded
+					attack = ground_down
+				else:
+					attack = aerial_down
+			
+			if abs(dir.x) >= 0.5: # if side input
+				if is_on_floor() == true: # if grounded
+					attack = ground_side
+				else:
+					attack = aerial_side
+					if dir.x < 0: # correct sprite orientation
+						sprite.flip_h = true
+					elif dir.x > 0:
+						sprite.flip_h = false
+	
+	if type == 1: # special attack
+		if dir == Vector2.ZERO: # if neutral input
+			attack = special_neutral
 		
-		if dir.y > .5:
-			if is_on_floor() == true:
-				attack = ground_down
-			else:
-				
-				attack = aerial_down
-		
-		if abs(dir.x) >= 0.5:
-			if is_on_floor() == true:
-				attack = ground_side
-			else:
-				attack = aerial_side
-				if dir.x < 0:
+		else:
+			if dir.y < -.5: # if up input
+				attack = special_up
+			
+			if dir.y > .5: # if down input
+				attack = special_down
+			
+			if abs(dir.x) >= 0.5: # if side input
+				attack = special_side
+					
+				if dir.x < 0: # correct sprite orientation
 					sprite.flip_h = true
 				elif dir.x > 0:
 					sprite.flip_h = false
-					
+	
 	if sprite_facing() == -1:
 		$Hitbox.scale.x = -1
 	else:
 		$Hitbox.scale.x = 1
+	
 	return attack
 
 # bad

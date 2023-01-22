@@ -47,7 +47,10 @@ func physics_process(delta):
 		return char_base.run
 	
 	if Input.is_action_just_pressed("attack"):
-		return char_base.get_attack()
+		return char_base.get_attack(0)
+	
+	if Input.is_action_just_pressed("special"):
+		return char_base.get_attack(1)
 	
 #		if (x_input < -char_base.dash_input_requirement) or (x_input > char_base.dash_input_requirement):
 #			return dash

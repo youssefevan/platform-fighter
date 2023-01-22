@@ -701,8 +701,8 @@ animation_name = "GroundUp"
 [node name="AerialUp" type="Node" parent="StateManager" index="14"]
 script = ExtResource( 3 )
 animation_name = "AerialUp"
-attack_type = 1
-landing_lag = 18
+attack_type = 2
+landing_lag = 17
 modify_velocity_x = 2
 modify_velocity_y = 2
 velocity_y = -150.0

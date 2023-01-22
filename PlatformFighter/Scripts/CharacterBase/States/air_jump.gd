@@ -39,7 +39,10 @@ func physics_process(delta):
 		return char_base.land
 	
 	if Input.is_action_just_pressed("attack"):
-		return char_base.get_attack()
+		return char_base.get_attack(0)
+	
+	if Input.is_action_just_pressed("special"):
+		return char_base.get_attack(1)
 
 func move(delta):
 	var x_input = 0

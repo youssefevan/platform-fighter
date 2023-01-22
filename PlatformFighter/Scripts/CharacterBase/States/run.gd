@@ -31,7 +31,10 @@ func physics_process(delta):
 		return char_base.fall
 	
 	if Input.is_action_just_pressed("attack"):
-		return char_base.get_attack()
+		return char_base.get_attack(0)
+		
+	if Input.is_action_just_pressed("special"):
+		return char_base.get_attack(1)
 
 func move(delta):
 	x_input = Input.get_action_strength("right") - Input.get_action_strength("left")
