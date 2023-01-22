@@ -7,6 +7,7 @@ var enter_special = false
 func enter():
 	.enter()
 	
+	# entering inputs
 	if Input.is_action_just_pressed("jump") == true:
 		if char_base.air_jumps_remaining != 0:
 			enter_air_jump = true
@@ -19,15 +20,6 @@ func physics_process(delta):
 	move(delta)
 	#char_base.can_attack = true
 	fastfalling_check()
-	
-	if enter_air_jump == true:
-		return char_base.air_jump
-	
-	if enter_attack == true:
-		return char_base.get_attack(0)
-	
-	if enter_special == true:
-		return char_base.get_attack(1)
 	
 	if char_base.velocity.y < 0:
 		char_base.velocity.y += char_base.gravity * delta
@@ -54,6 +46,16 @@ func physics_process(delta):
 	
 	if Input.is_action_just_pressed("jump") and char_base.air_jumps_remaining != 0:
 		return char_base.air_jump
+	
+	if enter_air_jump == true:
+		return char_base.air_jump
+	
+	# Attacking
+	if enter_attack == true:
+		return char_base.get_attack(0)
+	
+	if enter_special == true:
+		return char_base.get_attack(1)
 	
 	if Input.is_action_just_pressed("attack"):
 		return char_base.get_attack(0)

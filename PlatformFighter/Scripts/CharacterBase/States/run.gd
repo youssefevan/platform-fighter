@@ -1,10 +1,20 @@
 extends BaseState
 
 var x_input = 0
+var enter_jump
+var enter_attack
+var enter_special
 
 func enter():
 	.enter()
-	#char_base.can_attack = true
+	
+	# entering inputs
+	if Input.is_action_just_pressed("jump") == true:
+		enter_jump = true
+	if Input.is_action_just_pressed("attack") == true:
+		enter_attack = true
+	if Input.is_action_just_pressed("special") == true:
+		enter_special = true
 
 func physics_process(delta):
 	move(delta)
@@ -29,6 +39,15 @@ func physics_process(delta):
 		
 	if char_base.is_on_floor() == false:
 		return char_base.fall
+	
+	if enter_jump == true:
+		return char_base.jumpsquat
+	
+	if enter_attack == true:
+		return char_base.get_attack(0)
+	
+	if enter_special == true:
+		return char_base.get_attack(1)
 	
 	if Input.is_action_just_pressed("attack"):
 		return char_base.get_attack(0)

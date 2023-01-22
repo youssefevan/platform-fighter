@@ -171,7 +171,7 @@ func air_movement_y(delta):
 			char_base.velocity.y = char_base.fall_speed
 
 func fastfalling_check():
-	if Input.is_action_just_pressed("down"):
+	if Input.is_action_just_pressed("down") and frame > y_frames:
 		char_base.fastfalling = true
 
 func exit():

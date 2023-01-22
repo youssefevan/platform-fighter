@@ -3,17 +3,21 @@ extends BaseState
 var enter_x_input
 var enter_jump
 var enter_attack
+var enter_special
 
 func enter():
 	.enter()
 	#char_base.can_attack = true
 	enter_x_input = Input.get_action_strength("right") - Input.get_action_strength("left")
 	#print(enter_x_input)
+	
+	# entering inputs
 	if Input.is_action_just_pressed("jump") == true:
 		enter_jump = true
-	
 	if Input.is_action_just_pressed("attack") == true:
 		enter_attack = true
+	if Input.is_action_just_pressed("special") == true:
+		enter_special = true
 
 func physics_process(delta):
 	var x_input = Input.get_action_strength("right") - Input.get_action_strength("left")
@@ -22,14 +26,6 @@ func physics_process(delta):
 	
 	char_base.velocity.y = 1 # keep in contact with ground
 	char_base.velocity = char_base.move_and_slide(char_base.velocity, Vector2.UP)
-	
-	
-	
-	if enter_jump == true:
-		return char_base.jumpsquat
-	
-	if enter_jump == true:
-		return char_base.get_attack()
 	
 	if x_input < 0:
 		char_base.sprite.flip_h = true
@@ -45,6 +41,16 @@ func physics_process(delta):
 	
 	if x_input != 0:
 		return char_base.run
+	
+	if enter_jump == true:
+		return char_base.jumpsquat
+	
+	# Attacking
+	if enter_attack == true:
+		return char_base.get_attack(0)
+	
+	if enter_special == true:
+		return char_base.get_attack(1)
 	
 	if Input.is_action_just_pressed("attack"):
 		return char_base.get_attack(0)

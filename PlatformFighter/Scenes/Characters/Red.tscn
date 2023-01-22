@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://Scenes/CharacterBase.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Sprites/Characters/red.png" type="Texture" id=2]
@@ -9,8 +9,8 @@ radius = 7.0
 height = 2.0
 
 [sub_resource type="CapsuleShape2D" id=19]
-radius = 5.0
-height = 10.0
+radius = 7.0
+height = 2.0
 
 [sub_resource type="Animation" id=13]
 resource_name = "AerialDown"
@@ -344,7 +344,7 @@ tracks/7/keys = {
 
 [sub_resource type="Animation" id=14]
 resource_name = "AerialUp"
-length = 0.666667
+length = 0.400001
 step = 0.0166667
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:region_rect")
@@ -353,10 +353,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Rect2( 128, 128, 32, 32 ) ]
+"times": PoolRealArray( 0, 0.133333, 0.233333 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ Rect2( 96, 128, 32, 64 ), Rect2( 128, 128, 32, 64 ), Rect2( 160, 128, 32, 64 ) ]
 }
 
 [sub_resource type="Animation" id=1]
@@ -424,7 +424,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id=9]
 resource_name = "GroundNeutral"
-length = 0.666667
+length = 0.2
 step = 0.0166667
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:region_rect")
@@ -433,10 +433,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Rect2( 0, 32, 32, 32 ) ]
+"times": PoolRealArray( 0, 0.0333333, 0.1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ Rect2( 32, 32, 32, 32 ), Rect2( 0, 32, 32, 32 ), Rect2( 32, 32, 32, 32 ) ]
 }
 
 [sub_resource type="Animation" id=12]
@@ -616,6 +616,40 @@ tracks/0/keys = {
 "values": [ Rect2( 32, 0, 32, 32 ) ]
 }
 
+[sub_resource type="Animation" id=23]
+resource_name = "SpecialDown"
+length = 0.666667
+step = 0.0166667
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Rect2( 0, 160, 32, 32 ) ]
+}
+
+[sub_resource type="Animation" id=22]
+resource_name = "SpecialUp"
+length = 0.666667
+step = 0.0166667
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Rect2( 32, 160, 32, 32 ) ]
+}
+
 [node name="Red" instance=ExtResource( 1 )]
 ground_neutral_node = NodePath("StateManager/GroundNeutral")
 ground_side_node = NodePath("StateManager/GroundSide")
@@ -625,6 +659,8 @@ aerial_neutral_node = NodePath("StateManager/AerialNeutral")
 aerial_up_node = NodePath("StateManager/AerialUp")
 aerial_side_node = NodePath("StateManager/AerialSide")
 aerial_down_node = NodePath("StateManager/AerialDown")
+special_up_node = NodePath("StateManager/SpecialUp")
+special_down_node = NodePath("StateManager/SpecialDown")
 gravity = 850.0
 fullhop_height = 250.0
 air_jump_height = 250.0
@@ -638,12 +674,12 @@ texture = ExtResource( 2 )
 hframes = 1
 vframes = 1
 region_enabled = true
-region_rect = Rect2( 96, 96, 32, 32 )
+region_rect = Rect2( 0, 160, 32, 32 )
 
 [node name="Hitbox" parent="." index="2"]
-damage = 11.0
-kb_power = 170.0
-kb_angle = -45.0
+damage = 2.0
+kb_power = 30.0
+kb_angle = -50.0
 
 [node name="Bounds" parent="Hitbox" index="0"]
 position = Vector2( 2, 8 )
@@ -668,17 +704,16 @@ anims/Jumpsquat = SubResource( 6 )
 anims/Land = SubResource( 7 )
 anims/RESET = SubResource( 20 )
 anims/Run = SubResource( 8 )
+anims/SpecialDown = SubResource( 23 )
+anims/SpecialUp = SubResource( 22 )
 
 [node name="GroundNeutral" type="Node" parent="StateManager" index="9"]
 script = ExtResource( 3 )
 animation_name = "GroundNeutral"
-jump_cancellable = true
 
-[node name="AerialNeutral" type="Node" parent="StateManager" index="10"]
+[node name="GroundUp" type="Node" parent="StateManager" index="10"]
 script = ExtResource( 3 )
-animation_name = "AerialNeutral"
-attack_type = 1
-landing_lag = 8
+animation_name = "GroundUp"
 
 [node name="GroundSide" type="Node" parent="StateManager" index="11"]
 script = ExtResource( 3 )
@@ -688,19 +723,37 @@ velocity_x = 250.0
 x_frames = 1
 x_starting_frame = 1
 
-[node name="AerialSide" type="Node" parent="StateManager" index="12"]
+[node name="GroundDown" type="Node" parent="StateManager" index="12"]
+script = ExtResource( 3 )
+animation_name = "GroundDown"
+
+[node name="AerialNeutral" type="Node" parent="StateManager" index="13"]
+script = ExtResource( 3 )
+animation_name = "AerialNeutral"
+attack_type = 1
+landing_lag = 8
+
+[node name="AerialUp" type="Node" parent="StateManager" index="14"]
+script = ExtResource( 3 )
+animation_name = "AerialUp"
+attack_type = 1
+landing_lag = 10
+
+[node name="AerialSide" type="Node" parent="StateManager" index="15"]
 script = ExtResource( 3 )
 animation_name = "AerialSide"
 attack_type = 1
 landing_lag = 6
 
-[node name="GroundUp" type="Node" parent="StateManager" index="13"]
+[node name="AerialDown" type="Node" parent="StateManager" index="16"]
 script = ExtResource( 3 )
-animation_name = "GroundUp"
+animation_name = "AerialDown"
+attack_type = 1
+landing_lag = 7
 
-[node name="AerialUp" type="Node" parent="StateManager" index="14"]
+[node name="SpecialUp" type="Node" parent="StateManager" index="17"]
 script = ExtResource( 3 )
-animation_name = "AerialUp"
+animation_name = "SpecialUp"
 attack_type = 2
 landing_lag = 17
 modify_velocity_x = 2
@@ -712,15 +765,15 @@ x_starting_frame = 1
 y_starting_frame = 1
 freefall = true
 
-[node name="GroundDown" type="Node" parent="StateManager" index="15"]
+[node name="SpecialDown" type="Node" parent="StateManager" index="18"]
 script = ExtResource( 3 )
-animation_name = "GroundDown"
-
-[node name="AerialDown" type="Node" parent="StateManager" index="16"]
-script = ExtResource( 3 )
-animation_name = "AerialDown"
-attack_type = 1
-landing_lag = 7
+animation_name = "SpecialDown"
+attack_type = 2
+jump_cancellable = true
+modify_velocity_x = 1
+modify_velocity_y = 1
+x_frames = 12
+y_frames = 12
 
 [connection signal="disable_hitbox" from="StateManager/AerialNeutral" to="." method="_on_AerialNeutral_disable_hitbox"]
 [connection signal="disable_hitbox" from="StateManager/AerialSide" to="." method="_on_AerialSide_disable_hitbox"]
