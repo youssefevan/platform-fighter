@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://Scenes/CharacterBase.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Sprites/Characters/timber.png" type="Texture" id=2]
@@ -1038,6 +1038,10 @@ tracks/0/keys = {
 "values": [ Rect2( 32, 0, 32, 32 ) ]
 }
 
+[sub_resource type="CapsuleShape2D" id=43]
+radius = 8.0
+height = 18.0
+
 [sub_resource type="Animation" id=42]
 resource_name = "SpecialUp"
 length = 0.6
@@ -1053,6 +1057,90 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ Rect2( 128, 32, 32, 32 ), Rect2( 160, 32, 32, 32 ), Rect2( 192, 32, 32, 32 ), Rect2( 160, 32, 32, 32 ), Rect2( 192, 32, 32, 32 ), Rect2( 160, 32, 32, 32 ), Rect2( 192, 32, 32, 32 ), Rect2( 160, 32, 32, 32 ), Rect2( 192, 32, 32, 32 ), Rect2( 160, 32, 32, 32 ), Rect2( 128, 32, 32, 32 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Hitbox/Bounds:shape")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ SubResource( 43 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Hitbox/Bounds:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.05, 0.0833333, 0.116667, 0.15, 0.183333, 0.216667, 0.25, 0.283333, 0.316667, 0.35, 0.383333, 0.416667, 0.45, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true, false, true, false, true, false, true, false, true, false, true, false, true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Hitbox/Bounds:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ Vector2( 0, -6 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Hitbox/Bounds:rotation_degrees")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 90.0 ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Hitbox:damage")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0.05, 0.45 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 3.0, 15.0 ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Hitbox:kb_power")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0.05, 0.45 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 50.0, 190.0 ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("Hitbox:kb_angle")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0.05, 0.45 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ -90.0, -70.0 ]
 }
 
 [node name="Timber" instance=ExtResource( 1 )]
@@ -1086,11 +1174,11 @@ texture = ExtResource( 2 )
 hframes = 1
 vframes = 1
 region_enabled = true
-region_rect = Rect2( 128, 32, 32, 32 )
+region_rect = Rect2( 160, 32, 32, 32 )
 
 [node name="Hitbox" parent="." index="2"]
-damage = 12.0
-kb_power = 160.0
+damage = 15.0
+kb_power = 190.0
 kb_angle = -70.0
 
 [node name="Bounds" parent="Hitbox" index="0"]
@@ -1186,6 +1274,7 @@ freefall = true
 [connection signal="disable_hitbox" from="StateManager/AerialUp" to="." method="_on_AerialUp_disable_hitbox"]
 [connection signal="disable_hitbox" from="StateManager/GroundDown" to="." method="_on_GroundDown_disable_hitbox"]
 [connection signal="disable_hitbox" from="StateManager/AerialDown" to="." method="_on_AerialDown_disable_hitbox"]
+[connection signal="disable_hitbox" from="StateManager/SpecialUp" to="." method="_on_SpecialUp_disable_hitbox"]
 
 [editable path="Hitbox"]
 [editable path="Hurtbox"]
