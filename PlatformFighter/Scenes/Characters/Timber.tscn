@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=2]
+[gd_scene load_steps=36 format=2]
 
 [ext_resource path="res://Scenes/CharacterBase.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Sprites/Characters/timber.png" type="Texture" id=2]
@@ -1038,9 +1038,112 @@ tracks/0/keys = {
 "values": [ Rect2( 32, 0, 32, 32 ) ]
 }
 
-[sub_resource type="CapsuleShape2D" id=43]
+[sub_resource type="CircleShape2D" id=44]
 radius = 8.0
-height = 18.0
+
+[sub_resource type="Animation" id=45]
+resource_name = "SpecialNeutral"
+length = 0.5
+step = 0.0166667
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.15, 0.266667 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ Rect2( 128, 160, 32, 32 ), Rect2( 160, 160, 32, 32 ), Rect2( 192, 160, 32, 32 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Hitbox/Bounds:shape")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ SubResource( 44 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Hitbox/Bounds:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.15, 0.266667 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Hitbox/Bounds:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ Vector2( 9, -12 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Hitbox/Bounds:rotation_degrees")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0.0 ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Hitbox:damage")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0.15 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 19.0 ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Hitbox:kb_power")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0.15 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 185.0 ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("Hitbox:kb_angle")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0.15 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ -60.0 ]
+}
+
+[sub_resource type="CapsuleShape2D" id=43]
+radius = 6.0
 
 [sub_resource type="Animation" id=42]
 resource_name = "SpecialUp"
@@ -1077,10 +1180,10 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.05, 0.0833333, 0.116667, 0.15, 0.183333, 0.216667, 0.25, 0.283333, 0.316667, 0.35, 0.383333, 0.416667, 0.45, 0.5 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ true, false, true, false, true, false, true, false, true, false, true, false, true, false, true ]
+"values": [ true, false, true, false, true, false, true, false, true, false, true ]
 }
 tracks/3/type = "value"
 tracks/3/path = NodePath("Hitbox/Bounds:position")
@@ -1152,6 +1255,7 @@ aerial_neutral_node = NodePath("StateManager/AerialNeutral")
 aerial_up_node = NodePath("StateManager/AerialUp")
 aerial_side_node = NodePath("StateManager/AerialSide")
 aerial_down_node = NodePath("StateManager/AerialDown")
+special_neutral_node = NodePath("StateManager/SpecialNeutral")
 special_up_node = NodePath("StateManager/SpecialUp")
 fall_speed = 225.0
 fastfall_speed = 275.0
@@ -1174,12 +1278,12 @@ texture = ExtResource( 2 )
 hframes = 1
 vframes = 1
 region_enabled = true
-region_rect = Rect2( 160, 32, 32, 32 )
+region_rect = Rect2( 64, 192, 32, 64 )
 
 [node name="Hitbox" parent="." index="2"]
-damage = 15.0
-kb_power = 190.0
-kb_angle = -70.0
+damage = 9.0
+kb_power = 90.0
+kb_angle = -30.0
 
 [node name="Bounds" parent="Hitbox" index="0"]
 rotation = 1.5708
@@ -1208,6 +1312,7 @@ anims/Jumpsquat = SubResource( 8 )
 anims/Land = SubResource( 9 )
 anims/RESET = SubResource( 33 )
 anims/Run = SubResource( 10 )
+anims/SpecialNeutral = SubResource( 45 )
 anims/SpecialUp = SubResource( 42 )
 
 [node name="GroundNeutral" type="Node" parent="StateManager" index="9"]
@@ -1266,6 +1371,15 @@ y_starting_velocity = 0.0
 y_starting_frame = 4
 freefall = true
 
+[node name="SpecialNeutral" type="Node" parent="StateManager" index="18"]
+script = ExtResource( 3 )
+animation_name = "SpecialNeutral"
+attack_type = 2
+modify_velocity_y = 1
+y_frames = 12
+y_starting_velocity = 0.0
+y_starting_frame = 1
+
 [connection signal="disable_hitbox" from="StateManager/GroundNeutral" to="." method="_on_GroundNeutral_disable_hitbox"]
 [connection signal="disable_hitbox" from="StateManager/AerialNeutral" to="." method="_on_AerialNeutral_disable_hitbox"]
 [connection signal="disable_hitbox" from="StateManager/GroundSide" to="." method="_on_GroundSide_disable_hitbox"]
@@ -1275,6 +1389,7 @@ freefall = true
 [connection signal="disable_hitbox" from="StateManager/GroundDown" to="." method="_on_GroundDown_disable_hitbox"]
 [connection signal="disable_hitbox" from="StateManager/AerialDown" to="." method="_on_AerialDown_disable_hitbox"]
 [connection signal="disable_hitbox" from="StateManager/SpecialUp" to="." method="_on_SpecialUp_disable_hitbox"]
+[connection signal="disable_hitbox" from="StateManager/SpecialNeutral" to="." method="_on_SpecialNeutral_disable_hitbox"]
 
 [editable path="Hitbox"]
 [editable path="Hurtbox"]

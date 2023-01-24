@@ -13,7 +13,7 @@ func enter():
 		enter_jump = true
 		#print("RUN --> enter_jump")
 	if Input.is_action_just_pressed("attack") == true:
-		#enter_attack = true
+		enter_attack = true
 		#print("RUN --> enter_attack")
 	if Input.is_action_just_pressed("special") == true:
 		enter_special = true

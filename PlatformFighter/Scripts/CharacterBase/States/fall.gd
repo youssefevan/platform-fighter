@@ -84,3 +84,4 @@ func exit():
 	.exit()
 	enter_air_jump = false
 	enter_attack = false
+	enter_special = false

@@ -218,5 +218,5 @@ func _on_SpecialSide_disable_hitbox():
 	$Hitbox/Bounds.disabled = true
 
 func _on_Hurtbox_hit_info(hit, kb_dir, kb_pow, d_percent):
-	print("hurt")
+	#print("hurt")
 	got_hit = true

@@ -7,7 +7,7 @@ var damage_percent
 var percentage = 0
 var knockback_modifier = 100
 
-var grav = 600
+var grav = 300
 
 var velocity = Vector2.ZERO
 
