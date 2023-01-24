@@ -11,8 +11,10 @@ func enter():
 	# entering inputs
 	if Input.is_action_just_pressed("attack") == true:
 		enter_attack = true
+		#print("JUMP --> enter_attack")
 	if Input.is_action_just_pressed("special") == true:
 		enter_special = true
+		#print("JUMP --> enter_special")
 
 func physics_process(delta):
 	move(delta)

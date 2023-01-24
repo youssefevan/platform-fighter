@@ -14,10 +14,13 @@ func enter():
 	# entering inputs
 	if Input.is_action_just_pressed("jump") == true:
 		enter_jump = true
+		#print("IDLE --> enter_jump")
 	if Input.is_action_just_pressed("attack") == true:
 		enter_attack = true
+		#print("IDLE --> enter_attack")
 	if Input.is_action_just_pressed("special") == true:
 		enter_special = true
+		#print("IDLE --> enter_special")
 
 func physics_process(delta):
 	var x_input = Input.get_action_strength("right") - Input.get_action_strength("left")
@@ -67,3 +70,4 @@ func exit():
 	.exit()
 	enter_jump = false
 	enter_special = false
+	enter_attack = false

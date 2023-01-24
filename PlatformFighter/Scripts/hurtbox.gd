@@ -12,9 +12,9 @@ signal hit_info(hit, kb_dir, kb_pow, d_percent) # got_hit, kb_direction, kb_powe
 
 func _on_Hurtbox_area_entered(area):
 	if area.is_in_group("Hitbox"):
-		print(area)
-		print(hitbox)
-		print(area == hitbox)
+		#print(area)
+		#print(hitbox)
+		#print(area == hitbox)
 		if (area != hitbox):
 			var hitbox_direction = area.global_position.direction_to(self.global_position)
 			

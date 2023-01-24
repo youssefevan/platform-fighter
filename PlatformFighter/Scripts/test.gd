@@ -43,4 +43,4 @@ func _on_Hurtbox_hit_info(hit, kb_dir, kb_pow, d_percent):
 	kb_power = kb_pow
 	damage_percent = d_percent
 	percentage += damage_percent
-	print(percentage)
+	print(percentage, "%")

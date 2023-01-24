@@ -11,10 +11,13 @@ func enter():
 	if Input.is_action_just_pressed("jump") == true:
 		if char_base.air_jumps_remaining != 0:
 			enter_air_jump = true
+			#print("FALL --> enter_jump")
 	if Input.is_action_just_pressed("attack") == true:
 		enter_attack = true
+		#print("FALL --> enter_attack")
 	if Input.is_action_just_pressed("special") == true:
 		enter_special = true
+		#print("FALL --> enter_special")
 
 func physics_process(delta):
 	move(delta)
