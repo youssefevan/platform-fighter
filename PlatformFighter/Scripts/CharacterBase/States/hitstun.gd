@@ -18,6 +18,7 @@ func enter():
 		(char_base.percentage/10 + (char_base.percentage * damage_percent)/20)
 		* 200/(char_base.knockback_modifier+100) * 1.4)
 		+ 18) * 1.33) + kb_power)
+	
 	char_base.velocity = kb_direction * knockback
 	
 	#print("Hitstun Length: ", hitstun_length)
@@ -30,7 +31,7 @@ func physics_process(delta):
 		#print("exit")
 		if char_base.is_on_floor() == true:
 			return char_base.idle
-		elif char_base.is_on_floor() == false:
+		else:
 			return char_base.fall
 	
 	#print(velocity)
@@ -38,15 +39,19 @@ func physics_process(delta):
 	if char_base.got_hit == true:
 		return char_base.hitstun
 	
-	if !char_base.is_on_floor():
-		char_base.velocity.y += char_base.fall_speed * delta
+	if char_base.is_on_floor() == false:
+		char_base.velocity.y += char_base.gravity * delta
+		
+		if char_base.velocity.y > char_base.fall_speed:
+			char_base.velocity.y = char_base.fall_speed
+		
 	else:
 		if frame > 1:
 			return char_base.idle
 		else:
 			pass
 
-	if char_base.is_on_floor():
+	if char_base.is_on_floor() == true:
 		char_base.velocity.x = lerp(char_base.velocity.x, 0, char_base.ground_friction * delta) # slow to stop
 	else:
 		char_base.velocity.x = lerp(char_base.velocity.x, 0, char_base.air_friction * delta)
@@ -58,7 +63,7 @@ func _on_Hurtbox_hit_info(hit, kb_dir, kb_pow, d_percent):
 	#char_base.got_hit = hit
 	kb_direction = kb_dir
 	kb_power = kb_pow
-	hitstun_length = int(round(kb_power * 0.123))
+	hitstun_length = int(round(kb_power * 0.2))
 	damage_percent = d_percent
 	char_base.percentage += damage_percent
 	print(char_base, " --> ", char_base.percentage, "%")

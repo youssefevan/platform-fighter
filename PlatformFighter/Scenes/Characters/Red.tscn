@@ -1,16 +1,16 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://Scenes/CharacterBase.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Sprites/Characters/red.png" type="Texture" id=2]
 [ext_resource path="res://Scripts/CharacterBase/base_attack.gd" type="Script" id=3]
 
 [sub_resource type="CapsuleShape2D" id=18]
-radius = 7.0
-height = 2.0
+radius = 8.0
+height = 6.0
 
 [sub_resource type="CapsuleShape2D" id=19]
-radius = 7.0
-height = 2.0
+radius = 6.0
+height = 6.0
 
 [sub_resource type="Animation" id=13]
 resource_name = "AerialDown"
@@ -83,7 +83,7 @@ tracks/5/loop_wrap = true
 tracks/5/imported = false
 tracks/5/enabled = true
 tracks/5/keys = {
-"times": PoolRealArray( 0.05 ),
+"times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ 2.0 ]
@@ -95,10 +95,10 @@ tracks/6/loop_wrap = true
 tracks/6/imported = false
 tracks/6/enabled = true
 tracks/6/keys = {
-"times": PoolRealArray( 0.05 ),
+"times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ 30.0 ]
+"values": [ 15.0 ]
 }
 tracks/7/type = "value"
 tracks/7/path = NodePath("Hitbox:kb_angle")
@@ -107,7 +107,7 @@ tracks/7/loop_wrap = true
 tracks/7/imported = false
 tracks/7/enabled = true
 tracks/7/keys = {
-"times": PoolRealArray( 0.05 ),
+"times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ -50.0 ]
@@ -139,7 +139,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0.0666667 ),
+"times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ 9.0 ]
@@ -151,10 +151,10 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0.0666667 ),
+"times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ 160.0 ]
+"values": [ 115.0 ]
 }
 tracks/3/type = "value"
 tracks/3/path = NodePath("Hitbox:kb_angle")
@@ -163,10 +163,10 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0.0666667 ),
+"times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ -45.0 ]
+"values": [ -30.0 ]
 }
 tracks/4/type = "value"
 tracks/4/path = NodePath("Hitbox/Bounds:shape")
@@ -215,30 +215,6 @@ tracks/7/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ 90.0 ]
-}
-tracks/8/type = "value"
-tracks/8/path = NodePath("Hitbox/Bounds:shape:radius")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 7.0 ]
-}
-tracks/9/type = "value"
-tracks/9/path = NodePath("Hitbox/Bounds:shape:height")
-tracks/9/interp = 1
-tracks/9/loop_wrap = true
-tracks/9/imported = false
-tracks/9/enabled = true
-tracks/9/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 2.0 ]
 }
 
 [sub_resource type="Animation" id=11]
@@ -290,7 +266,7 @@ tracks/3/enabled = true
 tracks/3/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
-"update": 0,
+"update": 1,
 "values": [ Vector2( 6, 0 ) ]
 }
 tracks/4/type = "value"
@@ -302,7 +278,7 @@ tracks/4/enabled = true
 tracks/4/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
-"update": 0,
+"update": 1,
 "values": [ 90.0 ]
 }
 tracks/5/type = "value"
@@ -312,9 +288,9 @@ tracks/5/loop_wrap = true
 tracks/5/imported = false
 tracks/5/enabled = true
 tracks/5/keys = {
-"times": PoolRealArray( 0.0666667 ),
+"times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
-"update": 0,
+"update": 1,
 "values": [ 11.0 ]
 }
 tracks/6/type = "value"
@@ -324,10 +300,10 @@ tracks/6/loop_wrap = true
 tracks/6/imported = false
 tracks/6/enabled = true
 tracks/6/keys = {
-"times": PoolRealArray( 0.0666667 ),
+"times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 170.0 ]
+"update": 1,
+"values": [ 125.0 ]
 }
 tracks/7/type = "value"
 tracks/7/path = NodePath("Hitbox:kb_angle")
@@ -336,9 +312,9 @@ tracks/7/loop_wrap = true
 tracks/7/imported = false
 tracks/7/enabled = true
 tracks/7/keys = {
-"times": PoolRealArray( 0.0666667 ),
+"times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
-"update": 0,
+"update": 1,
 "values": [ -45.0 ]
 }
 
@@ -633,6 +609,23 @@ tracks/0/keys = {
 "values": [ Rect2( 0, 160, 32, 32 ) ]
 }
 
+[sub_resource type="Animation" id=24]
+resource_name = "SpecialNeutral"
+length = 0.333333
+step = 0.0166667
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Rect2( 192, 80, 32, 32 ) ]
+}
+
 [sub_resource type="Animation" id=22]
 resource_name = "SpecialUp"
 length = 0.666667
@@ -659,6 +652,7 @@ aerial_neutral_node = NodePath("StateManager/AerialNeutral")
 aerial_up_node = NodePath("StateManager/AerialUp")
 aerial_side_node = NodePath("StateManager/AerialSide")
 aerial_down_node = NodePath("StateManager/AerialDown")
+special_neutral_node = NodePath("StateManager/SpecialNeutral")
 special_up_node = NodePath("StateManager/SpecialUp")
 special_down_node = NodePath("StateManager/SpecialDown")
 gravity = 850.0
@@ -674,11 +668,11 @@ texture = ExtResource( 2 )
 hframes = 1
 vframes = 1
 region_enabled = true
-region_rect = Rect2( 0, 160, 32, 32 )
+region_rect = Rect2( 128, 64, 32, 32 )
 
 [node name="Hitbox" parent="." index="2"]
 damage = 2.0
-kb_power = 30.0
+kb_power = 20.0
 kb_angle = -50.0
 
 [node name="Bounds" parent="Hitbox" index="0"]
@@ -705,6 +699,7 @@ anims/Land = SubResource( 7 )
 anims/RESET = SubResource( 20 )
 anims/Run = SubResource( 8 )
 anims/SpecialDown = SubResource( 23 )
+anims/SpecialNeutral = SubResource( 24 )
 anims/SpecialUp = SubResource( 22 )
 
 [node name="GroundNeutral" type="Node" parent="StateManager" index="9"]
@@ -772,6 +767,11 @@ attack_type = 2
 jump_cancellable = true
 modify_velocity_y = 2
 y_frames = 4
+
+[node name="SpecialNeutral" type="Node" parent="StateManager" index="19"]
+script = ExtResource( 3 )
+animation_name = "SpecialNeutral"
+attack_type = 2
 
 [connection signal="disable_hitbox" from="StateManager/AerialNeutral" to="." method="_on_AerialNeutral_disable_hitbox"]
 [connection signal="disable_hitbox" from="StateManager/AerialSide" to="." method="_on_AerialSide_disable_hitbox"]
