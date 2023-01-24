@@ -4,6 +4,8 @@ var kb_direction
 var kb_power
 var damage_percent
 var knockback_modifier = 100
+var kb_scaling
+var default_kb_scaling = 3.33
 
 var frame = 0
 
@@ -17,7 +19,7 @@ func enter():
 	var knockback = ((((
 		(char_base.percentage/10 + (char_base.percentage * damage_percent)/20)
 		* 200/(char_base.knockback_modifier+100) * 1.4)
-		+ 18) * 1.33) + kb_power)
+		+ 18) * kb_scaling) + kb_power)
 	
 	char_base.velocity = kb_direction * knockback
 	
@@ -59,11 +61,15 @@ func physics_process(delta):
 	char_base.velocity = char_base.move_and_slide(char_base.velocity, Vector2.UP)
 
 
-func _on_Hurtbox_hit_info(hit, kb_dir, kb_pow, d_percent):
+func _on_Hurtbox_hit_info(hit, kb_dir, kb_pow, d_percent, kb_scale):
 	#char_base.got_hit = hit
 	kb_direction = kb_dir
 	kb_power = kb_pow
-	hitstun_length = int(round(kb_power * 0.2))
+	if kb_scale == -1:
+		kb_scaling = default_kb_scaling
+	else:
+		kb_scaling = kb_scale
+	hitstun_length = int(round(kb_power * 0.123))
 	damage_percent = d_percent
 	char_base.percentage += damage_percent
 	print(char_base, " --> ", char_base.percentage, "%")

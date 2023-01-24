@@ -7,8 +7,9 @@ var got_hit
 var kb_direction
 var kb_power
 var damage_percent
+var kb_scaling
 
-signal hit_info(hit, kb_dir, kb_pow, d_percent) # got_hit, kb_direction, kb_power, kb
+signal hit_info(hit, kb_dir, kb_pow, d_percent, kb_scale) # got_hit, kb_direction, kb_power, damage_percent, kb_scaling
 
 func _on_Hurtbox_area_entered(area):
 	if area.is_in_group("Hitbox"):
@@ -27,6 +28,7 @@ func _on_Hurtbox_area_entered(area):
 			
 			kb_power = area.kb_power
 			damage_percent = area.damage
+			kb_scaling = area.kb_scaling
 			got_hit = true
 			
-			emit_signal("hit_info", got_hit, kb_direction, kb_power, damage_percent)
+			emit_signal("hit_info", got_hit, kb_direction, kb_power, damage_percent, kb_scaling)
