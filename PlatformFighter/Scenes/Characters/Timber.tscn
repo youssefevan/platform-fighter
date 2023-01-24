@@ -1501,16 +1501,5 @@ y_frames = 12
 y_starting_velocity = 0.0
 y_starting_frame = 1
 
-[connection signal="disable_hitbox" from="StateManager/GroundNeutral" to="." method="_on_GroundNeutral_disable_hitbox"]
-[connection signal="disable_hitbox" from="StateManager/AerialNeutral" to="." method="_on_AerialNeutral_disable_hitbox"]
-[connection signal="disable_hitbox" from="StateManager/GroundSide" to="." method="_on_GroundSide_disable_hitbox"]
-[connection signal="disable_hitbox" from="StateManager/AerialSide" to="." method="_on_AerialSide_disable_hitbox"]
-[connection signal="disable_hitbox" from="StateManager/GroundUp" to="." method="_on_GroundUp_disable_hitbox"]
-[connection signal="disable_hitbox" from="StateManager/AerialUp" to="." method="_on_AerialUp_disable_hitbox"]
-[connection signal="disable_hitbox" from="StateManager/GroundDown" to="." method="_on_GroundDown_disable_hitbox"]
-[connection signal="disable_hitbox" from="StateManager/AerialDown" to="." method="_on_AerialDown_disable_hitbox"]
-[connection signal="disable_hitbox" from="StateManager/SpecialUp" to="." method="_on_SpecialUp_disable_hitbox"]
-[connection signal="disable_hitbox" from="StateManager/SpecialNeutral" to="." method="_on_SpecialNeutral_disable_hitbox"]
-
 [editable path="Hitbox"]
 [editable path="Hurtbox"]

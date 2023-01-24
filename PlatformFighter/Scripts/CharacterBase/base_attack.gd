@@ -1,7 +1,5 @@
 extends BaseState
 
-signal disable_hitbox
-
 export var attack_type: int # 0: grounded; 1: aerial; 2: special
 export var landing_lag: int # how many frames of landing lag does this attack have
 export var jump_cancellable: bool # attack can be exited with a jump
@@ -177,4 +175,3 @@ func fastfalling_check():
 func exit():
 	.exit()
 	char_base.hitbox.disabled = true
-	#emit_signal("disable_hitbox")
