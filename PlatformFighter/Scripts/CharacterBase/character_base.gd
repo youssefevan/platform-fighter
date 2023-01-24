@@ -53,6 +53,7 @@ onready var special_down: BaseState = get_node(special_down_node)
 onready var states = $StateManager
 onready var animations = $Animator
 onready var sprite = $Sprite
+onready var hitbox = $Hitbox/Bounds
 
 export var gravity: float
 export var fall_speed: float # default fallspeed
@@ -94,10 +95,14 @@ var percentage = 0
 func _ready():
 	states.init(self)
 	jump_height = fullhop_height
+	#init_controls()
+
+func init_controls():
+	var left = Input.get_joy_axis(port, 0)
+	var jump = Input.is_joy_button_pressed(port, 2)
 
 func _physics_process(delta):
 	states.physics_process(delta)
-	
 	if is_on_floor() == true:
 		current_speed = lerp(current_speed, run_speed, speed_lerp * delta)
 		fastfalling = false
@@ -179,43 +184,6 @@ func get_attack(type : int): # type = 0 -> normal attack, type = 1 -> special
 		$Hitbox.scale.x = 1
 	
 	return attack
-
-# bad
-func _on_GroundNeutral_disable_hitbox():
-	$Hitbox/Bounds.disabled = true
-
-func _on_AerialSide_disable_hitbox():
-	$Hitbox/Bounds.disabled = true
-
-func _on_AerialNeutral_disable_hitbox():
-	$Hitbox/Bounds.disabled = true
-
-func _on_GroundSide_disable_hitbox():
-	$Hitbox/Bounds.disabled = true
-
-func _on_AerialUp_disable_hitbox():
-	$Hitbox/Bounds.disabled = true
-
-func _on_GroundDown_disable_hitbox():
-	$Hitbox/Bounds.disabled = true
-
-func _on_AerialDown_disable_hitbox():
-	$Hitbox/Bounds.disabled = true
-
-func _on_GroundUp_disable_hitbox():
-	$Hitbox/Bounds.disabled = true
-
-func _on_SpecialNeutral_disable_hitbox():
-	$Hitbox/Bounds.disabled = true
-
-func _on_SpecialUp_disable_hitbox():
-	$Hitbox/Bounds.disabled = true
-
-func _on_SpecialDown_disable_hitbox():
-	$Hitbox/Bounds.disabled = true
-
-func _on_SpecialSide_disable_hitbox():
-	$Hitbox/Bounds.disabled = true
 
 func _on_Hurtbox_hit_info(hit, kb_dir, kb_pow, d_percent, kb_scale):
 	#print("hurt")

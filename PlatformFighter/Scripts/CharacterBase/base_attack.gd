@@ -176,4 +176,5 @@ func fastfalling_check():
 
 func exit():
 	.exit()
-	emit_signal("disable_hitbox")
+	char_base.hitbox.disabled = true
+	#emit_signal("disable_hitbox")
