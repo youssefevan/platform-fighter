@@ -8,8 +8,7 @@ func enter():
 	.enter()
 	#char_base.can_attack = true
 	enter_x_input = Input.get_action_strength("right") - Input.get_action_strength("left")
-	if enter_x_input != 0:
-		char_base.velocity.x = char_base.air_speed * enter_x_input
+	char_base.velocity.x = char_base.air_speed * enter_x_input
 	
 	if char_base.air_jumps > 1:
 		if enter_x_input < 0:
