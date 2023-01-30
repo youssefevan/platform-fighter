@@ -1,24 +1,15 @@
 extends KinematicBody2D
 class_name CharacterBase
 
-export var idle_node: NodePath
-onready var idle: BaseState = get_node(idle_node)
-export var jump_node: NodePath
-onready var jump: BaseState = get_node(jump_node)
-export var jumpsquat_node: NodePath
-onready var jumpsquat: BaseState = get_node(jumpsquat_node)
-export var air_jump_node: NodePath
-onready var air_jump: BaseState = get_node(air_jump_node)
-export var fall_node: NodePath
-onready var fall: BaseState = get_node(fall_node)
-export var run_node: NodePath
-onready var run: BaseState = get_node(run_node)
-export var land_node: NodePath
-onready var land: BaseState = get_node(land_node)
-export var freefall_node: NodePath
-onready var freefall: BaseState = get_node(freefall_node)
-export var hitstun_node: NodePath
-onready var hitstun: BaseState = get_node(hitstun_node)
+onready var idle := $StateManager/Idle
+onready var jump := $StateManager/Jump
+onready var jumpsquat := $StateManager/Jumpsquat
+onready var air_jump := $StateManager/AirJump
+onready var fall := $StateManager/Fall
+onready var run := $StateManager/Run
+onready var land := $StateManager/Land
+onready var freefall := $StateManager/Freefall
+onready var hitstun := $StateManager/Hitstun
 
 # ground attacks
 export var ground_neutral_node: NodePath

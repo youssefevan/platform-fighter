@@ -7,6 +7,10 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 4, 6.5 )
 
+[sub_resource type="CapsuleShape2D" id=38]
+radius = 9.0
+height = 4.0
+
 [sub_resource type="CapsuleShape2D" id=2]
 radius = 4.0
 height = 6.0
@@ -358,13 +362,9 @@ tracks/8/keys = {
 "values": [ -1.0 ]
 }
 
-[sub_resource type="CapsuleShape2D" id=38]
-radius = 9.0
-height = 4.0
-
 [sub_resource type="Animation" id=30]
 resource_name = "AerialUp"
-length = 0.2
+length = 0.266667
 step = 0.0166667
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:region_rect")
@@ -373,7 +373,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.0333333, 0.0833333 ),
+"times": PoolRealArray( 0, 0.0833333, 0.183333 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
 "values": [ Rect2( 128, 96, 32, 64 ), Rect2( 160, 96, 32, 64 ), Rect2( 192, 96, 32, 64 ) ]
@@ -385,7 +385,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0.0333334 ),
+"times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ SubResource( 38 ) ]
@@ -397,7 +397,7 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.0333333, 0.0833333 ),
+"times": PoolRealArray( 0, 0.0833333, 0.166667 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
 "values": [ true, false, true ]
@@ -409,10 +409,10 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0, 0.0333334 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ Vector2( 0, 0 ), Vector2( 1, -17 ) ]
+"values": [ Vector2( 1, -17 ) ]
 }
 tracks/4/type = "value"
 tracks/4/path = NodePath("Hitbox/Bounds:rotation_degrees")
@@ -421,10 +421,10 @@ tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 0, 0.0333333 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ 0.0, 90.0 ]
+"values": [ 90.0 ]
 }
 tracks/5/type = "value"
 tracks/5/path = NodePath("Hitbox:damage")
@@ -1367,7 +1367,6 @@ tracks/8/keys = {
 }
 
 [node name="Timber" instance=ExtResource( 1 )]
-idle_node = NodePath("")
 ground_neutral_node = NodePath("StateManager/GroundNeutral")
 ground_side_node = NodePath("StateManager/GroundSide")
 ground_up_node = NodePath("StateManager/GroundUp")
@@ -1399,16 +1398,17 @@ texture = ExtResource( 2 )
 hframes = 1
 vframes = 1
 region_enabled = true
-region_rect = Rect2( 128, 32, 32, 32 )
+region_rect = Rect2( 128, 96, 32, 64 )
 
 [node name="Hitbox" parent="." index="2"]
-damage = 3.0
-kb_power = 50.0
-kb_angle = -90.0
-kb_scaling = 1.0
+damage = 12.0
+kb_power = 160.0
+kb_angle = -70.0
+kb_scaling = -1.0
 
 [node name="Bounds" parent="Hitbox" index="0"]
 rotation = 1.5708
+shape = SubResource( 38 )
 disabled = false
 
 [node name="Bounds" parent="Hurtbox" index="0"]
