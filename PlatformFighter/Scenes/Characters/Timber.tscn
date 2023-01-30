@@ -1367,6 +1367,7 @@ tracks/8/keys = {
 }
 
 [node name="Timber" instance=ExtResource( 1 )]
+idle_node = NodePath("")
 ground_neutral_node = NodePath("StateManager/GroundNeutral")
 ground_side_node = NodePath("StateManager/GroundSide")
 ground_up_node = NodePath("StateManager/GroundUp")
