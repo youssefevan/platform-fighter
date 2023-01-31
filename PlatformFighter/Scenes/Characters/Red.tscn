@@ -699,7 +699,11 @@ ground_acceleration = 2200.0
 air_speed = 100.0
 jumpsquat_frames = 3
 
+[node name="ECB" parent="." index="0"]
+position = Vector2( 0, -8 )
+
 [node name="Sprite" parent="." index="1"]
+position = Vector2( 0, -8 )
 texture = ExtResource( 2 )
 hframes = 1
 vframes = 1
@@ -707,6 +711,7 @@ region_enabled = true
 region_rect = Rect2( 128, 64, 32, 32 )
 
 [node name="Hitbox" parent="." index="2"]
+position = Vector2( 0, -8 )
 damage = 2.0
 kb_power = 30.0
 kb_angle = -50.0
@@ -715,6 +720,9 @@ kb_scaling = 1.0
 [node name="Bounds" parent="Hitbox" index="0"]
 position = Vector2( 2, 8 )
 shape = SubResource( 18 )
+
+[node name="Hurtbox" parent="." index="3"]
+position = Vector2( 0, -8 )
 
 [node name="Animator" type="AnimationPlayer" parent="." index="4"]
 anims/AerialDown = SubResource( 13 )

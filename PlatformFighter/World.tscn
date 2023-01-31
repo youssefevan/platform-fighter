@@ -57,7 +57,7 @@ position = Vector2( 192, 96 )
 position = Vector2( 256, 128 )
 
 [node name="Test" type="KinematicBody2D" parent="."]
-position = Vector2( 192, 136 )
+position = Vector2( 128, 112 )
 collision_layer = 2
 script = ExtResource( 3 )
 __meta__ = {
@@ -77,10 +77,10 @@ shape = SubResource( 3 )
 shape = SubResource( 4 )
 
 [node name="Timber" parent="." instance=ExtResource( 5 )]
-position = Vector2( 196, 80 )
+position = Vector2( 184, 136 )
 
 [node name="Red" parent="." instance=ExtResource( 4 )]
-position = Vector2( 184, 80 )
+position = Vector2( 200, 136 )
 
 [connection signal="area_entered" from="Test/Hurtbox" to="Test/Hurtbox" method="_on_Hurtbox_area_entered"]
 [connection signal="hit_info" from="Test/Hurtbox" to="Test" method="_on_Hurtbox_hit_info"]

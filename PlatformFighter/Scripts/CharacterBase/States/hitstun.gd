@@ -69,7 +69,13 @@ func _on_Hurtbox_hit_info(hit, kb_dir, kb_pow, d_percent, kb_scale):
 		kb_scaling = default_kb_scaling
 	else:
 		kb_scaling = kb_scale
-	hitstun_length = int(round(kb_power * 0.123))
+	
+	if char_base.percentage <= 50:
+		hitstun_length = int(round(kb_power * 0.2))
+	else:
+		hitstun_length = int(round((kb_power * 0.4)/(100/char_base.percentage)))
+	
+	
 	damage_percent = d_percent
 	char_base.percentage += damage_percent
 	print(char_base, " --> ", char_base.percentage, "%")
