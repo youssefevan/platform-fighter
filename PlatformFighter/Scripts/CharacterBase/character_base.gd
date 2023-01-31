@@ -66,7 +66,7 @@ export var air_speed: float
 export var air_jumps: int # some character may have more than one double jump
 export var jumpsquat_frames: int
 
-export var knockback_modifier: float # higher make lighter characters; 100 default
+export var weight: float # higher make lighter characters; 100 default # modifies kb
 
 export var port: int
 

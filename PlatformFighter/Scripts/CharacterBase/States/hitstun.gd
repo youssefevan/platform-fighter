@@ -16,10 +16,15 @@ func enter():
 	frame = 0
 	char_base.got_hit = false
 	
-	var knockback = ((((
-		(char_base.percentage/10 + (char_base.percentage * damage_percent)/20)
-		* 200/(char_base.knockback_modifier+100) * 1.4)
-		+ 18) * kb_scaling) + kb_power)
+#	var old_knockback = ((((
+#		(char_base.percentage/10 + (char_base.percentage * damage_percent)/20)
+#		* 200/(char_base.knockback_modifier+100) * 1.4)
+#		+ 18) * kb_scaling) + kb_power)
+	
+	var knockback = (
+		12 * (1.4 * (
+		((damage_percent + 2) * (kb_scaling + floor(char_base.percentage)) / 20))
+		* (2 / (1 + char_base.weight)) + 18) + kb_power)
 	
 	char_base.velocity = kb_direction * knockback
 	
@@ -74,7 +79,6 @@ func _on_Hurtbox_hit_info(hit, kb_dir, kb_pow, d_percent, kb_scale):
 		hitstun_length = int(round(kb_power * 0.2))
 	else:
 		hitstun_length = int(round((kb_power * 0.4)/(100/char_base.percentage)))
-	
 	
 	damage_percent = d_percent
 	char_base.percentage += damage_percent
