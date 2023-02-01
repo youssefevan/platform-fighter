@@ -77,7 +77,7 @@ shape = SubResource( 3 )
 shape = SubResource( 4 )
 
 [node name="Timber" parent="." instance=ExtResource( 5 )]
-position = Vector2( 184, 136 )
+position = Vector2( 192, 136 )
 
 [node name="Red" parent="." instance=ExtResource( 4 )]
 position = Vector2( 200, 136 )

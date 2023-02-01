@@ -5,7 +5,7 @@ var kb_power
 var damage_percent
 var knockback_modifier = 100
 var kb_scaling
-var default_kb_scaling = 3.33
+var default_kb_scaling = 3
 
 var frame = 0
 
@@ -22,8 +22,8 @@ func enter():
 #		+ 18) * kb_scaling) + kb_power)
 	
 	var knockback = (
-		12 * (1.4 * (
-		((damage_percent + 2) * (kb_scaling + floor(char_base.percentage)) / 20))
+		(3 * (
+		(damage_percent * (kb_scaling + char_base.percentage) / 20))
 		* (2 / (1 + char_base.weight)) + 18) + kb_power)
 	
 	char_base.velocity = kb_direction * knockback

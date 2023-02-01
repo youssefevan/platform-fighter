@@ -7,8 +7,6 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 4, 6.5 )
 
-[sub_resource type="CircleShape2D" id=40]
-
 [sub_resource type="CapsuleShape2D" id=2]
 radius = 4.0
 height = 6.0
@@ -875,6 +873,8 @@ tracks/8/keys = {
 "values": [ -1.0 ]
 }
 
+[sub_resource type="CircleShape2D" id=40]
+
 [sub_resource type="Animation" id=28]
 resource_name = "GroundUp"
 length = 0.383334
@@ -1408,7 +1408,6 @@ kb_scaling = -1.0
 
 [node name="Bounds" parent="Hitbox" index="0"]
 rotation = 1.5708
-shape = SubResource( 40 )
 disabled = false
 
 [node name="Bounds" parent="Hurtbox" index="0"]
