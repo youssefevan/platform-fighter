@@ -16,15 +16,19 @@ func enter():
 	frame = 0
 	char_base.got_hit = false
 	
-#	var old_knockback = ((((
+#	var knockback1 = ((((
 #		(char_base.percentage/10 + (char_base.percentage * damage_percent)/20)
 #		* 200/(char_base.knockback_modifier+100) * 1.4)
 #		+ 18) * kb_scaling) + kb_power)
 	
-	var knockback = (
-		(3 * (
-		(damage_percent * (kb_scaling + char_base.percentage) / 20))
-		* (2 / (1 + char_base.weight)) + 18) + kb_power)
+#	var knockback2 = (
+#		(3 * (
+#		(damage_percent * (kb_scaling + char_base.percentage) / 20))
+#		* (2 / (1 + char_base.weight)) + 18) + kb_power)
+	
+	var knockback = ((char_base.percentage * kb_scaling) + kb_power + damage_percent)/(char_base.weight + 1)
+	
+	print(knockback)
 	
 	char_base.velocity = kb_direction * knockback
 	
