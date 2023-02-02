@@ -1,6 +1,8 @@
 extends KinematicBody2D
 class_name CharacterBase
 
+onready var controls := $Controls
+
 onready var idle := $StateManager/Idle
 onready var jump := $StateManager/Jump
 onready var jumpsquat := $StateManager/Jumpsquat
@@ -88,11 +90,12 @@ func _ready():
 	jump_height = fullhop_height
 	#init_controls()
 
-func init_controls():
-	var left = Input.get_joy_axis(port, 0)
-	var jump = Input.is_joy_button_pressed(port, 2)
+func controls_test():
+	if controls.button_just_pressed(port, "attack"):
+		print("Attack Input")
 
 func _physics_process(delta):
+	controls_test()
 	states.physics_process(delta)
 	if is_on_floor() == true:
 		current_speed = lerp(current_speed, run_speed, speed_lerp * delta)
