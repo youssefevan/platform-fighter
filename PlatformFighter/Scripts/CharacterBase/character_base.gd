@@ -90,6 +90,8 @@ var down = 0
 var left = 0
 var right = 0
 
+var horizontal_input = 0
+
 var input_jump = false
 var input_attack = false
 var input_special = false
@@ -105,6 +107,17 @@ var just_input_shield = false
 func _ready():
 	states.init(self)
 	jump_height = fullhop_height
+
+func controls():
+	up = Input.get_action_strength("up_%s" % port)
+	down = Input.get_action_strength("down_%s" % port)
+	left = Input.get_action_strength("left_%s" % port)
+	right = Input.get_action_strength("right_%s" % port)
+	
+	input_jump = Input.is_action_just_pressed("jump_%s" % port)
+	input_attack = Input.is_action_just_pressed("attack_%s" % port)
+	input_special = Input.is_action_just_pressed("special_%s" % port)
+	
 
 func _unhandled_input(event):
 	event.set_device(port)
