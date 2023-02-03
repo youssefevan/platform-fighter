@@ -85,9 +85,73 @@ var velocity = Vector2()
 var got_hit: bool = false
 var percentage = 0
 
+var up = 0
+var down = 0
+var left = 0
+var right = 0
+
+var input_jump = false
+var input_attack = false
+var input_special = false
+var input_shield = false
+
+# doesn't work right
+var just_input_jump = false
+var just_input_attack = false
+var just_input_special = false
+var just_input_down = false
+
 func _ready():
 	states.init(self)
 	jump_height = fullhop_height
+
+func _unhandled_input(event):
+	event.set_device(port)
+	
+	var just_pressed = event.is_pressed() and not event.is_echo()
+	
+	if event is InputEventJoypadMotion:
+		if event.is_action("up"):
+			up = event.get_action_strength("up")
+		
+		if event.is_action("down"):
+			down = event.get_action_strength("down")
+		
+		if event.is_action("left"):
+			left = event.get_action_strength("left")
+		
+		if event.is_action("right"):
+			right = event.get_action_strength("right")
+		
+		if event.is_action_pressed("down") and just_pressed: # bug: includes stick movement up
+			just_input_down = true
+		else:
+			just_input_down = false
+	
+	if event is InputEventJoypadButton:
+		if event.is_action_pressed("jump"):
+			input_jump = event.is_action_pressed("jump")
+		
+		if event.is_action_pressed("attack"):
+			input_attack = event.is_action_pressed("attack")
+		
+		if event.is_action_pressed("special"):
+			input_special = event.is_action_pressed("special")
+		
+		if event.is_action_pressed("jump") and just_pressed: # doesn't work
+			just_input_jump = true
+		else:
+			just_input_jump = false
+		
+		if event.is_action_pressed("attack") and just_pressed: # doesn't work
+			just_input_attack = true
+		else:
+			just_input_attack = false
+		
+		if event.is_action_pressed("special") and just_pressed: # doesn't work
+			just_input_special = true
+		else:
+			just_input_special = false
 
 func _physics_process(delta):
 	states.physics_process(delta)
@@ -115,8 +179,8 @@ func get_attack(type : int): # type = 0 -> normal attack, type = 1 -> special
 	var attack
 	
 	var dir = Vector2()
-	dir.x = Input.get_action_strength("right") - Input.get_action_strength("left")
-	dir.y = Input.get_action_strength("down") - Input.get_action_strength("up")
+	dir.x = right - left
+	dir.y = down - up
 	
 	if type == 0: # normal attack
 		if dir == Vector2.ZERO: # if neutral input

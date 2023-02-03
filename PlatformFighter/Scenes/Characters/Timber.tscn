@@ -7,6 +7,10 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 4, 6.5 )
 
+[sub_resource type="CapsuleShape2D" id=2]
+radius = 4.0
+height = 6.0
+
 [sub_resource type="CircleShape2D" id=37]
 
 [sub_resource type="Animation" id=31]
@@ -1362,10 +1366,6 @@ tracks/8/keys = {
 "values": [ 1.0, -1.0 ]
 }
 
-[sub_resource type="CapsuleShape2D" id=2]
-radius = 4.0
-height = 6.0
-
 [node name="Timber" instance=ExtResource( 1 )]
 ground_neutral_node = NodePath("StateManager/GroundNeutral")
 ground_side_node = NodePath("StateManager/GroundSide")
@@ -1388,11 +1388,11 @@ ground_friction = 12.0
 air_acceleration = 500.0
 air_speed = 75.0
 
-[node name="ECB" parent="." index="1"]
+[node name="ECB" parent="." index="0"]
 position = Vector2( 0, -6.5 )
 shape = SubResource( 1 )
 
-[node name="Sprite" parent="." index="2"]
+[node name="Sprite" parent="." index="1"]
 position = Vector2( 0, -5 )
 texture = ExtResource( 2 )
 hframes = 1
@@ -1400,7 +1400,7 @@ vframes = 1
 region_enabled = true
 region_rect = Rect2( 128, 160, 32, 32 )
 
-[node name="Hitbox" parent="." index="3"]
+[node name="Hitbox" parent="." index="2"]
 damage = 19.0
 kb_power = 185.0
 kb_angle = -60.0
@@ -1409,6 +1409,10 @@ kb_scaling = -1.0
 [node name="Bounds" parent="Hitbox" index="0"]
 rotation = 1.5708
 disabled = false
+
+[node name="Bounds" parent="Hurtbox" index="0"]
+position = Vector2( 0, -7 )
+shape = SubResource( 2 )
 
 [node name="Animator" type="AnimationPlayer" parent="." index="4"]
 anims/AerialDown = SubResource( 31 )
@@ -1431,10 +1435,6 @@ anims/RESET = SubResource( 33 )
 anims/Run = SubResource( 10 )
 anims/SpecialNeutral = SubResource( 45 )
 anims/SpecialUp = SubResource( 42 )
-
-[node name="Bounds" parent="Hurtbox" index="0"]
-position = Vector2( 0, -7 )
-shape = SubResource( 2 )
 
 [node name="GroundNeutral" type="Node" parent="StateManager" index="9"]
 script = ExtResource( 3 )

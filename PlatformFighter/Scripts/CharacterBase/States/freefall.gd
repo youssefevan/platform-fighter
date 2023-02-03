@@ -31,13 +31,13 @@ func physics_process(delta):
 	
 
 func fastfalling_check():
-	if Input.is_action_just_pressed("down"):
+	if char_base.just_input_down:
 		fastfalling = true
 	
 
 func moving(delta):
 	var x_input = 0
-	x_input = Input.get_action_strength("right") - Input.get_action_strength("left")
+	x_input = char_base.right - char_base.left
 	
 	if x_input != 0:
 		char_base.velocity.x += char_base.air_acceleration * x_input * delta

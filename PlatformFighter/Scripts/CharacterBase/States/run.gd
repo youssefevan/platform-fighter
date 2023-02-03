@@ -9,13 +9,13 @@ func enter():
 	.enter()
 	
 	# entering inputs
-	if Input.is_action_just_pressed("jump") == true:
+	if char_base.just_input_jump:
 		enter_jump = true
 		#print("RUN --> enter_jump")
-	if Input.is_action_just_pressed("attack") == true:
+	if char_base.just_input_attack:
 		enter_attack = true
 		#print("RUN --> enter_attack")
-	if Input.is_action_just_pressed("special") == true:
+	if char_base.just_input_special:
 		enter_special = true
 		#print("RUN --> enter_special")
 
@@ -37,7 +37,7 @@ func physics_process(delta):
 	if x_input == 0:
 		return char_base.idle
 	
-	if Input.is_action_just_pressed("jump"):
+	if char_base.just_input_jump:
 		return char_base.jumpsquat
 		
 	if char_base.is_on_floor() == false:
@@ -52,14 +52,14 @@ func physics_process(delta):
 	if enter_special == true:
 		return char_base.get_attack(1)
 	
-	if Input.is_action_just_pressed("attack"):
+	if char_base.just_input_attack:
 		return char_base.get_attack(0)
 		
-	if Input.is_action_just_pressed("special"):
+	if char_base.just_input_special:
 		return char_base.get_attack(1)
 
 func move(delta):
-	x_input = Input.get_action_strength("right") - Input.get_action_strength("left")
+	x_input = char_base.right - char_base.left
 	
 	if x_input != 0:
 		char_base.velocity.x += char_base.ground_acceleration * x_input * delta

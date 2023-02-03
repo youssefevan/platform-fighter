@@ -31,7 +31,7 @@ func _physics_process(delta):
 		pass
 	
 	if is_on_floor():
-		velocity.x = lerp(velocity.x, 0, 3 * delta)
+		velocity.x = lerp(velocity.x, 0, 8 * delta)
 	else:
 		velocity.x = lerp(velocity.x, 0, 1 * delta)
 	

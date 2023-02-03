@@ -28,7 +28,7 @@ func physics_process(delta):
 	if char_base.got_hit == true:
 		return char_base.hitstun
 	
-	if Input.is_action_just_pressed("jump"):
+	if char_base.just_input_jump:
 		jump_was_pressed = true
 	
 	if char_base.is_on_floor() == false:
@@ -41,7 +41,7 @@ func physics_process(delta):
 			return char_base.idle
 
 func move(delta):
-	x_input = Input.get_action_strength("right") - Input.get_action_strength("left")
+	x_input = char_base.right - char_base.left
 	
 	if x_input != 0:
 		char_base.velocity.x += char_base.ground_acceleration * x_input * delta

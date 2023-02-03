@@ -7,21 +7,21 @@ var enter_special
 
 func enter():
 	.enter()
-	enter_x_input = Input.get_action_strength("right") - Input.get_action_strength("left")
+	enter_x_input = char_base.right - char_base.left
 	
 	# entering inputs
-	if Input.is_action_just_pressed("jump") == true:
+	if char_base.just_input_jump:
 		enter_jump = true
 		#print("IDLE --> enter_jump")
-	if Input.is_action_just_pressed("attack") == true:
+	if char_base.just_input_attack:
 		enter_attack = true
 		#print("IDLE --> enter_attack")
-	if Input.is_action_just_pressed("special") == true:
+	if char_base.just_input_special:
 		enter_special = true
 		#print("IDLE --> enter_special")
 
 func physics_process(delta):
-	var x_input = Input.get_action_strength("right") - Input.get_action_strength("left")
+	var x_input = char_base.right - char_base.left
 	
 	char_base.velocity.x = lerp(char_base.velocity.x, 0, char_base.ground_friction * delta) # slow to stop
 	
@@ -37,7 +37,7 @@ func physics_process(delta):
 	if char_base.is_on_floor() == false:
 		return char_base.fall
 	
-	if Input.is_action_just_pressed("jump"):
+	if char_base.just_input_jump:
 		return char_base.jumpsquat
 	
 	if x_input != 0:
@@ -53,10 +53,10 @@ func physics_process(delta):
 	if enter_special == true:
 		return char_base.get_attack(1)
 	
-	if Input.is_action_just_pressed("attack"):
+	if char_base.just_input_attack:
 		return char_base.get_attack(0)
 	
-	if Input.is_action_just_pressed("special"):
+	if char_base.just_input_special:
 		return char_base.get_attack(1)
 
 func exit():
