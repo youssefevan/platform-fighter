@@ -100,6 +100,7 @@ var just_input_jump = false
 var just_input_attack = false
 var just_input_special = false
 var just_input_down = false
+var just_input_shield = false
 
 func _ready():
 	states.init(self)
