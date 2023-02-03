@@ -7,9 +7,7 @@ var enter_special
 
 func enter():
 	.enter()
-	#char_base.can_attack = true
 	enter_x_input = Input.get_action_strength("right") - Input.get_action_strength("left")
-	#print(enter_x_input)
 	
 	# entering inputs
 	if Input.is_action_just_pressed("jump") == true:
@@ -60,11 +58,6 @@ func physics_process(delta):
 	
 	if Input.is_action_just_pressed("special"):
 		return char_base.get_attack(1)
-	
-#		if (x_input < -char_base.dash_input_requirement) or (x_input > char_base.dash_input_requirement):
-#			return dash
-#		else:
-#			return run
 
 func exit():
 	.exit()

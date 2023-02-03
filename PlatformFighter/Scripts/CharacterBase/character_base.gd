@@ -88,14 +88,8 @@ var percentage = 0
 func _ready():
 	states.init(self)
 	jump_height = fullhop_height
-	#init_controls()
-
-func controls_test():
-	if controls.button_just_pressed(port, "attack"):
-		print("Attack Input")
 
 func _physics_process(delta):
-	controls_test()
 	states.physics_process(delta)
 	if is_on_floor() == true:
 		current_speed = lerp(current_speed, run_speed, speed_lerp * delta)

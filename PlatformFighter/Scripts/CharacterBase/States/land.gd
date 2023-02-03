@@ -9,14 +9,10 @@ var land_frames: int
 
 func enter():
 	.enter()
-	#connect_anims()
-	#char_base.can_attack = false
 	jump_was_pressed = false
 	frame = 0
 	landing = true
 	land_frames = char_base.landing_lag
-	
-	#print(land_frames)
 
 func physics_process(delta):
 	frame += 1
@@ -43,15 +39,6 @@ func physics_process(delta):
 			return char_base.jumpsquat
 		else:
 			return char_base.idle
-	
-
-func anim_finished(anim_name):
-	if anim_name == "Land":
-		pass#landing = false
-
-func anim_started(anim_name):
-	if anim_name == "Land":
-		pass#landing = true
 
 func move(delta):
 	x_input = Input.get_action_strength("right") - Input.get_action_strength("left")

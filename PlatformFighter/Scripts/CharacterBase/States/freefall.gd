@@ -2,10 +2,6 @@ extends BaseState
 
 var fastfalling = false
 
-func enter():
-	.enter()
-	#char_base.can_attack = false
-
 func physics_process(delta):
 	moving(delta)
 	fastfalling_check()
