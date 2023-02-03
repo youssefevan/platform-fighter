@@ -3,7 +3,6 @@ extends BaseState
 var kb_direction
 var kb_power
 var damage_percent
-var knockback_modifier = 100
 var kb_scaling
 var default_kb_scaling = 3
 
@@ -18,7 +17,7 @@ func enter():
 	
 #	var knockback1 = ((((
 #		(char_base.percentage/10 + (char_base.percentage * damage_percent)/20)
-#		* 200/(char_base.knockback_modifier+100) * 1.4)
+#		* 200/(char_base.knockback_modifier #100# +100) * 1.4)
 #		+ 18) * kb_scaling) + kb_power)
 	
 #	var knockback2 = (
@@ -26,9 +25,11 @@ func enter():
 #		(damage_percent * (kb_scaling + char_base.percentage) / 20))
 #		* (2 / (1 + char_base.weight)) + 18) + kb_power)
 	
-	var knockback = ((char_base.percentage * kb_scaling) + kb_power + damage_percent)/(char_base.weight + 1)
+	var kb_base = (char_base.percentage * kb_scaling) + kb_power + damage_percent
+	var knockback = kb_base / char_base.weight
+	# kb_scaling has the greatest affect at high percents
 	
-	print(knockback)
+	print("Knockback: ", knockback)
 	
 	char_base.velocity = kb_direction * knockback
 	
