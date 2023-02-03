@@ -108,8 +108,6 @@ func _ready():
 func _unhandled_input(event):
 	event.set_device(port)
 	
-	var just_pressed = event.is_pressed() and not event.is_echo()
-	
 	if event is InputEventJoypadMotion:
 		if event.is_action("up"):
 			up = event.get_action_strength("up")
@@ -123,7 +121,7 @@ func _unhandled_input(event):
 		if event.is_action("right"):
 			right = event.get_action_strength("right")
 		
-		if event.is_action_pressed("down") and just_pressed: # bug: includes stick movement up
+		if event.is_action_pressed("down") and event.is_echo() == false: # bug: includes stick movement up
 			just_input_down = true
 		else:
 			just_input_down = false
@@ -138,17 +136,17 @@ func _unhandled_input(event):
 		if event.is_action_pressed("special"):
 			input_special = event.is_action_pressed("special")
 		
-		if event.is_action_pressed("jump") and just_pressed: # doesn't work
+		if event.is_action_pressed("jump") and event.is_echo() == false: # doesn't work
 			just_input_jump = true
 		else:
 			just_input_jump = false
 		
-		if event.is_action_pressed("attack") and just_pressed: # doesn't work
+		if event.is_action_pressed("attack") and event.is_echo() == false: # doesn't work
 			just_input_attack = true
 		else:
 			just_input_attack = false
 		
-		if event.is_action_pressed("special") and just_pressed: # doesn't work
+		if event.is_action_pressed("special") and event.is_echo() == false: # doesn't work
 			just_input_special = true
 		else:
 			just_input_special = false
