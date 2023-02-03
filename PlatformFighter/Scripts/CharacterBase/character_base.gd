@@ -59,7 +59,7 @@ export var air_jump_height: float # height of aerial jumps; applied as force
 export var run_speed: float 
 export var ground_acceleration: float
 
-export var speed_lerp: float = 5
+export var speed_lerp: float = 5 # transition from ground to air speed
 
 export var ground_friction: float # the rate at which a character slows while grounded
 export var air_friction: float # the rate at which a character slows while airborne
@@ -68,7 +68,7 @@ export var air_speed: float
 export var air_jumps: int # some character may have more than one double jump
 export var jumpsquat_frames: int
 
-export var weight: float # higher make lighter characters; 100 default # modifies kb
+export var weight := 1.0 # Recommended between 0.8 to 1.2; 1.0 default
 
 export var port: int
 

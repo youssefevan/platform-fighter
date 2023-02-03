@@ -8,6 +8,7 @@ func button_just_pressed(port: int, action: String):
 #			return false
 #	else:
 #		return false
+	
 	if Input.is_action_just_pressed(action):
 		return true
 	else:
