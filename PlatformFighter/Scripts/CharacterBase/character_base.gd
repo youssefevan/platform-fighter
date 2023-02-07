@@ -1,8 +1,6 @@
 extends KinematicBody2D
 class_name CharacterBase
 
-onready var controls := $Controls
-
 onready var idle := $StateManager/Idle
 onready var jump := $StateManager/Jump
 onready var jumpsquat := $StateManager/Jumpsquat
@@ -75,7 +73,6 @@ export var port: int
 var current_speed = run_speed
 var jump_height
 var fastfalling = false
-#var can_attack
 
 var air_jumps_remaining = air_jumps
 var landing_lag: int = 4
@@ -100,8 +97,6 @@ var input_shield = false
 
 var released_jump = false
 
-# doesn't work right
-
 func _ready():
 	states.init(self)
 	jump_height = fullhop_height
@@ -123,9 +118,9 @@ func controls():
 		released_jump = Input.is_action_just_released("jump_%s" % port)
 
 func _physics_process(delta):
+	states.physics_process(delta)
 	controls()
 	
-	states.physics_process(delta)
 	if is_on_floor() == true:
 		current_speed = lerp(current_speed, run_speed, speed_lerp * delta)
 		fastfalling = false
@@ -137,8 +132,6 @@ func _physics_process(delta):
 	
 	if velocity.y < 0:
 		fastfalling = false
-	
-	#print(got_hit)
 
 func sprite_facing():
 	if sprite.flip_h == true:
