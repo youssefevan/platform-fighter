@@ -12,6 +12,9 @@ var hitstun_length
 
 func enter():
 	.enter()
+	
+	print(kb_direction)
+	
 	frame = 0
 	char_base.got_hit = false
 	
@@ -60,8 +63,9 @@ func physics_process(delta):
 	else:
 		if frame > 1:
 			return char_base.idle
-		else:
-			pass
+		elif frame <= 1:
+			if kb_direction.y >= 0.8:
+				char_base.velocity.y = -char_base.velocity.y
 
 	if char_base.is_on_floor() == true:
 		char_base.velocity.x = lerp(char_base.velocity.x, 0, char_base.ground_friction * delta) # slow to stop
