@@ -34,6 +34,9 @@ func physics_process(delta):
 	if x_input > 0:
 		char_base.sprite.flip_h = false
 	
+	if char_base.got_hit == true:
+		return char_base.hitstun
+	
 	if char_base.is_on_floor() == false:
 		return char_base.fall
 	
