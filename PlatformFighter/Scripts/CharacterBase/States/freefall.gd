@@ -31,7 +31,7 @@ func physics_process(delta):
 	
 
 func fastfalling_check():
-	if char_base.just_input_down:
+	if char_base.input_down:
 		fastfalling = true
 	
 

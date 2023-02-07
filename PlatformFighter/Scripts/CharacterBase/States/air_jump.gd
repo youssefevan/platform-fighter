@@ -21,10 +21,10 @@ func enter():
 	char_base.velocity.y -= char_base.air_jump_height
 	
 	# entering inputs
-	if char_base.just_input_attack:
+	if char_base.input_attack:
 		enter_attack = true
 		#print("AIR_JUMP --> enter_attack")
-	if char_base.just_input_special:
+	if char_base.input_special:
 		enter_special = true
 		#print("AIR_JUMP --> enter_special")
 
@@ -41,7 +41,7 @@ func physics_process(delta):
 	if char_base.velocity.y > 0:
 		return char_base.fall
 	
-	if char_base.just_input_jump and char_base.air_jumps_remaining != 0:
+	if char_base.input_jump and char_base.air_jumps_remaining != 0:
 		return char_base.air_jump
 	
 	if char_base.is_on_floor() == true:
@@ -54,10 +54,10 @@ func physics_process(delta):
 	if enter_special == true:
 		return char_base.get_attack(1)
 	
-	if char_base.just_input_attack:
+	if char_base.input_attack:
 		return char_base.get_attack(0)
 	
-	if char_base.just_input_special:
+	if char_base.input_special:
 		return char_base.get_attack(1)
 
 func move(delta):

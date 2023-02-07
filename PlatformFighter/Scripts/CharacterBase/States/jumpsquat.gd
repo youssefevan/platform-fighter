@@ -16,7 +16,7 @@ func physics_process(delta):
 	char_base.velocity.y = 1 # keep in contact with ground
 	char_base.velocity = char_base.move_and_slide(char_base.velocity, Vector2.UP)
 	
-	if char_base.just_input_jump:
+	if char_base.released_jump:
 		shorthop = true
 		char_base.jump_height = char_base.shorthop_height
 	
