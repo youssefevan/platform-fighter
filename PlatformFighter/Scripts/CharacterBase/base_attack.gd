@@ -78,7 +78,7 @@ func physics_process(delta):
 			return char_base.fall
 	
 	if jump_cancellable == true:
-		if Input.is_action_just_pressed("jump"):
+		if char_base.input_jump:
 			if char_base.is_on_floor() == true:
 				return char_base.jumpsquat
 			elif char_base.is_on_floor() == false and char_base.air_jumps_remaining != 0:
@@ -146,7 +146,7 @@ func aerial_attack(delta):
 
 func air_movement_x(delta):
 	var x_input = 0
-	x_input = Input.get_action_strength("right") - Input.get_action_strength("left")
+	x_input = char_base.right - char_base.left
 	
 	if x_input != 0:
 		char_base.velocity.x += char_base.air_acceleration * x_input * delta
@@ -169,7 +169,7 @@ func air_movement_y(delta):
 			char_base.velocity.y = char_base.fall_speed
 
 func fastfalling_check():
-	if Input.is_action_just_pressed("down") and frame > y_frames:
+	if char_base.input_down and frame > y_frames:
 		char_base.fastfalling = true
 
 func exit():

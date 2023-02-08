@@ -1,8 +1,6 @@
 extends KinematicBody2D
 class_name CharacterBase
 
-onready var controls := $Controls
-
 onready var idle := $StateManager/Idle
 onready var jump := $StateManager/Jump
 onready var jumpsquat := $StateManager/Jumpsquat
@@ -75,7 +73,6 @@ export var port: int
 var current_speed = run_speed
 var jump_height
 var fastfalling = false
-#var can_attack
 
 var air_jumps_remaining = air_jumps
 var landing_lag: int = 4
@@ -90,69 +87,40 @@ var down = 0
 var left = 0
 var right = 0
 
+var horizontal_input = 0
+
+var input_down = false
 var input_jump = false
 var input_attack = false
 var input_special = false
 var input_shield = false
 
-# doesn't work right
-var just_input_jump = false
-var just_input_attack = false
-var just_input_special = false
-var just_input_down = false
+var released_jump = false
 
 func _ready():
 	states.init(self)
 	jump_height = fullhop_height
 
-func _unhandled_input(event):
-	event.set_device(port)
-	
-	if event is InputEventJoypadMotion:
-		if event.is_action("up"):
-			up = event.get_action_strength("up")
+func controls():
+	if (port == 1 || port == 2):
+		up = Input.get_action_strength("up_%s" % port)
+		down = Input.get_action_strength("down_%s" % port)
+		left = Input.get_action_strength("left_%s" % port)
+		right = Input.get_action_strength("right_%s" % port)
 		
-		if event.is_action("down"):
-			down = event.get_action_strength("down")
+		input_down = Input.is_action_just_pressed("down_%s" % port)
+		input_shield = Input.is_action_pressed("shield_%s" % port)
 		
-		if event.is_action("left"):
-			left = event.get_action_strength("left")
+		input_jump = Input.is_action_just_pressed("jump_%s" % port)
+		input_attack = Input.is_action_just_pressed("attack_%s" % port)
+		input_special = Input.is_action_just_pressed("special_%s" % port)
 		
-		if event.is_action("right"):
-			right = event.get_action_strength("right")
-		
-		if event.is_action_pressed("down") and event.is_echo() == false: # bug: includes stick movement up
-			just_input_down = true
-		else:
-			just_input_down = false
-	
-	if event is InputEventJoypadButton:
-		if event.is_action_pressed("jump"):
-			input_jump = event.is_action_pressed("jump")
-		
-		if event.is_action_pressed("attack"):
-			input_attack = event.is_action_pressed("attack")
-		
-		if event.is_action_pressed("special"):
-			input_special = event.is_action_pressed("special")
-		
-		if event.is_action_pressed("jump") and event.is_echo() == false: # doesn't work
-			just_input_jump = true
-		else:
-			just_input_jump = false
-		
-		if event.is_action_pressed("attack") and event.is_echo() == false: # doesn't work
-			just_input_attack = true
-		else:
-			just_input_attack = false
-		
-		if event.is_action_pressed("special") and event.is_echo() == false: # doesn't work
-			just_input_special = true
-		else:
-			just_input_special = false
+		released_jump = Input.is_action_just_released("jump_%s" % port)
 
 func _physics_process(delta):
 	states.physics_process(delta)
+	controls()
+	
 	if is_on_floor() == true:
 		current_speed = lerp(current_speed, run_speed, speed_lerp * delta)
 		fastfalling = false
@@ -164,8 +132,6 @@ func _physics_process(delta):
 	
 	if velocity.y < 0:
 		fastfalling = false
-	
-	#print(got_hit)
 
 func sprite_facing():
 	if sprite.flip_h == true:

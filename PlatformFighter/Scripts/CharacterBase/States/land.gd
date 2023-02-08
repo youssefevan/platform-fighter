@@ -28,7 +28,7 @@ func physics_process(delta):
 	if char_base.got_hit == true:
 		return char_base.hitstun
 	
-	if char_base.just_input_jump:
+	if char_base.input_jump:
 		jump_was_pressed = true
 	
 	if char_base.is_on_floor() == false:

@@ -8,14 +8,14 @@ func enter():
 	.enter()
 	
 	# entering inputs
-	if char_base.just_input_jump:
+	if char_base.input_jump:
 		if char_base.air_jumps_remaining != 0:
 			enter_air_jump = true
 			#print("FALL --> enter_jump")
-	if char_base.just_input_attack:
+	if char_base.input_attack:
 		enter_attack = true
 		#print("FALL --> enter_attack")
-	if char_base.just_input_special:
+	if char_base.input_special:
 		enter_special = true
 		#print("FALL --> enter_special")
 
@@ -47,7 +47,7 @@ func physics_process(delta):
 	if char_base.got_hit == true:
 		return char_base.hitstun
 	
-	if char_base.just_input_jump and char_base.air_jumps_remaining != 0:
+	if char_base.input_jump and char_base.air_jumps_remaining != 0:
 		return char_base.air_jump
 	
 	if enter_air_jump == true:
@@ -60,14 +60,14 @@ func physics_process(delta):
 	if enter_special == true:
 		return char_base.get_attack(1)
 	
-	if char_base.just_input_attack:
+	if char_base.input_attack:
 		return char_base.get_attack(0)
 	
-	if char_base.just_input_special:
+	if char_base.input_special:
 		return char_base.get_attack(1)
 
 func fastfalling_check():
-	if char_base.just_input_down:
+	if char_base.input_down:
 		char_base.fastfalling = true
 
 func move(delta):

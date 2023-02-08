@@ -13,7 +13,7 @@ func connect_anims():
 
 func enter():
 	char_base.animations.play(animation_name)
-	print(animation_name)
+	print("P", char_base.port, ": ", animation_name)
 
 func input(event: InputEvent):
 	return null
