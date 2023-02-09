@@ -13,9 +13,8 @@ var hitstun_length
 func enter():
 	.enter()
 	
-	print(kb_direction)
+	#print(kb_direction)
 	
-	frame = 0
 	char_base.got_hit = false
 	
 #	var knockback1 = ((((
@@ -32,11 +31,13 @@ func enter():
 	var knockback = kb_base / char_base.weight
 	# kb_scaling has the greatest affect at high percents
 	
+	print("---Hit---")
+	print("P", char_base.port, " --> ", char_base.percentage, "%")
 	print("Knockback: ", knockback)
+	print("Hitstun: ", hitstun_length)
+	print("---------")
 	
 	char_base.velocity = kb_direction * knockback
-	
-	#print("Hitstun Length: ", hitstun_length)
 
 func physics_process(delta):
 	frame += 1
@@ -56,21 +57,20 @@ func physics_process(delta):
 	
 	if char_base.is_on_floor() == false:
 		char_base.velocity.y += char_base.gravity * delta
+		char_base.velocity.x = lerp(char_base.velocity.x, 0, char_base.air_friction * delta)
 		
 		if char_base.velocity.y > char_base.fall_speed:
 			char_base.velocity.y = char_base.fall_speed
 		
 	else:
 		if frame > 1:
-			return char_base.idle
+			pass#return char_base.idle
 		elif frame <= 1:
 			if kb_direction.y >= 0.8:
 				char_base.velocity.y = -char_base.velocity.y
-
-	if char_base.is_on_floor() == true:
+		
 		char_base.velocity.x = lerp(char_base.velocity.x, 0, char_base.ground_friction * delta) # slow to stop
-	else:
-		char_base.velocity.x = lerp(char_base.velocity.x, 0, char_base.air_friction * delta)
+		
 
 	char_base.velocity = char_base.move_and_slide(char_base.velocity, Vector2.UP)
 
@@ -91,4 +91,7 @@ func _on_Hurtbox_hit_info(hit, kb_dir, kb_pow, d_percent, kb_scale):
 	
 	damage_percent = d_percent
 	char_base.percentage += damage_percent
-	print("P", char_base.port, " --> ", char_base.percentage, "%")
+
+func exit():
+	.exit()
+	frame = 0

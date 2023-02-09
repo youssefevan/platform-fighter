@@ -1398,7 +1398,7 @@ texture = ExtResource( 2 )
 hframes = 1
 vframes = 1
 region_enabled = true
-region_rect = Rect2( 128, 160, 32, 32 )
+region_rect = Rect2( 128, 0, 32, 32 )
 
 [node name="Hitbox" parent="." index="2"]
 damage = 19.0
