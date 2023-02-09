@@ -1485,10 +1485,10 @@ script = ExtResource( 3 )
 animation_name = "SpecialUp"
 attack_type = 2
 landing_lag = 17
-modify_velocity_y = 1
-velocity_y = -9.0
+modify_velocity_y = 3
+velocity_lerp_y = 1.0
 y_frames = 32
-y_starting_velocity = 0.0
+y_starting_velocity = -200.0
 y_starting_frame = 4
 freefall = true
 

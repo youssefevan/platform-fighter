@@ -4,8 +4,11 @@ export var attack_type: int # 0: grounded; 1: aerial; 2: special
 export var landing_lag: int # how many frames of landing lag does this attack have
 export var jump_cancellable: bool # attack can be exited with a jump
 
-export var modify_velocity_x: int # 0 = no change; 1 = additive; 2 = set (linear)
-export var modify_velocity_y: int # 0 = no change; 1 = additive; 2 = set (linear)
+export var modify_velocity_x: int # 0 = no change; 1 = additive; 2 = set (linear); 3 = lerp
+export var modify_velocity_y: int # 0 = no change; 1 = additive; 2 = set (linear); 3 = lerp
+
+export var velocity_lerp_x: float # rate at which x velocity lerps to modified x velocity
+export var velocity_lerp_y: float # rate at which y velocity lerps to modified y velocity
 
 export var velocity_x: float # amount of change to x vel per frame
 export var velocity_y: float # amount of change to y vel per frame
@@ -100,6 +103,11 @@ func grounded_attack(delta):
 				char_base.velocity.x = velocity_x * char_base.sprite_facing()
 			else:
 				char_base.velocity.x = lerp(char_base.velocity.x, 0, char_base.ground_friction * delta) # slow to stop
+		3: # lerp
+			if frame >= x_starting_frame and frame <= x_frames + x_starting_frame:
+				char_base.velocity.x = lerp(char_base.velocity.x, velocity_x * char_base.sprite_facing(), velocity_lerp_x * delta)
+			else:
+				char_base.velocity.x = lerp(char_base.velocity.x, 0, char_base.ground_friction * delta) # slow to stop
 	
 	match(modify_velocity_y):
 		0: # none
@@ -114,6 +122,11 @@ func grounded_attack(delta):
 				char_base.velocity.y = velocity_y
 			else:
 				char_base.velocity.y = 1 # keep grounded
+		3: # lerp
+			if frame >= y_starting_frame and frame <= y_frames + y_starting_frame:
+				char_base.velocity.y = lerp(char_base.velocity.y, velocity_y * char_base.sprite_facing(), velocity_lerp_y * delta)
+			else:
+				char_base.velocity.y = lerp(char_base.velocity.y, 0, char_base.ground_friction * delta) # slow to stop
 
 func aerial_attack(delta):
 	match(modify_velocity_x):
@@ -129,6 +142,11 @@ func aerial_attack(delta):
 				char_base.velocity.x = velocity_x * char_base.sprite_facing()
 			else:
 				air_movement_x(delta)
+		3: # set
+			if frame >= x_starting_frame and frame <= x_frames + x_starting_frame:
+				char_base.velocity.x = lerp(char_base.velocity.x, velocity_x * char_base.sprite_facing(), velocity_lerp_x * delta)
+			else:
+				air_movement_x(delta)
 	
 	match(modify_velocity_y):
 		0: # none
@@ -141,6 +159,11 @@ func aerial_attack(delta):
 		2: # set
 			if frame >= y_starting_frame and frame <= y_frames + y_starting_frame:
 				char_base.velocity.y = velocity_y
+			else:
+				air_movement_y(delta)
+		3: # set
+			if frame >= y_starting_frame and frame <= y_frames + y_starting_frame:
+				char_base.velocity.y = lerp(char_base.velocity.y, velocity_y * char_base.sprite_facing(), velocity_lerp_y * delta)
 			else:
 				air_movement_y(delta)
 
