@@ -172,7 +172,8 @@ func air_movement_x(delta):
 	x_input = char_base.right - char_base.left
 	
 	if x_input != 0:
-		char_base.velocity.x += char_base.air_acceleration * x_input * delta
+		if modify_velocity_x == 0:
+			char_base.velocity.x += char_base.air_acceleration * x_input * delta
 		char_base.velocity.x = clamp(char_base.velocity.x, -char_base.current_speed, char_base.current_speed)
 	else:
 		char_base.velocity.x = lerp(char_base.velocity.x, 0, char_base.air_friction * delta)
