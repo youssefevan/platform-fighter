@@ -708,7 +708,7 @@ texture = ExtResource( 2 )
 hframes = 1
 vframes = 1
 region_enabled = true
-region_rect = Rect2( 128, 64, 32, 32 )
+region_rect = Rect2( 0, 160, 32, 32 )
 
 [node name="Hitbox" parent="." index="2"]
 position = Vector2( 0, -8 )
@@ -814,8 +814,8 @@ modify_velocity_x = 3
 modify_velocity_y = 3
 velocity_lerp_x = 10.0
 velocity_lerp_y = 10.0
-x_frames = 4
-y_frames = 4
+x_frames = 10
+y_frames = 10
 x_starting_frame = 1
 y_starting_frame = 1
 

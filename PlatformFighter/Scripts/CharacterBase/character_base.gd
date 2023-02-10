@@ -98,6 +98,7 @@ var input_shield = false
 var released_jump = false
 
 func _ready():
+	print("P", port, ": ", Input.get_joy_name(port))
 	states.init(self)
 	jump_height = fullhop_height
 
@@ -120,6 +121,8 @@ func controls():
 func _physics_process(delta):
 	states.physics_process(delta)
 	controls()
+	
+	#print(Input.get_vector("right_1", "left_1", "down_1", "up_1", 0.2))
 	
 	if is_on_floor() == true:
 		current_speed = lerp(current_speed, run_speed, speed_lerp * delta)
