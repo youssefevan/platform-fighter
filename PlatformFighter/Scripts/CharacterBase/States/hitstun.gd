@@ -15,6 +15,18 @@ var hitstun_length
 
 func enter():
 	.enter()
+	var freeze_frames = int(damage_percent / 3)
+	
+	#OS.delay_msec((freeze_frames/60.0)*1000)
+	print((freeze_frames/60.0))
+	get_tree().paused = true
+	yield(get_tree().create_timer((freeze_frames/60.0)), "timeout")
+	get_tree().paused = false
+	
+#	Engine.time_scale = temp_time_scale
+#	yield(get_tree().create_timer((freeze_frames/60.0)*temp_time_scale), "timeout")
+#	Engine.time_scale = 1.0
+	
 	calculate_di()
 	char_base.got_hit = false
 
