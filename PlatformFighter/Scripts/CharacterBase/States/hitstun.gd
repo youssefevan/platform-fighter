@@ -1,10 +1,13 @@
 extends BaseState
 
-var kb_direction
+var hitbox_direction
+var kb_angle
+var new_kb_angle
 var kb_power
 var damage_percent
 var kb_scaling
 var default_kb_scaling = 3
+var kb_direction
 
 var frame = 0
 
@@ -12,35 +15,68 @@ var hitstun_length
 
 func enter():
 	.enter()
-	
-	#print(kb_direction)
-	
+	calculate_di()
 	char_base.got_hit = false
+
+func calculate_di():
+	var max_angle_difference = 18 # degrees
 	
-#	var knockback1 = ((((
-#		(char_base.percentage/10 + (char_base.percentage * damage_percent)/20)
-#		* 200/(char_base.knockback_modifier #100# +100) * 1.4)
-#		+ 18) * kb_scaling) + kb_power)
+	var directional_input = null
+	if Vector2(char_base.right - char_base.left, char_base.up - char_base.down) != Vector2.ZERO:
+		directional_input = int(rad2deg(Vector2(char_base.right - char_base.left, char_base.up - char_base.down).angle()))
+	else:
+		directional_input = null
 	
-#	var knockback2 = (
-#		(3 * (
-#		(damage_percent * (kb_scaling + char_base.percentage) / 20))
-#		* (2 / (1 + char_base.weight)) + 18) + kb_power)
+	var processed_di = 0
+	if directional_input != null:
+		if (directional_input > (-kb_angle + 90)) or (directional_input < (-kb_angle - 90)):
+			if directional_input < 0:
+				processed_di = -directional_input - 90
+			else:
+				processed_di = -directional_input + 270
+		
+		var kb_angle_modifier = ((-kb_angle - processed_di)/90) * max_angle_difference
+		print(kb_angle_modifier)
+		new_kb_angle = -kb_angle - kb_angle_modifier
+		
+		kb_direction = get_kb_direction(-new_kb_angle)
+		
+	else:
+		processed_di = directional_input
+		kb_direction = get_kb_direction(kb_angle)
 	
-	var kb_base = (char_base.percentage * kb_scaling) + kb_power + damage_percent
+	var kb_base = (char_base.percentage * kb_scaling) + kb_power + damage_percent # kb_scaling has the greatest affect at high percents
 	var knockback = kb_base / char_base.weight
-	# kb_scaling has the greatest affect at high percents
 	
 	print("---Hit---")
 	print("P", char_base.port, " --> ", char_base.percentage, "%")
 	print("Knockback: ", knockback)
 	print("Hitstun: ", hitstun_length)
+	print("DI: ", directional_input)
+	print("Processed DI: ", processed_di)
+	print("KB Base Angle: ", -kb_angle)
+	print("KB Angle w/ DI: ", new_kb_angle)
 	print("---------")
 	
 	char_base.velocity = kb_direction * knockback
 
+func get_kb_direction(angle):
+	var kb_angle_radians = deg2rad(angle)
+	var kb_x = cos(kb_angle_radians)
+	var kb_y = sin(kb_angle_radians)
+	var output = Vector2(kb_x, kb_y)
+	
+	if hitbox_direction.x < 0:
+		output.x *= -1
+	else:
+		output.x *= 1
+	
+	return output
+
+
 func physics_process(delta):
 	frame += 1
+	
 	#print("Hitstun Frame: ", frame)
 	
 	if frame == hitstun_length:
@@ -74,10 +110,10 @@ func physics_process(delta):
 
 	char_base.velocity = char_base.move_and_slide(char_base.velocity, Vector2.UP)
 
-
-func _on_Hurtbox_hit_info(hit, kb_dir, kb_pow, d_percent, kb_scale):
+func _on_Hurtbox_hit_info(hit, kb_ang, kb_pow, d_percent, kb_scale, hitbox_dir):
 	#char_base.got_hit = hit
-	kb_direction = kb_dir
+	hitbox_direction = hitbox_dir
+	kb_angle = kb_ang
 	kb_power = kb_pow
 	if kb_scale == -1:
 		kb_scaling = default_kb_scaling

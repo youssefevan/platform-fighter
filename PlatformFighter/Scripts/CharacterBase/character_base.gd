@@ -204,6 +204,6 @@ func get_attack(type : int): # type = 0 -> normal attack, type = 1 -> special
 	
 	return attack
 
-func _on_Hurtbox_hit_info(hit, kb_dir, kb_pow, d_percent, kb_scale):
+func _on_Hurtbox_hit_info(hit, kb_dir, kb_pow, d_percent, kb_scale, hitbox_dir):
 	#print("hurt")
 	got_hit = true
