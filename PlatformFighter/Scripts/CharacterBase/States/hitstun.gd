@@ -8,6 +8,7 @@ var damage_percent
 var kb_scaling
 var default_kb_scaling = 3
 var kb_direction
+var kb_angle_modifier
 
 var frame = 0
 
@@ -15,17 +16,12 @@ var hitstun_length
 
 func enter():
 	.enter()
-	var freeze_frames = int(damage_percent / 3)
+	var freeze_frames = int(damage_percent / 3) + 2
 	
-	#OS.delay_msec((freeze_frames/60.0)*1000)
-	print((freeze_frames/60.0))
+	#print((freeze_frames/60.0))
 	get_tree().paused = true
 	yield(get_tree().create_timer((freeze_frames/60.0)), "timeout")
 	get_tree().paused = false
-	
-#	Engine.time_scale = temp_time_scale
-#	yield(get_tree().create_timer((freeze_frames/60.0)*temp_time_scale), "timeout")
-#	Engine.time_scale = 1.0
 	
 	calculate_di()
 	char_base.got_hit = false
@@ -47,14 +43,19 @@ func calculate_di():
 			else:
 				processed_di = -directional_input + 270
 		
-		var kb_angle_modifier = ((-kb_angle - processed_di)/90) * max_angle_difference
-		print(kb_angle_modifier)
-		new_kb_angle = -kb_angle - kb_angle_modifier
+			kb_angle_modifier = ((-kb_angle - processed_di)/90) * max_angle_difference
+			new_kb_angle = -kb_angle - kb_angle_modifier
+			
+			kb_direction = get_kb_direction(-new_kb_angle)
 		
-		kb_direction = get_kb_direction(-new_kb_angle)
-		
+		else:
+			processed_di = directional_input
+			
+			kb_angle_modifier = ((-kb_angle - processed_di)/90) * max_angle_difference
+			new_kb_angle = -kb_angle - kb_angle_modifier
+			
+			kb_direction = get_kb_direction(-new_kb_angle)
 	else:
-		processed_di = directional_input
 		kb_direction = get_kb_direction(kb_angle)
 	
 	var kb_base = (char_base.percentage * kb_scaling) + kb_power + damage_percent # kb_scaling has the greatest affect at high percents
@@ -66,6 +67,7 @@ func calculate_di():
 	print("Hitstun: ", hitstun_length)
 	print("DI: ", directional_input)
 	print("Processed DI: ", processed_di)
+	print("KB Angle Modifier: ", kb_angle_modifier)
 	print("KB Base Angle: ", -kb_angle)
 	print("KB Angle w/ DI: ", new_kb_angle)
 	print("---------")
