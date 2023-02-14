@@ -9,6 +9,7 @@ var kb_scaling
 var default_kb_scaling = 3
 var kb_direction
 var kb_angle_modifier
+var freeze_frames
 
 var frame = 0
 
@@ -16,7 +17,7 @@ var hitstun_length
 
 func enter():
 	.enter()
-	var freeze_frames = int(damage_percent / 3) + 2
+	freeze_frames = int(damage_percent / 3) + 1
 	
 	#print((freeze_frames/60.0))
 	get_tree().paused = true
@@ -64,6 +65,7 @@ func calculate_di():
 	print("---Hit---")
 	print("P", char_base.port, " --> ", char_base.percentage, "%")
 	print("Knockback: ", knockback)
+	print("Hitstop Frames: ", freeze_frames)
 	print("Hitstun: ", hitstun_length)
 	print("DI: ", directional_input)
 	print("Processed DI: ", processed_di)
