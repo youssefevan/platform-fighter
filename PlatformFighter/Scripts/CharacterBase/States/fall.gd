@@ -20,23 +20,9 @@ func enter():
 		#print("FALL --> enter_special")
 
 func physics_process(delta):
-	move(delta)
-	
+	horiztonal_movement(delta)
+	vertical_movement(delta)
 	fastfalling_check()
-	
-	if char_base.velocity.y < 0:
-		char_base.velocity.y += char_base.gravity * delta
-	else:
-		if char_base.fastfalling == true:
-			char_base.velocity.y += char_base.gravity * char_base.fastfall_gravity * delta
-			
-			if char_base.velocity.y > char_base.fastfall_speed:
-				char_base.velocity.y = char_base.fastfall_speed
-		else:
-			char_base.velocity.y += char_base.gravity * delta
-			
-			if char_base.velocity.y > char_base.fall_speed:
-				char_base.velocity.y = char_base.fall_speed
 	
 	char_base.velocity = char_base.move_and_slide(char_base.velocity, Vector2.UP)
 	
@@ -70,7 +56,7 @@ func fastfalling_check():
 	if char_base.input_down:
 		char_base.fastfalling = true
 
-func move(delta):
+func horiztonal_movement(delta):
 	var x_input = 0
 	x_input = char_base.right - char_base.left
 	
@@ -79,6 +65,21 @@ func move(delta):
 		char_base.velocity.x = clamp(char_base.velocity.x, -char_base.current_speed, char_base.current_speed)
 	else:
 		char_base.velocity.x = lerp(char_base.velocity.x, 0, char_base.air_friction * delta)
+
+func vertical_movement(delta):
+	if char_base.velocity.y < 0:
+		char_base.velocity.y += char_base.gravity * delta
+	else:
+		if char_base.fastfalling == true:
+			char_base.velocity.y += char_base.gravity * char_base.fastfall_gravity * delta
+			
+			if char_base.velocity.y > char_base.fastfall_speed:
+				char_base.velocity.y = char_base.fastfall_speed
+		else:
+			char_base.velocity.y += char_base.gravity * delta
+			
+			if char_base.velocity.y > char_base.fall_speed:
+				char_base.velocity.y = char_base.fall_speed
 
 func exit():
 	.exit()

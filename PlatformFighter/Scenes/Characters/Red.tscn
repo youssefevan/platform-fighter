@@ -692,6 +692,7 @@ special_neutral_node = NodePath("StateManager/SpecialNeutral")
 special_up_node = NodePath("StateManager/SpecialUp")
 special_down_node = NodePath("StateManager/SpecialDown")
 gravity = 850.0
+fastfall_speed = 325.0
 fullhop_height = 250.0
 air_jump_height = 250.0
 run_speed = 130.0

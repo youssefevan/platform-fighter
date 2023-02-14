@@ -20,10 +20,7 @@ func enter():
 		#print("RUN --> enter_special")
 
 func physics_process(delta):
-	move(delta)
-	
-	if char_base.got_hit == true:
-		return char_base.hitstun
+	horizontal_movement(delta)
 	
 	char_base.velocity.y = 1
 	char_base.velocity = char_base.move_and_slide(char_base.velocity, Vector2.UP)
@@ -33,6 +30,10 @@ func physics_process(delta):
 	
 	if x_input > 0:
 		char_base.sprite.flip_h = false
+	
+	#State changes
+	if char_base.got_hit == true:
+		return char_base.hitstun
 	
 	if x_input == 0:
 		return char_base.idle
@@ -58,7 +59,7 @@ func physics_process(delta):
 	if char_base.input_special:
 		return char_base.get_attack(1)
 
-func move(delta):
+func horizontal_movement(delta):
 	x_input = char_base.right - char_base.left
 	
 	if x_input != 0:

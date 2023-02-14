@@ -16,7 +16,7 @@ func enter():
 
 func physics_process(delta):
 	frame += 1
-	#move(delta)
+	
 	char_base.velocity.x = lerp(char_base.velocity.x, 0, char_base.ground_friction * delta) # slow to stop
 	
 	char_base.velocity.y = 1 # keep in contact with ground
@@ -39,10 +39,3 @@ func physics_process(delta):
 			return char_base.jumpsquat
 		else:
 			return char_base.idle
-
-func move(delta):
-	x_input = char_base.right - char_base.left
-	
-	if x_input != 0:
-		char_base.velocity.x += char_base.ground_acceleration * x_input * delta
-		char_base.velocity.x = clamp(char_base.velocity.x, -char_base.run_speed, char_base.run_speed)

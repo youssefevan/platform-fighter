@@ -17,14 +17,15 @@ func enter():
 		#print("JUMP --> enter_special")
 
 func physics_process(delta):
-	move(delta)
-	
-	if char_base.got_hit == true:
-		return char_base.hitstun
+	horizontal_movement(delta)
 	
 	char_base.velocity.y += char_base.gravity * delta
 	
 	char_base.velocity = char_base.move_and_slide(char_base.velocity, Vector2.UP)
+	
+	# State changes
+	if char_base.got_hit == true:
+		return char_base.hitstun
 	
 	if char_base.velocity.y > 0:
 		return char_base.fall
@@ -48,7 +49,7 @@ func physics_process(delta):
 	if char_base.input_special:
 		return char_base.get_attack(1)
 
-func move(delta):
+func horizontal_movement(delta):
 	var x_input = 0
 	x_input = char_base.right - char_base.left
 	

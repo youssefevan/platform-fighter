@@ -10,7 +10,7 @@ func enter():
 	frame = 0
 
 func physics_process(delta):
-	move(delta)
+	horizontal_movement(delta)
 	frame += 1
 	
 	char_base.velocity.y = 1 # keep in contact with ground
@@ -26,7 +26,7 @@ func physics_process(delta):
 	if char_base.got_hit == true:
 		return char_base.hitstun
 
-func move(delta):
+func horizontal_movement(delta):
 	x_input = char_base.right - char_base.left
 	
 	if x_input != 0:
