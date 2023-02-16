@@ -61,6 +61,9 @@ func physics_process(delta):
 	
 	if char_base.input_special:
 		return char_base.get_attack(1)
+	
+	if char_base.input_shield:
+		return char_base.shield
 
 func exit():
 	.exit()

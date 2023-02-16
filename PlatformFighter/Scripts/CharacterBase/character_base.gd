@@ -1,6 +1,8 @@
 extends KinematicBody2D
 class_name CharacterBase
 
+onready var shield_node = $Shield
+
 onready var idle := $StateManager/Idle
 onready var jump := $StateManager/Jump
 onready var jumpsquat := $StateManager/Jumpsquat
@@ -10,6 +12,7 @@ onready var run := $StateManager/Run
 onready var land := $StateManager/Land
 onready var freefall := $StateManager/Freefall
 onready var hitstun := $StateManager/Hitstun
+onready var shield := $StateManager/Shield
 
 # ground attacks
 export var ground_neutral_node: NodePath
@@ -96,6 +99,7 @@ var input_special = false
 var input_shield = false
 
 var released_jump = false
+var released_shield = false
 
 func _ready():
 	print("P", port, ": ", Input.get_joy_name(port))
@@ -117,6 +121,7 @@ func controls():
 		input_special = Input.is_action_just_pressed("special_%s" % port)
 		
 		released_jump = Input.is_action_just_released("jump_%s" % port)
+		released_shield = Input.is_action_just_released("shield_%s" % port)
 
 func _physics_process(delta):
 	states.physics_process(delta)

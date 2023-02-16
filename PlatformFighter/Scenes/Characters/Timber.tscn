@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=2]
+[gd_scene load_steps=37 format=2]
 
 [ext_resource path="res://Scenes/CharacterBase.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Sprites/Characters/green.png" type="Texture" id=2]
@@ -6,10 +6,6 @@
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 4, 6.5 )
-
-[sub_resource type="CapsuleShape2D" id=2]
-radius = 4.0
-height = 6.0
 
 [sub_resource type="CircleShape2D" id=37]
 
@@ -1134,6 +1130,21 @@ tracks/0/keys = {
 "values": [ Rect2( 32, 0, 32, 32 ) ]
 }
 
+[sub_resource type="Animation" id=46]
+resource_name = "Shield"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Rect2( 0, 0, 32, 32 ) ]
+}
+
 [sub_resource type="CircleShape2D" id=44]
 radius = 8.0
 
@@ -1366,6 +1377,10 @@ tracks/8/keys = {
 "values": [ 0.5, -1.0 ]
 }
 
+[sub_resource type="CapsuleShape2D" id=2]
+radius = 4.0
+height = 6.0
+
 [node name="Timber" instance=ExtResource( 1 )]
 ground_neutral_node = NodePath("StateManager/GroundNeutral")
 ground_side_node = NodePath("StateManager/GroundSide")
@@ -1398,9 +1413,12 @@ texture = ExtResource( 2 )
 hframes = 1
 vframes = 1
 region_enabled = true
-region_rect = Rect2( 128, 32, 32, 32 )
+region_rect = Rect2( 0, 0, 32, 32 )
 
-[node name="Hitbox" parent="." index="2"]
+[node name="Shield" parent="." index="2"]
+visible = false
+
+[node name="Hitbox" parent="." index="3"]
 damage = 3.0
 kb_power = 180.0
 kb_angle = -85.0
@@ -1409,10 +1427,6 @@ kb_scaling = 1.0
 [node name="Bounds" parent="Hitbox" index="0"]
 rotation = 1.5708
 disabled = false
-
-[node name="Bounds" parent="Hurtbox" index="0"]
-position = Vector2( 0, -7 )
-shape = SubResource( 2 )
 
 [node name="Animator" type="AnimationPlayer" parent="." index="4"]
 anims/AerialDown = SubResource( 31 )
@@ -1433,8 +1447,13 @@ anims/Jumpsquat = SubResource( 8 )
 anims/Land = SubResource( 9 )
 anims/RESET = SubResource( 33 )
 anims/Run = SubResource( 10 )
+anims/Shield = SubResource( 46 )
 anims/SpecialNeutral = SubResource( 45 )
 anims/SpecialUp = SubResource( 42 )
+
+[node name="Bounds" parent="Hurtbox" index="0"]
+position = Vector2( 0, -7 )
+shape = SubResource( 2 )
 
 [node name="GroundNeutral" type="Node" parent="StateManager" index="9"]
 script = ExtResource( 3 )

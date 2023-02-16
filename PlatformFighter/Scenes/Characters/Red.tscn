@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://Scenes/CharacterBase.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Sprites/Characters/red.png" type="Texture" id=2]
@@ -628,6 +628,22 @@ tracks/0/keys = {
 "values": [ Rect2( 32, 0, 32, 32 ) ]
 }
 
+[sub_resource type="Animation" id=25]
+resource_name = "Shield"
+step = 0.0166667
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Rect2( 0, 0, 32, 32 ) ]
+}
+
 [sub_resource type="Animation" id=23]
 resource_name = "SpecialDown"
 length = 0.666667
@@ -709,9 +725,12 @@ texture = ExtResource( 2 )
 hframes = 1
 vframes = 1
 region_enabled = true
-region_rect = Rect2( 0, 160, 32, 32 )
+region_rect = Rect2( 0, 0, 32, 32 )
 
-[node name="Hitbox" parent="." index="2"]
+[node name="Shield" parent="." index="2"]
+visible = false
+
+[node name="Hitbox" parent="." index="3"]
 position = Vector2( 0, -8 )
 damage = 2.0
 kb_power = 30.0
@@ -721,9 +740,6 @@ kb_scaling = 1.0
 [node name="Bounds" parent="Hitbox" index="0"]
 position = Vector2( 2, 8 )
 shape = SubResource( 18 )
-
-[node name="Hurtbox" parent="." index="3"]
-position = Vector2( 0, -8 )
 
 [node name="Animator" type="AnimationPlayer" parent="." index="4"]
 anims/AerialDown = SubResource( 13 )
@@ -744,9 +760,13 @@ anims/Jumpsquat = SubResource( 6 )
 anims/Land = SubResource( 7 )
 anims/RESET = SubResource( 20 )
 anims/Run = SubResource( 8 )
+anims/Shield = SubResource( 25 )
 anims/SpecialDown = SubResource( 23 )
 anims/SpecialNeutral = SubResource( 24 )
 anims/SpecialUp = SubResource( 22 )
+
+[node name="Hurtbox" parent="." index="5"]
+position = Vector2( 0, -8 )
 
 [node name="GroundNeutral" type="Node" parent="StateManager" index="9"]
 script = ExtResource( 3 )
