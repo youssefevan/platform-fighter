@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Sprites/Characters/character_base.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/CharacterBase/character_base.gd" type="Script" id=2]
@@ -15,19 +15,16 @@
 [ext_resource path="res://Scenes/Hitbox.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Scripts/CharacterBase/States/hitstun.gd" type="Script" id=14]
 [ext_resource path="res://Scripts/CharacterBase/States/shield.gd" type="Script" id=15]
-[ext_resource path="res://Sprites/shield1.png" type="Texture" id=16]
+[ext_resource path="res://Scenes/Shield.tscn" type="PackedScene" id=16]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 4, 8 )
-
-[sub_resource type="CircleShape2D" id=3]
-radius = 12.0
 
 [sub_resource type="CapsuleShape2D" id=2]
 radius = 4.0
 height = 8.0
 
-[node name="CharacterBase" type="KinematicBody2D"]
+[node name="CharacterBase" type="KinematicBody2D" groups=["Shield"]]
 collision_layer = 2
 collision/safe_margin = 0.03
 script = ExtResource( 2 )
@@ -48,24 +45,16 @@ air_jumps = 1
 jumpsquat_frames = 4
 
 [node name="ECB" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -8 )
 shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 0, -8 )
 texture = ExtResource( 1 )
 hframes = 5
 vframes = 4
 
-[node name="Shield" type="Area2D" parent="."]
-position = Vector2( 0, -8 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="Sprite" type="Sprite" parent="Shield"]
-texture = ExtResource( 16 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Shield"]
-shape = SubResource( 3 )
+[node name="Shield" parent="." instance=ExtResource( 16 )]
 
 [node name="Hitbox" parent="." instance=ExtResource( 13 )]
 
@@ -73,9 +62,9 @@ shape = SubResource( 3 )
 disabled = true
 
 [node name="Hurtbox" parent="." instance=ExtResource( 12 )]
-hitbox_node = NodePath("../Hitbox")
 
 [node name="Bounds" parent="Hurtbox" index="0"]
+position = Vector2( 0, -8 )
 shape = SubResource( 2 )
 
 [node name="StateManager" type="Node" parent="."]
@@ -126,5 +115,6 @@ animation_name = "Shield"
 [connection signal="hit_info" from="Hurtbox" to="." method="_on_Hurtbox_hit_info"]
 [connection signal="hit_info" from="Hurtbox" to="StateManager/Hitstun" method="_on_Hurtbox_hit_info"]
 
+[editable path="Shield"]
 [editable path="Hitbox"]
 [editable path="Hurtbox"]

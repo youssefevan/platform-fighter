@@ -176,6 +176,7 @@ shield_2={
 2d_physics/layer_2="Character"
 2d_physics/layer_3="Hurtbox"
 2d_physics/layer_4="Hitbox"
+2d_physics/layer_5="Shield"
 
 [physics]
 

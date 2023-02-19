@@ -1398,7 +1398,7 @@ fullhop_height = 250.0
 shorthop_height = 175.0
 air_jump_height = 225.0
 run_speed = 100.0
-ground_acceleration = 1750.0
+ground_acceleration = 2750.0
 ground_friction = 12.0
 air_acceleration = 500.0
 air_speed = 75.0
@@ -1414,9 +1414,6 @@ hframes = 1
 vframes = 1
 region_enabled = true
 region_rect = Rect2( 0, 0, 32, 32 )
-
-[node name="Shield" parent="." index="2"]
-visible = false
 
 [node name="Hitbox" parent="." index="3"]
 damage = 3.0
@@ -1451,21 +1448,24 @@ anims/Shield = SubResource( 46 )
 anims/SpecialNeutral = SubResource( 45 )
 anims/SpecialUp = SubResource( 42 )
 
+[node name="Hurtbox" parent="." index="5"]
+hitbox_node = NodePath("../Hitbox")
+
 [node name="Bounds" parent="Hurtbox" index="0"]
 position = Vector2( 0, -7 )
 shape = SubResource( 2 )
 
-[node name="GroundNeutral" type="Node" parent="StateManager" index="9"]
+[node name="GroundNeutral" type="Node" parent="StateManager" index="10"]
 script = ExtResource( 3 )
 animation_name = "GroundNeutral"
 
-[node name="AerialNeutral" type="Node" parent="StateManager" index="10"]
+[node name="AerialNeutral" type="Node" parent="StateManager" index="11"]
 script = ExtResource( 3 )
 animation_name = "AerialNeutral"
 attack_type = 1
 landing_lag = 7
 
-[node name="GroundSide" type="Node" parent="StateManager" index="11"]
+[node name="GroundSide" type="Node" parent="StateManager" index="12"]
 script = ExtResource( 3 )
 animation_name = "GroundSide"
 modify_velocity_x = 2
@@ -1473,33 +1473,33 @@ velocity_x = 250.0
 x_frames = 1
 x_starting_frame = 4
 
-[node name="AerialSide" type="Node" parent="StateManager" index="12"]
+[node name="AerialSide" type="Node" parent="StateManager" index="13"]
 script = ExtResource( 3 )
 animation_name = "AerialSide"
 attack_type = 1
 landing_lag = 6
 
-[node name="GroundUp" type="Node" parent="StateManager" index="13"]
+[node name="GroundUp" type="Node" parent="StateManager" index="14"]
 script = ExtResource( 3 )
 animation_name = "GroundUp"
 
-[node name="AerialUp" type="Node" parent="StateManager" index="14"]
+[node name="AerialUp" type="Node" parent="StateManager" index="15"]
 script = ExtResource( 3 )
 animation_name = "AerialUp"
 attack_type = 1
 landing_lag = 6
 
-[node name="GroundDown" type="Node" parent="StateManager" index="15"]
+[node name="GroundDown" type="Node" parent="StateManager" index="16"]
 script = ExtResource( 3 )
 animation_name = "GroundDown"
 
-[node name="AerialDown" type="Node" parent="StateManager" index="16"]
+[node name="AerialDown" type="Node" parent="StateManager" index="17"]
 script = ExtResource( 3 )
 animation_name = "AerialDown"
 attack_type = 1
 landing_lag = 10
 
-[node name="SpecialUp" type="Node" parent="StateManager" index="17"]
+[node name="SpecialUp" type="Node" parent="StateManager" index="18"]
 script = ExtResource( 3 )
 animation_name = "SpecialUp"
 attack_type = 2
@@ -1511,7 +1511,7 @@ y_starting_velocity = -230.0
 y_starting_frame = 4
 freefall = true
 
-[node name="SpecialNeutral" type="Node" parent="StateManager" index="18"]
+[node name="SpecialNeutral" type="Node" parent="StateManager" index="19"]
 script = ExtResource( 3 )
 animation_name = "SpecialNeutral"
 attack_type = 2
@@ -1524,5 +1524,6 @@ y_frames = 12
 x_starting_frame = 1
 y_starting_frame = 1
 
+[editable path="Shield"]
 [editable path="Hitbox"]
 [editable path="Hurtbox"]

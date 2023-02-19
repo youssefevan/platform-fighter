@@ -105,6 +105,7 @@ func _ready():
 	print("P", port, ": ", Input.get_joy_name(port))
 	states.init(self)
 	jump_height = fullhop_height
+	shield_node.get_node("Collider").disabled = true
 
 func controls():
 	if (port == 1 || port == 2):
