@@ -5,7 +5,6 @@ var enter_jump
 func enter():
 	.enter()
 	char_base.shield_node.get_node("Collider").disabled = false
-	print(char_base.shield_node.get_node("Collider").disabled)
 	
 	if char_base.input_jump:
 		enter_jump = true
@@ -37,7 +36,7 @@ func exit():
 	char_base.got_hit = false
 
 func _on_Shield_hit_shield(kb_pow, d_percent, hitbox_dir):
-	print("test2")
+	#print("test2")
 	var freeze_frames = int(d_percent / 3) + 1
 	
 	get_tree().paused = true
@@ -50,4 +49,4 @@ func _on_Shield_hit_shield(kb_pow, d_percent, hitbox_dir):
 	else:
 		hitbox_side = 1
 	
-	char_base.velocity.x = (d_percent + (kb_pow/10)) * hitbox_side
+	char_base.velocity.x = (d_percent + (kb_pow/5)) * hitbox_side

@@ -1416,10 +1416,10 @@ region_enabled = true
 region_rect = Rect2( 0, 0, 32, 32 )
 
 [node name="Hitbox" parent="." index="3"]
-damage = 3.0
-kb_power = 180.0
-kb_angle = -85.0
-kb_scaling = 1.0
+damage = 8.0
+kb_power = 200.0
+kb_angle = 70.0
+kb_scaling = 1.1
 
 [node name="Bounds" parent="Hitbox" index="0"]
 rotation = 1.5708

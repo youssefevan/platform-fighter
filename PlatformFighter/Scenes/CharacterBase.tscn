@@ -62,6 +62,8 @@ vframes = 4
 disabled = true
 
 [node name="Hurtbox" parent="." instance=ExtResource( 12 )]
+hitbox_node = NodePath("../Hitbox")
+shield_node = NodePath("../Shield")
 
 [node name="Bounds" parent="Hurtbox" index="0"]
 position = Vector2( 0, -8 )
@@ -111,6 +113,8 @@ animation_name = "Hitstun"
 script = ExtResource( 15 )
 animation_name = "Shield"
 
+[connection signal="area_entered" from="Shield" to="Shield" method="_on_Shield_area_entered"]
+[connection signal="hit_shield" from="Shield" to="StateManager/Shield" method="_on_Shield_hit_shield"]
 [connection signal="area_entered" from="Hurtbox" to="Hurtbox" method="_on_Hurtbox_area_entered"]
 [connection signal="hit_info" from="Hurtbox" to="." method="_on_Hurtbox_hit_info"]
 [connection signal="hit_info" from="Hurtbox" to="StateManager/Hitstun" method="_on_Hurtbox_hit_info"]
