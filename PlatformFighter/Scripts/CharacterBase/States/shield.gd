@@ -23,7 +23,7 @@ func physics_process(delta):
 	if char_base.is_on_floor() == false:
 		return char_base.idle
 	
-	if char_base.released_shield == true:
+	if char_base.input_shield == false:
 		return char_base.idle
 	
 	if char_base.input_jump == true or enter_jump == true:
