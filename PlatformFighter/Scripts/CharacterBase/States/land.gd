@@ -22,6 +22,9 @@ func physics_process(delta):
 	char_base.velocity.y = 1 # keep in contact with ground
 	char_base.velocity = char_base.move_and_slide(char_base.velocity, Vector2.UP)
 	
+	if land_frames == 0:
+		landing = false
+	
 	if frame == land_frames:
 		landing = false
 	
@@ -39,3 +42,4 @@ func physics_process(delta):
 			return char_base.jumpsquat
 		else:
 			return char_base.idle
+	
