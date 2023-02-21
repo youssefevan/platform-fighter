@@ -1398,7 +1398,7 @@ fullhop_height = 250.0
 shorthop_height = 175.0
 air_jump_height = 225.0
 run_speed = 100.0
-ground_acceleration = 2750.0
+ground_acceleration = 2500.0
 ground_friction = 12.0
 air_acceleration = 500.0
 air_speed = 75.0
@@ -1413,7 +1413,7 @@ texture = ExtResource( 2 )
 hframes = 1
 vframes = 1
 region_enabled = true
-region_rect = Rect2( 0, 0, 32, 32 )
+region_rect = Rect2( 0, 192, 32, 64 )
 
 [node name="Hitbox" parent="." index="3"]
 damage = 8.0
@@ -1447,9 +1447,6 @@ anims/Run = SubResource( 10 )
 anims/Shield = SubResource( 46 )
 anims/SpecialNeutral = SubResource( 45 )
 anims/SpecialUp = SubResource( 42 )
-
-[node name="Hurtbox" parent="." index="5"]
-hitbox_node = NodePath("../Hitbox")
 
 [node name="Bounds" parent="Hurtbox" index="0"]
 position = Vector2( 0, -7 )
