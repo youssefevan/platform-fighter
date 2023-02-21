@@ -1400,6 +1400,7 @@ air_jump_height = 225.0
 run_speed = 100.0
 ground_acceleration = 2500.0
 ground_friction = 12.0
+air_friction = 2.0
 air_acceleration = 500.0
 air_speed = 75.0
 

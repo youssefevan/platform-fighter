@@ -812,6 +812,7 @@ fullhop_height = 250.0
 air_jump_height = 250.0
 run_speed = 130.0
 ground_acceleration = 2750.0
+air_friction = 2.67
 air_speed = 100.0
 jumpsquat_frames = 3
 
