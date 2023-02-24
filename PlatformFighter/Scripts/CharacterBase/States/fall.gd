@@ -12,7 +12,7 @@ func enter():
 		if char_base.air_jumps_remaining != 0:
 			enter_air_jump = true
 			#print("FALL --> enter_jump")
-	if char_base.input_attack:
+	if char_base.input_attack or char_base.c_stick != Vector2.ZERO:
 		enter_attack = true
 		#print("FALL --> enter_attack")
 	if char_base.input_special:
@@ -46,7 +46,7 @@ func physics_process(delta):
 	if enter_special == true:
 		return char_base.get_attack(1)
 	
-	if char_base.input_attack:
+	if char_base.input_attack or char_base.c_stick != Vector2.ZERO:
 		return char_base.get_attack(0)
 	
 	if char_base.input_special:

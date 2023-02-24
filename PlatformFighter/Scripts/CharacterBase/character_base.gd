@@ -98,6 +98,12 @@ var input_attack = false
 var input_special = false
 var input_shield = false
 
+var c_stick_left
+var c_stick_right
+var c_stick_up
+var c_stick_down
+var c_stick
+
 var released_jump = false
 var released_shield = false
 
@@ -109,6 +115,13 @@ func _ready():
 
 func controls():
 	if (port == 1 || port == 2):
+		
+#		c_stick_left = Input.get_action_strength("c_stick_left_%s" % port)
+#		c_stick_right = Input.get_action_strength("c_stick_right_%s" % port)
+#		c_stick_up = Input.get_action_strength("c_stick_up_%s" % port)
+#		c_stick_down = Input.get_action_strength("c_stick_down_%s" % port)
+#		c_stick = Vector2(c_stick_right - c_stick_left, c_stick_up - c_stick_down)
+		
 		up = Input.get_action_strength("up_%s" % port)
 		down = Input.get_action_strength("down_%s" % port)
 		left = Input.get_action_strength("left_%s" % port)
@@ -152,8 +165,12 @@ func get_attack(type : int): # type = 0 -> normal attack, type = 1 -> special
 	var attack
 	
 	var dir = Vector2()
-	dir.x = right - left
-	dir.y = down - up
+	
+	if c_stick == Vector2.ZERO:
+		dir.x = right - left
+		dir.y = down - up
+	else:
+		dir = c_stick
 	
 	if type == 0: # normal attack
 		if dir == Vector2.ZERO: # if neutral input
