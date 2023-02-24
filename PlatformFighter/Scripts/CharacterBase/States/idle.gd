@@ -13,7 +13,7 @@ func enter():
 	if char_base.input_jump:
 		enter_jump = true
 		#print("IDLE --> enter_jump")
-	if char_base.input_attack or char_base.c_stick != Vector2.ZERO:
+	if char_base.input_attack:
 		enter_attack = true
 		#print("IDLE --> enter_attack")
 	if char_base.input_special:
@@ -56,7 +56,7 @@ func physics_process(delta):
 	if enter_special == true:
 		return char_base.get_attack(1)
 	
-	if char_base.input_attack or char_base.c_stick != Vector2.ZERO:
+	if char_base.input_attack:
 		return char_base.get_attack(0)
 	
 	if char_base.input_special:

@@ -110,7 +110,6 @@ func physics_process(delta):
 	if char_base.is_on_floor() == false:
 		char_base.velocity.y += char_base.gravity * delta
 		
-		# Only applies air friction if descending, giving the launch a better arc
 		if char_base.velocity.y > 0:
 			char_base.velocity.x = lerp(char_base.velocity.x, 0, char_base.air_friction * delta)
 		
