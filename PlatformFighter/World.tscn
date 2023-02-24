@@ -48,10 +48,10 @@ position = Vector2( 192, 96 )
 [node name="Platform3" parent="." instance=ExtResource( 2 )]
 position = Vector2( 256, 128 )
 
-[node name="Timber" parent="." instance=ExtResource( 5 )]
-position = Vector2( 184, 156 )
+[node name="Red" parent="." instance=ExtResource( 4 )]
+position = Vector2( 200, 156 )
 port = 2
 
-[node name="Red" parent="." instance=ExtResource( 4 )]
-position = Vector2( 200, 152 )
+[node name="Timber" parent="." instance=ExtResource( 5 )]
+position = Vector2( 184, 156 )
 port = 1

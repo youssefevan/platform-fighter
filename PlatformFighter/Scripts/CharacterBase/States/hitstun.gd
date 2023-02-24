@@ -109,7 +109,9 @@ func physics_process(delta):
 	
 	if char_base.is_on_floor() == false:
 		char_base.velocity.y += char_base.gravity * delta
-		char_base.velocity.x = lerp(char_base.velocity.x, 0, char_base.air_friction * delta)
+		
+		if char_base.velocity.y > 0:
+			char_base.velocity.x = lerp(char_base.velocity.x, 0, char_base.air_friction * delta)
 		
 		if char_base.velocity.y > char_base.fall_speed:
 			char_base.velocity.y = char_base.fall_speed

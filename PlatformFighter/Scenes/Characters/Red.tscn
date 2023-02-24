@@ -956,7 +956,7 @@ fullhop_height = 250.0
 air_jump_height = 250.0
 run_speed = 130.0
 ground_acceleration = 2750.0
-air_friction = 2.67
+air_friction = 3.0
 air_speed = 100.0
 jumpsquat_frames = 3
 
@@ -965,7 +965,7 @@ texture = ExtResource( 2 )
 hframes = 1
 vframes = 1
 region_enabled = true
-region_rect = Rect2( 96, 128, 32, 64 )
+region_rect = Rect2( 160, 64, 32, 32 )
 
 [node name="Hitbox" parent="." index="3"]
 position = Vector2( 0, -8 )
