@@ -24,7 +24,7 @@ func physics_process(delta):
 		return char_base.idle
 	
 	if char_base.input_shield == false:
-		return char_base.idle
+		return char_base.drop_shield
 	
 	if char_base.input_jump == true or enter_jump == true:
 		return char_base.jumpsquat

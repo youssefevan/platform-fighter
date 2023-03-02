@@ -13,6 +13,7 @@ onready var land := $StateManager/Land
 onready var freefall := $StateManager/Freefall
 onready var hitstun := $StateManager/Hitstun
 onready var shield := $StateManager/Shield
+onready var drop_shield := $StateManager/DropShield
 
 # ground attacks
 export var ground_neutral_node: NodePath
@@ -68,6 +69,7 @@ export var air_acceleration: float
 export var air_speed: float
 export var air_jumps: int # some character may have more than one double jump
 export var jumpsquat_frames: int
+export var drop_shield_frames: int
 
 export var weight := 1.0 # Recommended between 0.8 to 1.2; 1.0 default
 

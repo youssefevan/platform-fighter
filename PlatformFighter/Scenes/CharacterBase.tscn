@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://Sprites/Characters/character_base.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/CharacterBase/character_base.gd" type="Script" id=2]
@@ -16,6 +16,7 @@
 [ext_resource path="res://Scripts/CharacterBase/States/hitstun.gd" type="Script" id=14]
 [ext_resource path="res://Scripts/CharacterBase/States/shield.gd" type="Script" id=15]
 [ext_resource path="res://Scenes/Shield.tscn" type="PackedScene" id=16]
+[ext_resource path="res://Scripts/CharacterBase/States/drop_shield.gd" type="Script" id=17]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 4, 8 )
@@ -43,6 +44,7 @@ air_acceleration = 600.0
 air_speed = 90.0
 air_jumps = 1
 jumpsquat_frames = 4
+drop_shield_frames = 7
 
 [node name="ECB" type="CollisionShape2D" parent="."]
 position = Vector2( 0, -8 )
@@ -112,6 +114,10 @@ animation_name = "Hitstun"
 [node name="Shield" type="Node" parent="StateManager"]
 script = ExtResource( 15 )
 animation_name = "Shield"
+
+[node name="DropShield" type="Node" parent="StateManager"]
+script = ExtResource( 17 )
+animation_name = "DropShield"
 
 [connection signal="area_entered" from="Shield" to="Shield" method="_on_Shield_area_entered"]
 [connection signal="hit_shield" from="Shield" to="StateManager/Shield" method="_on_Shield_hit_shield"]
