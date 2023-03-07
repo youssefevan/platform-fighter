@@ -769,9 +769,8 @@ tracks/8/keys = {
 "values": [ 1.05 ]
 }
 
-[sub_resource type="CapsuleShape2D" id=36]
-radius = 6.0
-height = 22.0
+[sub_resource type="RectangleShape2D" id=48]
+extents = Vector2( 12, 8.5 )
 
 [sub_resource type="Animation" id=13]
 resource_name = "GroundSide"
@@ -799,7 +798,7 @@ tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ SubResource( 36 ) ]
+"values": [ SubResource( 48 ) ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("Hitbox/Bounds:disabled")
@@ -808,7 +807,7 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.0833333, 0.204 ),
+"times": PoolRealArray( 0, 0.0666667, 0.2 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
 "values": [ true, false, true ]
@@ -823,7 +822,7 @@ tracks/3/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ Vector2( 14, -6 ) ]
+"values": [ Vector2( 12, -8.5 ) ]
 }
 tracks/4/type = "value"
 tracks/4/path = NodePath("Hitbox/Bounds:rotation_degrees")
@@ -835,7 +834,7 @@ tracks/4/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ 90.0 ]
+"values": [ 0.0 ]
 }
 tracks/5/type = "value"
 tracks/5/path = NodePath("Hitbox:damage")
@@ -871,7 +870,7 @@ tracks/7/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ -75.0 ]
+"values": [ -50.0 ]
 }
 tracks/8/type = "value"
 tracks/8/path = NodePath("Hitbox:kb_scaling")
@@ -1431,13 +1430,13 @@ texture = ExtResource( 2 )
 hframes = 1
 vframes = 1
 region_enabled = true
-region_rect = Rect2( 192, 208, 32, 32 )
+region_rect = Rect2( 0, 64, 32, 32 )
 
 [node name="Hitbox" parent="." index="3"]
-damage = 8.0
+damage = 9.0
 kb_power = 200.0
-kb_angle = 70.0
-kb_scaling = 1.1
+kb_angle = -75.0
+kb_scaling = -1.0
 
 [node name="Bounds" parent="Hitbox" index="0"]
 rotation = 1.5708
@@ -1484,10 +1483,6 @@ landing_lag = 7
 [node name="GroundSide" type="Node" parent="StateManager" index="12"]
 script = ExtResource( 3 )
 animation_name = "GroundSide"
-modify_velocity_x = 2
-velocity_x = 250.0
-x_frames = 1
-x_starting_frame = 4
 
 [node name="AerialSide" type="Node" parent="StateManager" index="13"]
 script = ExtResource( 3 )
