@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=2]
+[gd_scene load_steps=36 format=2]
 
 [ext_resource path="res://Scenes/CharacterBase.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Sprites/Characters/red.png" type="Texture" id=2]
@@ -878,6 +878,9 @@ tracks/8/keys = {
 "values": [ 2.5 ]
 }
 
+[sub_resource type="CircleShape2D" id=32]
+radius = 8.0
+
 [sub_resource type="Animation" id=15]
 resource_name = "GroundUp"
 length = 0.25
@@ -889,10 +892,106 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.0666667, 0.2 ),
+"times": PoolRealArray( 0, 0.0666667, 0.183333 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
 "values": [ Rect2( 0, 128, 32, 32 ), Rect2( 32, 128, 32, 32 ), Rect2( 64, 128, 32, 32 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Hitbox/Bounds:shape")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ SubResource( 32 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Hitbox/Bounds:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.0666667, 0.183333 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Hitbox/Bounds:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, -9 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Hitbox/Bounds:rotation_degrees")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Hitbox:damage")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 13.0 ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Hitbox:kb_power")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 140.0 ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("Hitbox:kb_angle")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ -90.0 ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("Hitbox:kb_scaling")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ -1.0 ]
 }
 
 [sub_resource type="Animation" id=17]
@@ -1268,6 +1367,90 @@ tracks/0/keys = {
 "update": 0,
 "values": [ Rect2( 32, 160, 32, 32 ) ]
 }
+tracks/1/type = "value"
+tracks/1/path = NodePath("Hitbox/Bounds:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.0333333, 0.166667 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Hitbox/Bounds:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, -7 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Hitbox/Bounds:rotation_degrees")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Hitbox:damage")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 2.0 ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Hitbox:kb_power")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 60.0 ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Hitbox:kb_angle")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ -45.0 ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("Hitbox:kb_scaling")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
 
 [node name="Red" instance=ExtResource( 1 )]
 ground_neutral_node = NodePath("StateManager/GroundNeutral")
@@ -1297,7 +1480,7 @@ texture = ExtResource( 2 )
 hframes = 1
 vframes = 1
 region_enabled = true
-region_rect = Rect2( 0, 64, 32, 32 )
+region_rect = Rect2( 0, 192, 32, 32 )
 
 [node name="Hitbox" parent="." index="3"]
 position = Vector2( 0, -8 )
