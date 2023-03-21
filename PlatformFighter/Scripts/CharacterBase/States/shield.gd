@@ -11,8 +11,8 @@ func enter():
 	
 	char_base.shield_node.visible = true
 	
-	if char_base.shield_node.scale < Vector2(0.2, 0.2):
-		char_base.shield_node.scale = Vector2(0.2, 0.2)
+	if char_base.shield_node.scale < Vector2(0.3, 0.3):
+		char_base.shield_node.scale = Vector2(0.3, 0.3)
 	#char_base.shield_node.scale = Vector2(1, 1)
 
 func physics_process(delta):
