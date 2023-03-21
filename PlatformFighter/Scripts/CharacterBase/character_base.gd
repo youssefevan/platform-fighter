@@ -70,6 +70,7 @@ export var air_speed: float
 export var air_jumps: int # some character may have more than one double jump
 export var jumpsquat_frames: int
 export var drop_shield_frames: int
+export var shield_break_frames: int
 
 export var weight := 1.0 # Recommended between 0.8 to 1.2; 1.0 default
 
@@ -81,6 +82,8 @@ var fastfalling = false
 
 var air_jumps_remaining = air_jumps
 var landing_lag: int = 4
+
+var shield_break := false
 
 var velocity = Vector2()
 

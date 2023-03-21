@@ -45,6 +45,7 @@ air_speed = 90.0
 air_jumps = 1
 jumpsquat_frames = 4
 drop_shield_frames = 7
+shield_break_frames = 240
 
 [node name="ECB" type="CollisionShape2D" parent="."]
 position = Vector2( 0, -8 )

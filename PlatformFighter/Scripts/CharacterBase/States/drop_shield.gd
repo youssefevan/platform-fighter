@@ -8,8 +8,19 @@ func enter():
 
 func physics_process(delta):
 	frame += 1
-	if frame == char_base.drop_shield_frames:
-		return char_base.idle
+	
+	if char_base.shield_break == true:
+		print(frame, "/", char_base.shield_break_frames)
+		if frame == char_base.shield_break_frames:
+			return char_base.idle
+	else:
+		if frame == char_base.drop_shield_frames:
+			return char_base.idle
 	
 	if char_base.got_hit == true:
 		return char_base.hitstun
+
+func exit():
+	.exit()
+	char_base.shield_break = false
+	print(char_base.shield_break)

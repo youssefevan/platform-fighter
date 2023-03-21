@@ -535,7 +535,7 @@ extents = Vector2( 8.5, 3.5 )
 
 [sub_resource type="Animation" id=16]
 resource_name = "GroundDown"
-length = 0.233333
+length = 0.400001
 step = 0.0166667
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:region_rect")
@@ -1579,7 +1579,7 @@ texture = ExtResource( 2 )
 hframes = 1
 vframes = 1
 region_enabled = true
-region_rect = Rect2( 0, 192, 32, 32 )
+region_rect = Rect2( 0, 96, 32, 32 )
 
 [node name="Hitbox" parent="." index="3"]
 position = Vector2( 0, -8 )

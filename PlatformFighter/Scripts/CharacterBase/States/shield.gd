@@ -10,7 +10,10 @@ func enter():
 		enter_jump = true
 	
 	char_base.shield_node.visible = true
-	char_base.shield_node.scale = Vector2(1, 1)
+	
+	if char_base.shield_node.scale < Vector2(0.2, 0.2):
+		char_base.shield_node.scale = Vector2(0.2, 0.2)
+	#char_base.shield_node.scale = Vector2(1, 1)
 
 func physics_process(delta):
 	
@@ -28,6 +31,10 @@ func physics_process(delta):
 	
 	if char_base.input_jump == true or enter_jump == true:
 		return char_base.jumpsquat
+	
+	if char_base.shield_node.scale <= Vector2(0.2, 0.2):
+		char_base.shield_break = true
+		return char_base.drop_shield
 
 func exit():
 	.exit()
