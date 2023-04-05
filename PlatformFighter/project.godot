@@ -32,7 +32,7 @@ config/icon="res://icon.png"
 
 [autoload]
 
-MultiplayerInput="*res://addons/multiplayer_input/multiplayer_input.gd"
+Global="*res://Scripts/global.gd"
 
 [display]
 
@@ -179,6 +179,7 @@ shield_2={
 2d_physics/layer_4="Hitbox"
 2d_physics/layer_5="Shield"
 2d_physics/layer_6="Platform"
+2d_physics/layer_7="Blastzone"
 
 [physics]
 

@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Sprites/tile.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/Platform.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Blastzone.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Characters/Red.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/Characters/Timber.tscn" type="PackedScene" id=5]
 
@@ -57,3 +58,19 @@ port = 2
 position = Vector2( 184, 156 )
 collision_mask = 1
 port = 1
+
+[node name="Blastzone" parent="." instance=ExtResource( 3 )]
+position = Vector2( 192, -96 )
+scale = Vector2( 320, 8 )
+
+[node name="Blastzone3" parent="." instance=ExtResource( 3 )]
+position = Vector2( -120, 116 )
+scale = Vector2( 8, 256 )
+
+[node name="Blastzone4" parent="." instance=ExtResource( 3 )]
+position = Vector2( 504, 116 )
+scale = Vector2( 8, 256 )
+
+[node name="Blastzone2" parent="." instance=ExtResource( 3 )]
+position = Vector2( 192, 320 )
+scale = Vector2( 320, 8 )

@@ -27,7 +27,7 @@ height = 8.0
 
 [node name="CharacterBase" type="KinematicBody2D" groups=["Shield"]]
 collision_layer = 2
-collision_mask = 33
+collision_mask = 97
 collision/safe_margin = 0.03
 script = ExtResource( 2 )
 gravity = 750.0
