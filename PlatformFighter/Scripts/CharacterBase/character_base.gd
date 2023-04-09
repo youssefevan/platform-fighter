@@ -110,6 +110,11 @@ var released_jump = false
 var released_shield = false
 
 func _ready():
+	if port == 1:
+		$Tag.frame = 0
+	elif port == 2:
+		$Tag.frame = 1
+	
 	print("P", port, ": ", Input.get_joy_name(port))
 	states.init(self)
 	jump_height = fullhop_height

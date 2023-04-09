@@ -27,13 +27,12 @@ _global_script_class_icons={
 [application]
 
 config/name="PlatformFighter"
-run/main_scene="res://World.tscn"
+run/main_scene="res://Scenes/TitleScreen.tscn"
 config/icon="res://icon.png"
 
 [autoload]
 
-Global="*res://Scripts/global.gd"
-gm="*res://Scenes/GameManager.tscn"
+gm="*res://Scripts/game_manager.gd"
 
 [display]
 
@@ -78,6 +77,11 @@ texture={
 
 [input]
 
+ui_page_up={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777235,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
 up_1={
 "deadzone": 0.5,
 "events": [ Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":0,"axis":1,"axis_value":-1.0,"script":null)
