@@ -50,6 +50,9 @@ onready var animations = $Animator
 onready var sprite = $Sprite
 onready var hitbox = $Hitbox/Bounds
 
+export var angel_platform_node: NodePath
+onready var angel_platform = get_node(angel_platform_node)
+
 export var gravity: float
 export var fall_speed: float # default fallspeed
 export var fastfall_speed: float # fallspeed when pressing down after apex
@@ -111,6 +114,13 @@ func _ready():
 	states.init(self)
 	jump_height = fullhop_height
 	shield_node.get_node("Collider").disabled = true
+	
+	if port == 1:
+		gm.player1 = self
+		gm.p1_stocks = 4
+	elif port == 2:
+		gm.player2 = self
+		gm.p2_stocks = 4
 
 func controls():
 	if (port == 1 || port == 2):
@@ -218,3 +228,19 @@ func get_attack(type : int): # type = 0 -> normal attack, type = 1 -> special
 func _on_Hurtbox_hit_info(hit, kb_dir, kb_pow, d_percent, kb_scale, hitbox_dir):
 	#print("hurt")
 	got_hit = true
+
+func die():
+	if self == gm.player1:
+		gm.p1_stocks -= 1
+	if self == gm.player2:
+		gm.p2_stocks -= 1
+	
+	#particle effects
+	
+	respawn()
+
+func respawn():
+	yield(get_tree().create_timer(2), "timeout")
+	
+	percentage = 0
+	global_position = angel_platform.global_position
