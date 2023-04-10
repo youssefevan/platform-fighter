@@ -4,7 +4,12 @@ export var player_number: int
 var abe = load("res://Scenes/Characters/Red.tscn").instance()
 var george = load("res://Scenes/Characters/Timber.tscn").instance()
 
+export var ap_node: NodePath
+onready var ap = get_node(ap_node)
+
 func _ready():
+	gm.angel_platform_position = ap.global_position
+	
 	if player_number == 1:
 		if gm.p1_char == "abe":
 			abe.port = 1

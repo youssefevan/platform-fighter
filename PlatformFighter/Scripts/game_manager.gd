@@ -9,10 +9,15 @@ var p2_stocks : int
 var p1_char : String
 var p2_char : String
 
+var p1_percent : int
+var p2_percent : int
+
 var char_dist_x : float
 var high_or_low: bool
 
 var in_char_select: bool
+
+var angel_platform_position
 
 func _ready():
 	p1_stocks = 4

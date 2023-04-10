@@ -50,8 +50,7 @@ onready var animations = $Animator
 onready var sprite = $Sprite
 onready var hitbox = $Hitbox/Bounds
 
-export var angel_platform_node: NodePath
-onready var angel_platform = get_node(angel_platform_node)
+var angel_platform : Node2D
 
 export var gravity: float
 export var fall_speed: float # default fallspeed
@@ -148,6 +147,11 @@ func _physics_process(delta):
 	states.physics_process(delta)
 	controls()
 	
+	if port == 1:
+		gm.p1_percent = percentage
+	elif port == 2:
+		gm.p2_percent = percentage
+	
 	#print(Input.get_vector("right_1", "left_1", "down_1", "up_1", 0.2))
 	
 	if is_on_floor() == true:
@@ -237,8 +241,10 @@ func _on_Hurtbox_hit_info(hit, kb_dir, kb_pow, d_percent, kb_scale, hitbox_dir):
 func die():
 	if self == gm.player1:
 		gm.p1_stocks -= 1
+		percentage = 0
 	if self == gm.player2:
 		gm.p2_stocks -= 1
+		percentage = 0
 	
 	#particle effects
 	
@@ -248,4 +254,4 @@ func respawn():
 	yield(get_tree().create_timer(2), "timeout")
 	
 	percentage = 0
-	global_position = angel_platform.global_position
+	global_position = gm.angel_platform_position
