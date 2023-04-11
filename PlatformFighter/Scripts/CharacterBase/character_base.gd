@@ -108,7 +108,10 @@ var input_shield = false
 var released_jump = false
 var released_shield = false
 
+var stocks
+
 func _ready():
+	stocks = 4
 	if port == 1:
 		$Tag.frame = 0
 	elif port == 2:
@@ -149,8 +152,10 @@ func _physics_process(delta):
 	
 	if port == 1:
 		gm.p1_percent = percentage
+		gm.p1_stocks = stocks
 	elif port == 2:
 		gm.p2_percent = percentage
+		gm.p2_stocks = stocks
 	
 	#print(Input.get_vector("right_1", "left_1", "down_1", "up_1", 0.2))
 	
@@ -240,10 +245,10 @@ func _on_Hurtbox_hit_info(hit, kb_dir, kb_pow, d_percent, kb_scale, hitbox_dir):
 
 func die():
 	if self == gm.player1:
-		gm.p1_stocks -= 1
+		stocks -= 1
 		percentage = 0
 	if self == gm.player2:
-		gm.p2_stocks -= 1
+		stocks -= 1
 		percentage = 0
 	
 	#particle effects
@@ -251,7 +256,7 @@ func die():
 	respawn()
 
 func respawn():
-	yield(get_tree().create_timer(2), "timeout")
+	yield(get_tree().create_timer(1), "timeout")
 	
 	percentage = 0
 	global_position = gm.angel_platform_position
