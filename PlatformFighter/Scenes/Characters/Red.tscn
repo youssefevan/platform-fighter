@@ -1323,7 +1323,7 @@ height = 60.0
 
 [sub_resource type="Animation" id=24]
 resource_name = "SpecialNeutral"
-length = 0.333333
+length = 0.433334
 step = 0.0166667
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:region_rect")
@@ -1679,7 +1679,7 @@ texture = ExtResource( 2 )
 hframes = 1
 vframes = 1
 region_enabled = true
-region_rect = Rect2( 0, 224, 32, 32 )
+region_rect = Rect2( 32, 224, 32, 32 )
 
 [node name="Hitbox" parent="." index="3"]
 position = Vector2( 0, -8 )

@@ -7,6 +7,10 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 4, 6.5 )
 
+[sub_resource type="CapsuleShape2D" id=38]
+radius = 9.0
+height = 4.0
+
 [sub_resource type="CircleShape2D" id=37]
 
 [sub_resource type="Animation" id=31]
@@ -353,10 +357,6 @@ tracks/8/keys = {
 "update": 1,
 "values": [ -1.0 ]
 }
-
-[sub_resource type="CapsuleShape2D" id=38]
-radius = 9.0
-height = 4.0
 
 [sub_resource type="Animation" id=30]
 resource_name = "AerialUp"
@@ -1663,16 +1663,17 @@ texture = ExtResource( 2 )
 hframes = 1
 vframes = 1
 region_enabled = true
-region_rect = Rect2( 192, 224, 64, 32 )
+region_rect = Rect2( 128, 96, 32, 64 )
 
 [node name="Hitbox" parent="." index="3"]
-damage = 16.0
+damage = 12.0
 kb_power = 160.0
-kb_angle = -60.0
+kb_angle = -70.0
 kb_scaling = -1.0
 
 [node name="Bounds" parent="Hitbox" index="0"]
 rotation = 1.5708
+shape = SubResource( 38 )
 disabled = false
 
 [node name="Animator" type="AnimationPlayer" parent="." index="4"]
@@ -1756,7 +1757,7 @@ landing_lag = 17
 modify_velocity_y = 3
 velocity_lerp_y = 1.0
 y_frames = 32
-y_starting_velocity = -230.0
+y_starting_velocity = -250.0
 y_starting_frame = 4
 freefall = true
 
