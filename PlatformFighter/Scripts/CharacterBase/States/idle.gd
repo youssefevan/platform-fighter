@@ -64,6 +64,9 @@ func physics_process(delta):
 	
 	if char_base.input_shield:
 		return char_base.shield
+	
+	if char_base.respawning == true:
+		return char_base.respawn
 
 func exit():
 	.exit()

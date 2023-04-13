@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Sprites/tile.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/Platform.tscn" type="PackedScene" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://Scripts/stocks_p2.gd" type="Script" id=10]
 [ext_resource path="res://Themes/theme_small.tres" type="Theme" id=11]
 [ext_resource path="res://Sprites/stage.png" type="Texture" id=12]
+[ext_resource path="res://Scripts/world.gd" type="Script" id=13]
 
 [sub_resource type="ConvexPolygonShape2D" id=2]
 points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
@@ -40,6 +41,7 @@ points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
 0/z_index = 0
 
 [node name="World" type="Node2D"]
+script = ExtResource( 13 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -138,7 +140,7 @@ position = Vector2( 192, 320 )
 scale = Vector2( 320, 8 )
 
 [node name="AngelPlatform" type="Node2D" parent="."]
-position = Vector2( 192, -48 )
+position = Vector2( 192, 64 )
 
 [node name="PlayerSpawner" parent="." instance=ExtResource( 8 )]
 position = Vector2( 128, 96 )

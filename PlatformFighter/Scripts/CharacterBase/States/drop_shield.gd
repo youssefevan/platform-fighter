@@ -19,6 +19,9 @@ func physics_process(delta):
 	
 	if char_base.got_hit == true:
 		return char_base.hitstun
+	
+	if char_base.respawning == true:
+		return char_base.respawn
 
 func exit():
 	.exit()

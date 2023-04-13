@@ -125,7 +125,9 @@ func physics_process(delta):
 		
 		char_base.velocity.x = lerp(char_base.velocity.x, 0, char_base.ground_friction * delta) # slow to stop
 		
-
+	if char_base.respawning == true:
+		return char_base.respawn
+	
 	char_base.velocity = char_base.move_and_slide(char_base.velocity, Vector2.UP)
 
 func _on_Hurtbox_hit_info(hit, kb_ang, kb_pow, d_percent, kb_scale, hitbox_dir):

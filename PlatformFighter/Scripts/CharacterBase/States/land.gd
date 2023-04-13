@@ -43,3 +43,6 @@ func physics_process(delta):
 		else:
 			return char_base.idle
 	
+	if char_base.respawning == true:
+		return char_base.respawn
+	

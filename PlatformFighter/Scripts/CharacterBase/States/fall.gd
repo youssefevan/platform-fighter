@@ -51,6 +51,9 @@ func physics_process(delta):
 	
 	if char_base.input_special:
 		return char_base.get_attack(1)
+	
+	if char_base.respawning == true:
+		return char_base.respawn
 
 func fastfalling_check():
 	if char_base.input_down:

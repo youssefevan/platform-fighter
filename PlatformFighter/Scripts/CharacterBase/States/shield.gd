@@ -35,6 +35,9 @@ func physics_process(delta):
 	if char_base.shield_node.scale <= Vector2(0.2, 0.2):
 		char_base.shield_break = true
 		return char_base.drop_shield
+	
+	if char_base.respawning == true:
+		return char_base.respawn
 
 func exit():
 	.exit()

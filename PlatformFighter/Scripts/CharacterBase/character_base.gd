@@ -14,6 +14,7 @@ onready var freefall := $StateManager/Freefall
 onready var hitstun := $StateManager/Hitstun
 onready var shield := $StateManager/Shield
 onready var drop_shield := $StateManager/DropShield
+onready var respawn := $StateManager/Respawn
 
 # ground attacks
 export var ground_neutral_node: NodePath
@@ -109,8 +110,10 @@ var released_jump = false
 var released_shield = false
 
 var stocks
+var respawning = false
 
 func _ready():
+	respawning = false
 	stocks = 4
 	if port == 1:
 		$Tag.frame = 0
@@ -191,19 +194,7 @@ func get_attack(type : int): # type = 0 -> normal attack, type = 1 -> special
 			else:
 				attack = aerial_neutral
 		else:
-			if dir.y < -.5: # if up input
-				if is_on_floor() == true: # if grounded
-					attack = ground_up
-				else:
-					attack = aerial_up
-			
-			if dir.y > .5: # if down input
-				if is_on_floor() == true: # if grounded
-					attack = ground_down
-				else:
-					attack = aerial_down
-			
-			if abs(dir.x) >= 0.5: # if side input
+			if abs(dir.x) > 0.5: # if side input
 				if is_on_floor() == true: # if grounded
 					attack = ground_side
 				else:
@@ -212,25 +203,37 @@ func get_attack(type : int): # type = 0 -> normal attack, type = 1 -> special
 						sprite.flip_h = true
 					elif dir.x > 0:
 						sprite.flip_h = false
+			
+			if dir.y <= -.5: # if up input
+				if is_on_floor() == true: # if grounded
+					attack = ground_up
+				else:
+					attack = aerial_up
+			
+			if dir.y >= .5: # if down input
+				if is_on_floor() == true: # if grounded
+					attack = ground_down
+				else:
+					attack = aerial_down
 	
 	if type == 1: # special attack
 		if dir == Vector2.ZERO: # if neutral input
 			attack = special_neutral
 		
 		else:
-			if dir.y < -.5: # if up input
-				attack = special_up
-			
-			if dir.y > .5: # if down input
-				attack = special_down
-			
-			if abs(dir.x) >= 0.5: # if side inputz
+			if abs(dir.x) > 0.5: # if side inputz
 				attack = special_side
 					
 				if dir.x < 0: # correct sprite orientation
 					sprite.flip_h = true
 				elif dir.x > 0:
 					sprite.flip_h = false
+			
+			if dir.y <= -.5: # if up input
+				attack = special_up
+			
+			if dir.y >= .5: # if down input
+				attack = special_down
 	
 	if sprite_facing() == -1:
 		$Hitbox.scale.x = -1
@@ -244,19 +247,11 @@ func _on_Hurtbox_hit_info(hit, kb_dir, kb_pow, d_percent, kb_scale, hitbox_dir):
 	got_hit = true
 
 func die():
-	if self == gm.player1:
-		stocks -= 1
-		percentage = 0
-	if self == gm.player2:
-		stocks -= 1
-		percentage = 0
-	
-	#particle effects
-	
-	respawn()
-
-func respawn():
-	yield(get_tree().create_timer(1), "timeout")
-	
-	percentage = 0
-	global_position = gm.angel_platform_position
+	if respawning == false:
+		if self == gm.player1:
+			stocks -= 1
+			percentage = 0
+		if self == gm.player2:
+			stocks -= 1
+			percentage = 0
+		respawning = true

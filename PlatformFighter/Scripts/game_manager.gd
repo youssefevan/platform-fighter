@@ -20,12 +20,20 @@ var in_char_select : bool
 var angel_platform_position
 var game_set_type # 0 tie # p1 # p2
 
+var game_set : bool
+
 func _ready():
+	game_set = false
 	p1_stocks = 4
 	p2_stocks = 4
 	in_char_select = false
 
 func _physics_process(delta):
+	if in_char_select == true:
+		p1_stocks = 4
+		p2_stocks = 4
+		game_set = false
+	
 	if player1 != null and player2 != null:
 		if p1_stocks != 0 and p2_stocks != 0:
 			char_dist_x = abs(player1.global_position.x - player2.global_position.x)
@@ -37,10 +45,10 @@ func stock_count():
 		if p1_stocks == 0 and p2_stocks == 0:
 			game_set(0)
 		elif p1_stocks == 0 and p2_stocks != 0:
-			game_set(1)
-		elif p2_stocks == 0 and p1_stocks != 0:
 			game_set(2)
+		elif p2_stocks == 0 and p1_stocks != 0:
+			game_set(1)
 
 func game_set(winner: int):
+	game_set = true
 	game_set_type = winner
-	get_tree().change_scene("res://Scenes/GameSet.tscn")
