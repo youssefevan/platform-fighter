@@ -7,10 +7,6 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 4, 6.5 )
 
-[sub_resource type="CapsuleShape2D" id=38]
-radius = 9.0
-height = 4.0
-
 [sub_resource type="CircleShape2D" id=37]
 
 [sub_resource type="Animation" id=31]
@@ -357,6 +353,10 @@ tracks/8/keys = {
 "update": 1,
 "values": [ -1.0 ]
 }
+
+[sub_resource type="CapsuleShape2D" id=38]
+radius = 9.0
+height = 4.0
 
 [sub_resource type="Animation" id=30]
 resource_name = "AerialUp"
@@ -1673,7 +1673,6 @@ kb_scaling = -1.0
 
 [node name="Bounds" parent="Hitbox" index="0"]
 rotation = 1.5708
-shape = SubResource( 38 )
 disabled = false
 
 [node name="Animator" type="AnimationPlayer" parent="." index="4"]
