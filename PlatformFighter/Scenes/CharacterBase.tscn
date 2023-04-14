@@ -63,6 +63,9 @@ vframes = 4
 
 [node name="Shield" parent="." instance=ExtResource( 16 )]
 
+[node name="Sprite" parent="Shield" index="0"]
+z_index = 1
+
 [node name="Hitbox" parent="." instance=ExtResource( 13 )]
 
 [node name="Bounds" parent="Hitbox" index="0"]
