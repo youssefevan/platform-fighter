@@ -1,6 +1,5 @@
 extends Label
 
-
 func _ready():
 	if gm.game_set_type == 0:
 		text = "Tie"

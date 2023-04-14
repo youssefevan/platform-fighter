@@ -27,12 +27,13 @@ _global_script_class_icons={
 [application]
 
 config/name="PlatformFighter"
-run/main_scene="res://Scenes/TitleScreen.tscn"
+run/main_scene="res://Scenes/GUI/TitleScreen.tscn"
 config/icon="res://icon.png"
 
 [autoload]
 
 gm="*res://Scripts/game_manager.gd"
+ParticlesCache="*res://Scenes/Particles/ParticlesCache.tscn"
 
 [display]
 

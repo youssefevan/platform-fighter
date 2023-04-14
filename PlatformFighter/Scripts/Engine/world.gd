@@ -5,4 +5,4 @@ func _physics_process(delta):
 		gm.player1 = null
 		gm.player2 = null
 		gm.game_set = false
-		get_tree().change_scene("res://Scenes/GameSet.tscn")
+		get_tree().change_scene("res://Scenes/GUI/GameSet.tscn")

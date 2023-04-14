@@ -17,6 +17,8 @@ var hitstun_length
 
 func enter():
 	.enter()
+	char_base.spawn_hitstun_arc()
+	
 	freeze_frames = int(damage_percent / 3) + 1
 	
 	#print((freeze_frames/60.0))

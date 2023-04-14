@@ -51,6 +51,8 @@ onready var animations = $Animator
 onready var sprite = $Sprite
 onready var hitbox = $Hitbox/Bounds
 
+var hitstun_arc = preload("res://Scenes/Particles/HitstunArc.tscn")
+
 var angel_platform : Node2D
 
 export var gravity: float
@@ -255,3 +257,8 @@ func die():
 			stocks -= 1
 			percentage = 0
 		respawning = true
+
+func spawn_hitstun_arc():
+	var arc = hitstun_arc.instance()
+	#arc.global_position = global_position
+	call_deferred("add_child", arc)

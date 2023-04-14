@@ -1,8 +1,9 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Sprites/char_select.png" type="Texture" id=1]
-[ext_resource path="res://Scripts/char_select_screen.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/GUI/char_select_screen.gd" type="Script" id=2]
 [ext_resource path="res://Themes/theme_small.tres" type="Theme" id=3]
+
 
 [node name="CharSelectScreen" type="Node2D"]
 script = ExtResource( 2 )
