@@ -262,3 +262,9 @@ func spawn_hitstun_arc():
 	var arc = hitstun_arc.instance()
 	#arc.global_position = global_position
 	call_deferred("add_child", arc)
+
+func platform_drop():
+	if $CheckForPlatforms.is_colliding():
+		$ECB.disabled = true
+		yield(get_tree().create_timer(0.1), "timeout")
+		$ECB.disabled = false

@@ -79,6 +79,11 @@ shield_node = NodePath("../Shield")
 position = Vector2( 0, -8 )
 shape = SubResource( 2 )
 
+[node name="CheckForPlatforms" type="RayCast2D" parent="."]
+enabled = true
+cast_to = Vector2( 0, 5 )
+collision_mask = 32
+
 [node name="StateManager" type="Node" parent="."]
 script = ExtResource( 3 )
 starting_state = NodePath("Idle")
@@ -133,6 +138,7 @@ animation_name = "Respawn"
 
 [node name="Tag" type="Sprite" parent="."]
 position = Vector2( 0, -24 )
+z_index = 1
 texture = ExtResource( 18 )
 hframes = 2
 

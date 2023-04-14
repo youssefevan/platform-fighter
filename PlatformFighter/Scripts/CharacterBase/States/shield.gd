@@ -38,6 +38,9 @@ func physics_process(delta):
 	
 	if char_base.respawning == true:
 		return char_base.respawn
+	
+	if char_base.input_down:
+		char_base.platform_drop()
 
 func exit():
 	.exit()
