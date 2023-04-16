@@ -7,6 +7,9 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 4, 6.5 )
 
+[sub_resource type="CapsuleShape2D" id=43]
+radius = 6.0
+
 [sub_resource type="CircleShape2D" id=37]
 
 [sub_resource type="Animation" id=31]
@@ -1511,9 +1514,6 @@ tracks/8/keys = {
 "values": [ -1.0 ]
 }
 
-[sub_resource type="CapsuleShape2D" id=43]
-radius = 6.0
-
 [sub_resource type="Animation" id=42]
 resource_name = "SpecialUp"
 length = 0.6
@@ -1528,7 +1528,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ Rect2( 128, 32, 32, 32 ), Rect2( 160, 32, 32, 32 ), Rect2( 192, 32, 32, 32 ), Rect2( 160, 32, 32, 32 ), Rect2( 192, 32, 32, 32 ), Rect2( 160, 32, 32, 32 ), Rect2( 192, 32, 32, 32 ), Rect2( 160, 32, 32, 32 ), Rect2( 192, 32, 32, 32 ), Rect2( 160, 32, 32, 32 ), Rect2( 128, 32, 32, 32 ) ]
+"values": [ Rect2( 128, 32, 32, 32 ), Rect2( 128, 64, 32, 32 ), Rect2( 160, 64, 32, 32 ), Rect2( 128, 64, 32, 32 ), Rect2( 160, 64, 32, 32 ), Rect2( 128, 64, 32, 32 ), Rect2( 160, 64, 32, 32 ), Rect2( 128, 64, 32, 32 ), Rect2( 160, 64, 32, 32 ), Rect2( 128, 64, 32, 32 ), Rect2( 128, 32, 32, 32 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Hitbox/Bounds:shape")
@@ -1664,16 +1664,17 @@ texture = ExtResource( 2 )
 hframes = 1
 vframes = 1
 region_enabled = true
-region_rect = Rect2( 128, 96, 32, 64 )
+region_rect = Rect2( 128, 32, 32, 32 )
 
 [node name="Hitbox" parent="." index="3"]
-damage = 12.0
-kb_power = 160.0
+damage = 15.0
+kb_power = 170.0
 kb_angle = -70.0
 kb_scaling = -1.0
 
 [node name="Bounds" parent="Hitbox" index="0"]
 rotation = 1.5708
+shape = SubResource( 43 )
 disabled = false
 
 [node name="Animator" type="AnimationPlayer" parent="." index="4"]
