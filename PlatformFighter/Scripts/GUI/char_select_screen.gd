@@ -1,8 +1,8 @@
 extends Node2D
 
 func _ready():
-	gm.p1_stocks = 4
-	gm.p2_stocks = 4
+	gm.p1_stocks = gm.starting_stock_count
+	gm.p2_stocks = gm.starting_stock_count
 	gm.in_char_select = true
 
 func _on_FightBtn_button_up():

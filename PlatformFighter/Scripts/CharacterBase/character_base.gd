@@ -116,7 +116,7 @@ var respawning = false
 
 func _ready():
 	respawning = false
-	stocks = 4
+	stocks = gm.starting_stock_count
 	if port == 1:
 		$Tag.frame = 0
 	elif port == 2:

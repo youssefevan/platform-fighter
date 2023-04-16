@@ -22,6 +22,8 @@ var game_set_type # 0 tie # p1 # p2
 
 var game_set : bool
 
+const starting_stock_count := 3
+
 func _ready():
 	game_set = false
 	p1_stocks = 4
@@ -30,8 +32,8 @@ func _ready():
 
 func _physics_process(delta):
 	if in_char_select == true:
-		p1_stocks = 4
-		p2_stocks = 4
+		p1_stocks = 3
+		p2_stocks = 3
 		game_set = false
 	
 	if player1 != null and player2 != null:
