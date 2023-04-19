@@ -7,9 +7,6 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 4, 6.5 )
 
-[sub_resource type="CapsuleShape2D" id=43]
-radius = 6.0
-
 [sub_resource type="CircleShape2D" id=37]
 
 [sub_resource type="Animation" id=31]
@@ -1514,6 +1511,9 @@ tracks/8/keys = {
 "values": [ -1.0 ]
 }
 
+[sub_resource type="CapsuleShape2D" id=43]
+radius = 6.0
+
 [sub_resource type="Animation" id=42]
 resource_name = "SpecialUp"
 length = 0.6
@@ -1674,7 +1674,6 @@ kb_scaling = -1.0
 
 [node name="Bounds" parent="Hitbox" index="0"]
 rotation = 1.5708
-shape = SubResource( 43 )
 disabled = false
 
 [node name="Animator" type="AnimationPlayer" parent="." index="4"]

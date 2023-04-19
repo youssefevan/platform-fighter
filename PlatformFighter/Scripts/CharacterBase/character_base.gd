@@ -134,8 +134,14 @@ func _ready():
 		gm.player2 = self
 		gm.p2_stocks = 4
 
+func _unhandled_input(event):
+	if event is InputEvent:
+		if event.is_action_pressed("attack_%s" % port):
+			print("Device #", event.get_device()) #NOTE: This excludes echos
+
 func controls():
 	if (port == 1 || port == 2):
+		
 		up = Input.get_action_strength("up_%s" % port)
 		down = Input.get_action_strength("down_%s" % port)
 		left = Input.get_action_strength("left_%s" % port)
