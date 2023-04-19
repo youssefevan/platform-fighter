@@ -47,9 +47,9 @@ script = ExtResource( 13 )
 
 [node name="PercentageP1" type="Label" parent="CanvasLayer"]
 margin_left = 104.0
-margin_top = 204.0
+margin_top = 196.0
 margin_right = 152.0
-margin_bottom = 210.0
+margin_bottom = 211.0
 theme = ExtResource( 11 )
 custom_colors/font_color = Color( 0, 0.203922, 1, 1 )
 text = "0%"
@@ -57,21 +57,20 @@ align = 1
 script = ExtResource( 4 )
 
 [node name="StocksP1" type="Label" parent="CanvasLayer"]
-margin_left = 104.0
-margin_top = 188.0
-margin_right = 152.0
-margin_bottom = 194.0
+margin_left = 116.0
+margin_top = 180.0
+margin_right = 164.0
+margin_bottom = 195.0
 theme = ExtResource( 11 )
 custom_colors/font_color = Color( 0, 0.203922, 1, 1 )
-text = "x4"
-align = 1
+text = "xxx"
 script = ExtResource( 9 )
 
 [node name="PercentageP2" type="Label" parent="CanvasLayer"]
 margin_left = 232.0
-margin_top = 204.0
+margin_top = 196.0
 margin_right = 280.0
-margin_bottom = 210.0
+margin_bottom = 211.0
 theme = ExtResource( 11 )
 custom_colors/font_color = Color( 1, 0, 0, 1 )
 text = "0%"
@@ -79,14 +78,13 @@ align = 1
 script = ExtResource( 5 )
 
 [node name="StocksP2" type="Label" parent="CanvasLayer"]
-margin_left = 232.0
-margin_top = 188.0
-margin_right = 280.0
-margin_bottom = 194.0
+margin_left = 244.0
+margin_top = 180.0
+margin_right = 292.0
+margin_bottom = 195.0
 theme = ExtResource( 11 )
 custom_colors/font_color = Color( 1, 0, 0, 1 )
-text = "x4"
-align = 1
+text = "xxx"
 script = ExtResource( 10 )
 
 [node name="GatewayArchLevel" type="Sprite" parent="."]
@@ -108,6 +106,9 @@ __meta__ = {
 [node name="Stage" type="Sprite" parent="Tiles"]
 position = Vector2( 192, 216 )
 texture = ExtResource( 12 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="Camera" type="Camera2D" parent="."]
 position = Vector2( 192, 108 )

@@ -113,6 +113,7 @@ var released_shield = false
 
 var stocks
 var respawning = false
+var device
 
 func _ready():
 	respawning = false
@@ -122,38 +123,57 @@ func _ready():
 	elif port == 2:
 		$Tag.frame = 1
 	
-	print("P", port, ": ", Input.get_joy_name(port))
+	#print("P", port, ": ", Input.get_joy_name(port))
 	states.init(self)
 	jump_height = fullhop_height
 	shield_node.get_node("Collider").disabled = true
 	
 	if port == 1:
 		gm.player1 = self
-		gm.p1_stocks = 4
+		device = gm.p1_device
 	elif port == 2:
 		gm.player2 = self
-		gm.p2_stocks = 4
+		device = gm.p2_device
 
 func _unhandled_input(event):
-	if event is InputEvent:
-		if event.is_action_pressed("attack_%s" % port):
-			print("Device #", event.get_device()) #NOTE: This excludes echos
+	if (port == 1 || port == 2):
+		if event is InputEvent and event.get_device() == device:
+			
+			# These dont work
+#			up = event.get_action_strength("up")
+#			down = event.get_action_strength("down")
+#			left = event.get_action_strength("left")
+#			right = event.get_action_strength("right")
+#
+			# These work i think
+#			input_shield = event.get_action_strength("shield")
+#			input_down = event.is_action_pressed("down")
+#			input_attack = event.is_action_pressed("attack")
+#			input_special = event.is_action_pressed("special")
+#
+			# I dont know if these work
+#			released_jump = event.is_action_released("jump")
+#			released_shield = event.is_action_released("shield")
+			
+			if event.is_action_pressed("attack"): #NOTE: This excludes echos
+				print("Device #", event.get_device())
 
 func controls():
+	pass
 	if (port == 1 || port == 2):
-		
+
 		up = Input.get_action_strength("up_%s" % port)
 		down = Input.get_action_strength("down_%s" % port)
 		left = Input.get_action_strength("left_%s" % port)
 		right = Input.get_action_strength("right_%s" % port)
-		
+
 		input_down = Input.is_action_just_pressed("down_%s" % port)
 		input_shield = Input.is_action_pressed("shield_%s" % port)
-		
+
 		input_jump = Input.is_action_just_pressed("jump_%s" % port)
 		input_attack = Input.is_action_just_pressed("attack_%s" % port)
 		input_special = Input.is_action_just_pressed("special_%s" % port)
-		
+
 		released_jump = Input.is_action_just_released("jump_%s" % port)
 		released_shield = Input.is_action_just_released("shield_%s" % port)
 

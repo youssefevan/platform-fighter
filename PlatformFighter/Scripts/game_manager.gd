@@ -3,6 +3,9 @@ extends Node
 var player1 : CharacterBase
 var player2 : CharacterBase
 
+var p1_device
+var p2_device
+
 var p1_stocks : int
 var p2_stocks : int
 
@@ -26,9 +29,12 @@ const starting_stock_count := 3
 
 func _ready():
 	game_set = false
-	p1_stocks = 4
-	p2_stocks = 4
 	in_char_select = false
+	
+	p1_stocks = starting_stock_count
+	p2_stocks = starting_stock_count
+	p1_device = null
+	p2_device = null
 
 func _physics_process(delta):
 	if in_char_select == true:
